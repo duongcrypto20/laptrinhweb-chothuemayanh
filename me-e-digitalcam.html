@@ -1,0 +1,1385 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>me.e_digitalcam · Thuê máy ảnh Đà Nẵng</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Lora:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FCF8EC;--bg2:#F6EDD0;--card:#FFFDF6;--ink:#2B1A12;--ink2:#6E5A4E;--line:#E3D5B0;
+  --pri:#6B230A;--pri2:#4A1807;--pri-ink:#FCF8EC;--acc:#E8D296;--acc2:#F1E3B9;--acc-ink:#2E0F04;
+  --ok:#2F6B40;--okbg:#E4F1E7;--warn:#8A5600;--warnbg:#FBEFD3;--err:#B3261E;--errbg:#F9E1DF;--info:#2F5F7F;--infobg:#E1EDF4;
+  --photo:#F1E3B9;--star:#C98A1B;--shadow:0 12px 32px rgba(46,15,4,.13);--hole:var(--bg);
+  --serif:'Lora',Georgia,'Times New Roman',serif;
+  --sans:'Be Vietnam Pro',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --grain:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .42 0 0 0 0 .14 0 0 0 0 .04 0 0 0 .07 0'/></filter><rect width='160' height='160' filter='url(%23n)'/></svg>");
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#1B0D07;--bg2:#24110A;--card:#2C160D;--ink:#F4E9CC;--ink2:#C9B592;--line:#4A2A1B;
+  --pri:#E8D296;--pri2:#F1E3B9;--pri-ink:#2E0F04;--acc:#5A2410;--acc2:#3A1A0F;--acc-ink:#F1E3B9;
+  --ok:#7CC38F;--okbg:#1E3326;--warn:#E5B04A;--warnbg:#3A2C10;--err:#F0897F;--errbg:#3F1A17;--info:#8DBBD8;--infobg:#1B2C38;
+  --photo:#3A1F13;--star:#E8D296;--shadow:0 12px 32px rgba(0,0,0,.45);
+}}
+:root[data-theme="dark"]{
+  --bg:#1B0D07;--bg2:#24110A;--card:#2C160D;--ink:#F4E9CC;--ink2:#C9B592;--line:#4A2A1B;
+  --pri:#E8D296;--pri2:#F1E3B9;--pri-ink:#2E0F04;--acc:#5A2410;--acc2:#3A1A0F;--acc-ink:#F1E3B9;
+  --ok:#7CC38F;--okbg:#1E3326;--warn:#E5B04A;--warnbg:#3A2C10;--err:#F0897F;--errbg:#3F1A17;--info:#8DBBD8;--infobg:#1B2C38;
+  --photo:#3A1F13;--star:#E8D296;--shadow:0 12px 32px rgba(0,0,0,.45);
+}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 84px);-webkit-text-size-adjust:100%}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg) var(--grain);color:var(--ink);font:400 16px/1.6 var(--sans);-webkit-font-smoothing:antialiased;min-height:100%}
+body.lock{overflow:hidden}
+h1,h2,h3,h4{font-family:var(--serif);color:var(--ink);line-height:1.2;margin:0 0 .5em;font-weight:700;text-wrap:balance}
+h1{font-size:clamp(34px,5.4vw,60px);letter-spacing:-.01em}
+h2{font-size:clamp(26px,3.4vw,38px)}
+h3{font-size:clamp(19px,2vw,22px);font-weight:600}
+p{margin:0 0 1em}
+a{color:var(--pri);text-decoration-thickness:1px;text-underline-offset:3px}
+img,svg{max-width:100%}
+.muted{color:var(--ink2)}
+.sm-t{font-size:14px}
+.wrap{max-width:1200px;margin:0 auto;padding:0 clamp(16px,4vw,48px)}
+.sec{padding:clamp(52px,7vw,92px) 0}
+.alt{background:var(--bg2);--hole:var(--bg2)}
+.sec-h{display:flex;justify-content:space-between;align-items:end;gap:16px;flex-wrap:wrap;margin-bottom:28px}
+.sec-h h2{margin:0}
+.sec-h p{margin:6px 0 0;max-width:56ch}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+:focus-visible{outline:3px solid var(--acc);outline-offset:2px;box-shadow:0 0 0 5px var(--pri)}
+.skip{position:absolute;left:8px;top:-60px;background:var(--pri);color:var(--pri-ink);padding:10px 14px;border-radius:8px;z-index:100}
+.skip:focus{top:8px}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font:600 15px/1 var(--sans);padding:0 22px;height:48px;border-radius:999px;border:1.5px solid transparent;cursor:pointer;text-decoration:none;transition:background .15s,transform .15s,border-color .15s;white-space:nowrap}
+.btn svg{width:18px;height:18px;flex:none}
+.btn.lg{height:56px;font-size:16px;padding:0 30px}
+.btn.sm{height:38px;font-size:14px;padding:0 16px}
+.btn.block{width:100%}
+.btn-pri{background:var(--pri);color:var(--pri-ink)}
+.btn-pri:hover{background:var(--pri2)}
+.btn-acc{background:var(--acc);color:var(--acc-ink)}
+.btn-acc:hover{filter:brightness(.95)}
+.btn-out{background:transparent;color:var(--pri);border-color:var(--pri)}
+.btn-out:hover{background:var(--acc2)}
+.btn-ghost{background:transparent;color:var(--pri);padding:0 10px}
+.btn-ghost:hover{background:var(--acc2)}
+.btn-err{background:var(--err);color:#fff}
+.btn:active{transform:translateY(1px)}
+.btn[disabled],.btn.off{opacity:.45;cursor:not-allowed;pointer-events:none}
+.btn.loading{pointer-events:none;color:transparent;position:relative}
+.btn.loading::after{content:"";position:absolute;width:20px;height:20px;border:2.5px solid var(--pri-ink);border-right-color:transparent;border-radius:50%;animation:spin .7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* header */
+.hdr{position:sticky;top:env(safe-area-inset-top,0px);z-index:40;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.hdr-in{display:flex;align-items:center;gap:20px;height:72px}
+.logo{display:flex;align-items:center;gap:10px;font:700 24px var(--serif);color:var(--ink);text-decoration:none}
+.logo svg{width:34px;height:34px}
+.nav{display:flex;gap:4px;margin-left:12px}
+.nav a{padding:8px 12px;border-radius:999px;text-decoration:none;color:var(--ink);font-weight:500;font-size:15px}
+.nav a:hover{background:var(--acc2)}
+.nav a.on{background:var(--acc);color:var(--acc-ink)}
+.hdr-act{margin-left:auto;display:flex;gap:8px;align-items:center}
+.ibtn{width:42px;height:42px;border-radius:50%;border:0;background:transparent;color:var(--ink);display:grid;place-items:center;cursor:pointer}
+.ibtn:hover{background:var(--acc2)}
+.ibtn svg{width:22px;height:22px}
+.burger{display:none}
+@media(max-width:900px){
+  .nav{position:fixed;inset:calc(env(safe-area-inset-top,0px) + 72px) 0 0 0;background:var(--bg);flex-direction:column;padding:20px 20px 40px;margin:0;transform:translateX(100%);transition:transform .25s;gap:2px;overflow:auto}
+  .nav.open{transform:none}
+  .nav a{font:600 20px var(--serif);padding:14px 12px;border-radius:12px}
+  .burger{display:grid}
+  .hdr-act .btn{display:none}
+}
+
+/* stamp (perforated edge) */
+.stamp{--d:13px;padding:var(--d);filter:drop-shadow(0 10px 16px rgba(46,15,4,.16));
+  background:
+   radial-gradient(circle at 50% 0,var(--hole) 5px,transparent 5.5px) top/16px var(--d) repeat-x,
+   radial-gradient(circle at 50% 100%,var(--hole) 5px,transparent 5.5px) bottom/16px var(--d) repeat-x,
+   radial-gradient(circle at 0 50%,var(--hole) 5px,transparent 5.5px) left/var(--d) 16px repeat-y,
+   radial-gradient(circle at 100% 50%,var(--hole) 5px,transparent 5.5px) right/var(--d) 16px repeat-y,
+   var(--card)}
+.stamp-in{border:1px solid var(--line);padding:18px;height:100%;border-radius:2px}
+
+/* hero */
+.hero{padding:clamp(36px,5vw,72px) 0 clamp(80px,9vw,120px)}
+.hero-in{display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(24px,5vw,64px);align-items:center}
+.hero h1{margin-bottom:.4em}
+.lead{font-size:clamp(17px,1.6vw,19px);max-width:52ch;color:var(--ink2)}
+.cta{display:flex;gap:12px;flex-wrap:wrap;margin:26px 0 26px}
+.trust{list-style:none;padding:0;margin:0;display:flex;gap:10px 22px;flex-wrap:wrap;font-size:14px;color:var(--ink2)}
+.trust li{display:flex;align-items:center;gap:8px}
+.trust svg{width:18px;height:18px;color:var(--pri)}
+.hero-art{position:relative;min-height:380px;display:grid;place-items:center}
+.hero-art .big{width:min(100%,430px);transform:rotate(2deg);animation:land .9s cubic-bezier(.2,.8,.2,1) both}
+.hero-art .small{position:absolute;left:-2%;bottom:-6%;width:46%;transform:rotate(-7deg);animation:land .9s .15s cubic-bezier(.2,.8,.2,1) both}
+@keyframes land{from{opacity:0;transform:translateY(-26px) rotate(-6deg)}}
+.tag-pill{position:absolute;right:-6px;top:8%;background:var(--pri);color:var(--pri-ink);padding:10px 16px;border-radius:14px 14px 14px 4px;font-weight:600;font-size:14px;box-shadow:var(--shadow);transform:rotate(4deg)}
+.tag-pill b{font:700 22px var(--serif);display:block}
+.cap{font:600 15px var(--serif);margin:10px 0 0;text-align:center}
+@media(max-width:900px){.hero-in{grid-template-columns:1fr}.hero-art{min-height:300px;order:-1}.hero-art .small{width:40%}}
+
+/* quick booking */
+.quick{margin-top:-64px;position:relative;z-index:2}
+.quick-in{background:var(--card);border:1px solid var(--line);border-radius:28px;box-shadow:var(--shadow);padding:20px;display:grid;grid-template-columns:1.3fr 1fr 1fr auto;gap:14px;align-items:end}
+@media(max-width:900px){.quick-in{grid-template-columns:1fr 1fr}.quick-in>*:first-child{grid-column:1/-1}.quick-in .btn{grid-column:1/-1}}
+
+/* forms */
+.field{display:flex;flex-direction:column;gap:6px;min-width:0}
+.field>label,.lbl{font:600 14px var(--sans)}
+input[type=text],input[type=tel],input[type=password],input[type=search],input[type=date],select,textarea{width:100%;font:400 16px var(--sans);color:var(--ink);background:var(--bg2);border:1.5px solid var(--line);border-radius:12px;padding:0 14px;height:48px;transition:border-color .15s,background .15s}
+textarea{height:auto;min-height:110px;padding:12px 14px;resize:vertical}
+input:hover,select:hover,textarea:hover{border-color:#CDB46A}
+input:focus,select:focus,textarea:focus{background:var(--card);border-color:var(--pri);outline:none;box-shadow:0 0 0 3px var(--acc)}
+.field.bad input,.field.bad select,.field.bad textarea{border-color:var(--err)}
+.help{font-size:13px;color:var(--ink2)}
+.errt{font-size:13px;color:var(--err);display:flex;gap:6px;align-items:center}
+.chk{display:flex;gap:10px;align-items:flex-start;cursor:pointer;font-size:15px}
+.chk input{width:20px;height:20px;margin:2px 0 0;accent-color:var(--pri);flex:none}
+.chk.bad{color:var(--err)}
+input[type=range]{accent-color:var(--pri);width:100%}
+
+/* badges & chips */
+.badge{display:inline-flex;align-items:center;gap:6px;font:600 12px var(--sans);padding:4px 10px;border-radius:999px;background:var(--acc2);color:var(--ink)}
+.b-ok{background:var(--okbg);color:var(--ok)}.b-low{background:var(--warnbg);color:var(--warn)}.b-out{background:var(--errbg);color:var(--err)}.b-info{background:var(--infobg);color:var(--info)}.b-pri{background:var(--pri);color:var(--pri-ink)}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{border:1.5px solid var(--line);background:transparent;color:var(--ink);padding:8px 16px;border-radius:999px;font:500 14px var(--sans);cursor:pointer}
+.chip:hover{border-color:var(--pri)}
+.chip.on{background:var(--pri);border-color:var(--pri);color:var(--pri-ink)}
+
+/* camera cards */
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+@media(max-width:1000px){.grid4{grid-template-columns:repeat(2,1fr)}.grid3{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.grid4,.grid3{grid-template-columns:1fr}.snap{display:flex!important;overflow-x:auto;scroll-snap-type:x mandatory;margin:0 calc(-1*clamp(16px,4vw,48px));padding:4px clamp(16px,4vw,48px) 14px}.snap>*{flex:0 0 82%;scroll-snap-align:start}}
+.cam{background:var(--card);border:1px solid var(--line);border-radius:22px 22px 22px 6px;overflow:hidden;display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s}
+.cam:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.cam-ph{display:block;position:relative;aspect-ratio:4/3;background:radial-gradient(120% 90% at 30% 20%,var(--acc2),var(--photo));padding:14px 18px}
+.cam-ph svg{width:100%;height:100%}
+.cam-ph .badge{position:absolute;left:12px;top:12px}
+.cam.out .cam-ph svg{filter:grayscale(.8);opacity:.6}
+.like{position:absolute;right:10px;top:10px;width:36px;height:36px;border-radius:50%;border:0;background:color-mix(in srgb,var(--card) 85%,transparent);color:var(--pri);cursor:pointer;display:grid;place-items:center}
+.like svg{width:18px;height:18px;width:18px!important;height:18px!important}
+.like.on svg{fill:var(--pri)}
+.cam-b{padding:16px 18px 18px;display:flex;flex-direction:column;gap:4px;flex:1}
+.cam-b h3{margin:0;font-size:18px}
+.cam-b p{margin:0;font-size:14px;color:var(--ink2)}
+.cam-f{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:auto;padding-top:14px}
+.price{font-size:14px;color:var(--ink2)}
+.price b{font:700 22px var(--serif);color:var(--ink)}
+.price small{display:block;font-size:12px}
+
+/* package tickets */
+.pk{height:100%}
+.pk .stamp-in{display:flex;flex-direction:column;gap:6px;background:transparent}
+.pk h3{margin:0;font-size:26px}
+.pk .big{font:700 34px var(--serif);color:var(--pri);margin:6px 0 0}
+.pk ul{list-style:none;margin:10px 0 18px;padding:0;font-size:14px;display:grid;gap:6px}
+.pk li{display:flex;gap:8px}
+.pk li svg{width:16px;height:16px;flex:none;margin-top:4px;color:var(--ok)}
+.pk .btn{margin-top:auto}
+.pk.best{--d:13px}
+.pk.best .stamp-in{background:var(--acc2)}
+
+/* timeline */
+.tl{position:relative;display:grid;gap:26px;padding-left:64px;max-width:760px}
+.tl::before{content:"";position:absolute;left:23px;top:8px;bottom:8px;border-left:2px dashed #CDB46A}
+.tl-i{position:relative}
+.tl-i .n{position:absolute;left:-64px;top:0;width:48px;height:48px;border-radius:50%;background:var(--pri);color:var(--pri-ink);display:grid;place-items:center;font:700 20px var(--serif)}
+.tl-i h3{margin:0 0 4px}
+.tl-i p{margin:0 0 8px;color:var(--ink2)}
+.note{display:flex;gap:10px;align-items:flex-start;border-radius:12px;padding:10px 14px;font-size:14px;background:var(--infobg);color:var(--ink)}
+.note svg{width:18px;height:18px;flex:none;margin-top:3px}
+.note.err{background:var(--errbg)}.note.err svg{color:var(--err)}
+.note.warn{background:var(--warnbg)}.note.warn svg{color:var(--warn)}
+.note.ok{background:var(--okbg)}.note.ok svg{color:var(--ok)}
+.note.info svg{color:var(--info)}
+
+/* split */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+@media(max-width:800px){.two{grid-template-columns:1fr}}
+.rows{display:grid;gap:0}
+.rows>div{display:flex;gap:14px;padding:16px 0;border-bottom:1px solid var(--line)}
+.rows>div:last-child{border:0}
+.rows svg{width:26px;height:26px;color:var(--pri);flex:none;margin-top:2px}
+.rows h4{margin:0 0 2px;font-size:17px}
+.rows p{margin:0;color:var(--ink2);font-size:15px}
+.kv{display:grid;gap:10px;margin:0;padding:0;list-style:none}
+.kv li{display:flex;justify-content:space-between;gap:16px;border-bottom:1px dashed var(--line);padding-bottom:8px;font-size:15px}
+.kv li b{font-weight:600;text-align:right}
+.lines{margin:0;padding-left:20px;display:grid;gap:8px}
+
+/* reviews */
+.score{display:flex;gap:20px;align-items:center;margin-bottom:18px}
+.score .n{font:700 64px/1 var(--serif);color:var(--pri)}
+.stars{display:inline-flex;gap:2px;color:var(--star)}
+.stars svg{width:18px;height:18px;fill:currentColor}
+.stars .e{opacity:.28}
+.bars{display:grid;gap:6px;font-size:13px}
+.bars button{display:grid;grid-template-columns:28px 1fr 28px;gap:8px;align-items:center;background:none;border:0;padding:2px 0;cursor:pointer;color:var(--ink);font:inherit}
+.bars i{display:block;height:8px;border-radius:99px;background:var(--line);overflow:hidden}
+.bars i b{display:block;height:100%;background:var(--star)}
+.rv{background:var(--card);border:1px solid var(--line);border-radius:6px 22px 22px 22px;padding:20px;display:flex;flex-direction:column;gap:10px;break-inside:avoid}
+.rv-h{display:flex;gap:12px;align-items:center}
+.av{width:42px;height:42px;border-radius:50%;background:var(--acc);color:var(--acc-ink);display:grid;place-items:center;font:700 16px var(--serif);flex:none}
+.rv-h b{display:block;line-height:1.2}
+.rv-h small{color:var(--ink2)}
+.rv p{margin:0}
+.ph{display:flex;gap:8px}
+.ph button{width:64px;height:64px;border-radius:12px;border:1px solid var(--line);background:var(--photo);padding:0;cursor:pointer;overflow:hidden}
+.ph button svg,.ph button img{width:100%;height:100%;object-fit:cover}
+.reply{margin-left:14px;border-left:3px solid var(--pri);background:var(--bg2);border-radius:0 12px 12px 0;padding:10px 14px;font-size:14px}
+.reply b{display:block;font-size:13px;color:var(--pri)}
+.helpful{align-self:flex-start;background:none;border:1px solid var(--line);border-radius:99px;padding:5px 12px;font:500 13px var(--sans);color:var(--ink2);cursor:pointer}
+.helpful.on{background:var(--acc2);color:var(--ink);border-color:var(--pri)}
+.masonry{columns:2;column-gap:22px}
+.masonry>*{margin-bottom:22px}
+@media(max-width:800px){.masonry{columns:1}}
+.starpick{display:flex;gap:4px}
+.starpick button{background:none;border:0;padding:2px;cursor:pointer;color:var(--star)}
+.starpick svg{width:34px;height:34px;fill:none;stroke:currentColor;stroke-width:1.6}
+.starpick button.on svg{fill:currentColor}
+
+/* tables / tabs */
+.tbl-w{overflow-x:auto;border:1px solid var(--line);border-radius:18px;background:var(--card)}
+table{border-collapse:collapse;width:100%;min-width:620px;font-size:15px}
+th,td{padding:12px 16px;text-align:left;border-bottom:1px solid var(--line);white-space:nowrap}
+th{background:var(--acc2);font-weight:600;position:sticky;top:0}
+td:first-child,th:first-child{position:sticky;left:0;background:inherit}
+tbody tr:hover{background:var(--bg2)}
+tbody td:first-child{background:var(--card);font-weight:600}
+tbody tr:hover td:first-child{background:var(--bg2)}
+td.n{font-variant-numeric:tabular-nums}
+tr:last-child td{border-bottom:0}
+.tabs{display:flex;gap:4px;border-bottom:1px solid var(--line);overflow-x:auto;margin-bottom:24px}
+.tabs a,.tabs button{padding:12px 18px;border:0;background:none;color:var(--ink2);font:600 15px var(--sans);text-decoration:none;white-space:nowrap;border-bottom:3px solid transparent;cursor:pointer}
+.tabs a:hover,.tabs button:hover{color:var(--pri)}
+.tabs .on{color:var(--pri);border-bottom-color:var(--pri);background:var(--acc2);border-radius:10px 10px 0 0}
+details{border-bottom:1px solid var(--line)}
+summary{cursor:pointer;padding:18px 4px;font:600 17px var(--serif);list-style:none;display:flex;justify-content:space-between;gap:16px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font:500 24px var(--sans);color:var(--pri);line-height:1}
+details[open] summary::after{content:"–"}
+details p{padding:0 4px 18px;margin:0;color:var(--ink2);max-width:70ch}
+
+/* catalog */
+.cat{display:grid;grid-template-columns:260px 1fr;gap:32px;align-items:start}
+.filters{position:sticky;top:96px;display:grid;gap:22px;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:20px}
+.filters fieldset{border:0;padding:0;margin:0;display:grid;gap:8px}
+.filters legend{font:600 14px var(--sans);margin-bottom:6px;padding:0}
+@media(max-width:900px){.cat{grid-template-columns:1fr}.filters{position:static}}
+.empty{text-align:center;padding:56px 20px;background:var(--card);border:1px dashed #CDB46A;border-radius:22px}
+.empty svg{width:64px;height:64px;color:var(--pri);margin-bottom:8px}
+.empty h3{margin-bottom:6px}
+
+/* detail */
+.crumb{font-size:14px;color:var(--ink2);margin-bottom:18px}
+.crumb a{color:var(--ink2)}
+.det{display:grid;grid-template-columns:1.15fr 1fr;gap:clamp(24px,4vw,56px);align-items:start}
+@media(max-width:900px){.det{grid-template-columns:1fr}}
+.gal-main{aspect-ratio:4/3;border-radius:28px 28px 28px 8px;background:radial-gradient(120% 90% at 30% 20%,var(--acc2),var(--photo));padding:6% 8%;border:1px solid var(--line);overflow:hidden}
+.gal-main svg{width:100%;height:100%;transition:transform .35s}
+.thumbs{display:flex;gap:10px;margin-top:12px}
+.thumbs button{width:84px;aspect-ratio:4/3;border-radius:14px;border:2px solid transparent;background:var(--photo);padding:6px;cursor:pointer}
+.thumbs button.on{border-color:var(--pri)}
+.buy{position:sticky;top:96px;background:var(--card);border:1px solid var(--line);border-radius:24px;padding:24px;display:grid;gap:16px}
+.pkpick{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.pkpick button{border:1.5px solid var(--line);background:transparent;border-radius:14px;padding:10px 4px;cursor:pointer;color:var(--ink);font:inherit;line-height:1.25}
+.pkpick button b{display:block;font:700 16px var(--serif)}
+.pkpick button small{font-size:12px;color:var(--ink2)}
+.pkpick button.on{border-color:var(--pri);background:var(--acc2);box-shadow:inset 0 0 0 1px var(--pri)}
+.total{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.total b{font:700 30px var(--serif);color:var(--pri)}
+.cal{border:1px solid var(--line);border-radius:18px;padding:14px;background:var(--bg)}
+.cal-h{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;font:600 16px var(--serif)}
+.cal-g{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;text-align:center}
+.cal-g .w{font-size:12px;color:var(--ink2);padding:4px 0}
+.day{height:40px;border:0;border-radius:10px;background:transparent;color:var(--ink);font:500 14px var(--sans);cursor:pointer;position:relative}
+.day:hover:not([disabled]){background:var(--acc2)}
+.day[disabled]{color:var(--ink2);opacity:.4;cursor:not-allowed}
+.day.bk{text-decoration:line-through;opacity:.5;background:repeating-linear-gradient(135deg,transparent 0 5px,var(--line) 5px 6px)}
+.day.td{box-shadow:inset 0 0 0 1.5px var(--pri)}
+.day.rg{background:var(--acc);color:var(--acc-ink);border-radius:0}
+.day.st{background:var(--pri);color:var(--pri-ink);border-radius:10px}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--ink2);margin-top:8px}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:4px;vertical-align:-1px;margin-right:4px}
+.mobbar{display:none}
+@media(max-width:900px){.mobbar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:30;background:var(--card);border-top:1px solid var(--line);padding:12px 16px calc(12px + env(safe-area-inset-bottom,0px));gap:12px;align-items:center;justify-content:space-between}.mobbar b{font:700 20px var(--serif);color:var(--pri)}.mob-pad{padding-bottom:84px}}
+
+/* booking */
+.steps{display:flex;gap:0;margin:0 0 28px;padding:0;list-style:none}
+.steps li{flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;font-size:13px;color:var(--ink2);text-align:center;position:relative}
+.steps li::before{content:"";position:absolute;top:17px;left:-50%;width:100%;border-top:2px solid var(--line);z-index:0}
+.steps li:first-child::before{display:none}
+.steps .c{width:36px;height:36px;border-radius:50%;border:2px solid var(--line);background:var(--bg);display:grid;place-items:center;font:700 15px var(--serif);position:relative;z-index:1}
+.steps .done .c{background:var(--ok);border-color:var(--ok);color:#fff}
+.steps .done::before,.steps .cur::before{border-color:var(--ok)}
+.steps .cur .c{background:var(--pri);border-color:var(--pri);color:var(--pri-ink)}
+.steps .cur{color:var(--ink);font-weight:600}
+.steps .done .c svg{width:18px;height:18px}
+@media(max-width:600px){.steps li span:last-child{display:none}}
+.book{display:grid;grid-template-columns:1fr 360px;gap:32px;align-items:start}
+@media(max-width:900px){.book{grid-template-columns:1fr}}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:clamp(18px,3vw,30px);display:grid;gap:22px}
+.sum{position:sticky;top:96px}
+.pick{display:flex;gap:12px;align-items:center;padding:10px;border:1.5px solid var(--line);border-radius:16px;cursor:pointer;background:transparent;text-align:left;width:100%;font:inherit;color:var(--ink)}
+.pick .th{width:76px;aspect-ratio:4/3;background:var(--photo);border-radius:10px;padding:4px;flex:none}
+.pick.on{border-color:var(--pri);background:var(--acc2)}
+.pick.off{opacity:.5;cursor:not-allowed}
+.pick b{display:block;font-family:var(--serif)}
+.pick small{color:var(--ink2)}
+.pick .tk{margin-left:auto;width:24px;height:24px;border-radius:50%;border:2px solid var(--line);display:grid;place-items:center;flex:none}
+.pick.on .tk{background:var(--pri);border-color:var(--pri);color:var(--pri-ink)}
+.pick .tk svg{width:14px;height:14px}
+.radio{display:flex;gap:12px;padding:14px;border:1.5px solid var(--line);border-radius:16px;cursor:pointer}
+.radio input{accent-color:var(--pri);margin-top:4px}
+.radio.on{border-color:var(--pri);background:var(--acc2)}
+.radio b{display:block}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:600px){.row2{grid-template-columns:1fr}}
+.qr{width:170px;height:170px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px;flex:none}
+.copy{display:flex;gap:8px;align-items:center;justify-content:space-between;background:var(--bg2);padding:8px 12px;border-radius:10px;font-size:14px}
+.nav-btns{display:flex;justify-content:space-between;gap:12px}
+.upl{border:1.5px dashed #CDB46A;border-radius:14px;padding:14px;text-align:center;cursor:pointer;font-size:14px;color:var(--ink2);display:block}
+.upl.ok{border-style:solid;border-color:var(--ok);color:var(--ok);background:var(--okbg)}
+.upl input{display:none}
+
+/* account */
+.acc{display:grid;grid-template-columns:240px 1fr;gap:32px;align-items:start}
+@media(max-width:800px){.acc{grid-template-columns:1fr}}
+.side{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:18px;display:grid;gap:4px}
+.side .me{display:flex;gap:12px;align-items:center;padding:4px 4px 14px;border-bottom:1px solid var(--line);margin-bottom:8px}
+.side a,.side button{display:block;padding:10px 12px;border-radius:12px;color:var(--ink);text-decoration:none;font-weight:500;background:none;border:0;text-align:left;font-size:15px;cursor:pointer}
+.side a:hover,.side button:hover{background:var(--acc2)}
+.side a.on{background:var(--acc);color:var(--acc-ink);font-weight:600}
+@media(max-width:800px){.side{display:flex;overflow-x:auto;gap:6px}.side .me{display:none}.side a,.side button{white-space:nowrap}}
+.ord{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:18px;display:grid;grid-template-columns:96px 1fr auto;gap:16px;align-items:center}
+.ord .th{aspect-ratio:4/3;background:var(--photo);border-radius:12px;padding:6px}
+.ord h3{margin:0;font-size:18px}
+.ord .meta{font-size:14px;color:var(--ink2)}
+@media(max-width:700px){.ord{grid-template-columns:72px 1fr}.ord .act{grid-column:1/-1}}
+.cd{font:700 20px var(--serif);color:var(--pri)}
+.cd.warn{color:var(--warn)}.cd.late{color:var(--err)}
+.prog{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;margin:12px 0}
+.prog div{font-size:12px;color:var(--ink2);text-align:center}
+.prog div::before{content:"";display:block;height:8px;border-radius:99px;background:var(--line);margin-bottom:6px}
+.prog .d::before{background:var(--ok)}.prog .c::before{background:var(--pri)}
+.prog .c{color:var(--ink);font-weight:600}
+
+/* modal & toast */
+.ov{position:fixed;inset:0;z-index:80;background:rgba(46,15,4,.6);display:grid;place-items:center;padding:16px;overflow:auto}
+.modal{background:var(--card);border-radius:28px;box-shadow:0 24px 60px rgba(0,0,0,.35);width:min(100%,540px);padding:clamp(20px,4vw,32px);position:relative;display:grid;gap:16px;max-height:calc(100dvh - 32px);overflow:auto;animation:pop .2s ease-out}
+.modal.wide{width:min(100%,680px)}
+.modal h2{font-size:26px;margin:0;padding-right:36px}
+.modal .x{position:absolute;right:12px;top:12px}
+@keyframes pop{from{opacity:0;transform:scale(.96)}}
+@media(max-width:600px){.ov{align-items:end;padding:0}.modal{border-radius:28px 28px 0 0;max-height:92dvh;animation:up .25s ease-out;padding-bottom:calc(24px + env(safe-area-inset-bottom,0px))}@keyframes up{from{transform:translateY(40px);opacity:0}}}
+#toasts{position:fixed;z-index:90;right:16px;top:calc(env(safe-area-inset-top,0px) + 84px);display:grid;gap:8px;max-width:min(380px,calc(100vw - 32px))}
+.toast{padding:12px 16px;border-radius:14px;background:var(--ink);color:var(--bg);font-size:15px;box-shadow:var(--shadow);display:flex;gap:10px;align-items:center;animation:pop .2s}
+.toast.ok{background:var(--ok);color:#fff}.toast.err{background:var(--err);color:#fff}
+@media(max-width:900px){#toasts{top:auto;bottom:calc(env(safe-area-inset-bottom,0px) + 90px);left:16px;right:16px;max-width:none}}
+
+/* cta + footer */
+.band{background:var(--pri);color:var(--pri-ink);border-radius:32px;padding:clamp(28px,5vw,56px);display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+.band h2{color:var(--pri-ink);margin:0 0 6px}
+.band p{margin:0;opacity:.85}
+.band .btn-acc{background:var(--acc);color:var(--acc-ink)}
+:root[data-theme="dark"] .band .btn-acc,:root:not([data-theme="light"]) .band .btn-acc{}
+footer.ft{background:#2E0F04;color:#F1E3B9;margin-top:40px;padding:56px 0 32px}
+footer.ft h4{color:#E8D296;font:600 16px var(--serif);margin:0 0 12px}
+footer.ft a{color:#F1E3B9;text-decoration:none}
+footer.ft a:hover{text-decoration:underline}
+.ft-g{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:32px}
+.ft ul{list-style:none;margin:0;padding:0;display:grid;gap:8px;font-size:15px}
+.ft .logo{color:#F1E3B9}
+.ft .logo svg rect{fill:#E8D296}
+.ft .fine{border-top:1px solid #5A2A1A;margin-top:36px;padding-top:20px;font-size:13px;opacity:.8}
+@media(max-width:800px){.ft-g{grid-template-columns:1fr 1fr}.ft-g>:first-child{grid-column:1/-1}}
+.chkl{display:grid;gap:10px}
+.mapph{border-radius:22px;border:1px solid var(--line);background:var(--acc2);aspect-ratio:16/9;position:relative;overflow:hidden}
+.mapph svg{width:100%;height:100%}
+.pol-banner{margin-top:20px}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+.hdr .logo{font-size:19px}.hdr .logo svg{width:30px;height:30px}
+/* admin */
+.ad{display:grid;grid-template-columns:262px 1fr;min-height:100vh}
+.ad-side{position:sticky;top:0;align-self:start;height:100vh;background:var(--card);border-right:1px solid var(--line);padding:20px 14px;display:flex;flex-direction:column;gap:18px;overflow:auto}
+.ad-side .logo{font-size:19px;padding:0 6px}
+.ad-me{display:flex;gap:10px;align-items:center;padding:10px;border-radius:14px;background:var(--bg2)}
+.ad-side nav{display:grid;gap:4px}
+.ad-side nav a,.ad-foot a,.ad-foot button{display:flex;gap:10px;align-items:center;padding:10px 12px;border-radius:12px;color:var(--ink);text-decoration:none;font:500 15px var(--sans);background:none;border:0;cursor:pointer;text-align:left;width:100%}
+.ad-side svg{width:20px;height:20px;flex:none}
+.ad-side nav a:hover,.ad-foot a:hover,.ad-foot button:hover{background:var(--acc2)}
+.ad-side nav a.on{background:var(--pri);color:var(--pri-ink);font-weight:600}
+.ad-foot{margin-top:auto;display:grid;gap:4px;border-top:1px solid var(--line);padding-top:12px}
+.ad-main{padding:clamp(18px,3vw,40px);min-width:0;display:grid;gap:24px;align-content:start}
+.ad-h{display:flex;justify-content:space-between;gap:16px;align-items:end;flex-wrap:wrap}
+.ad-h h1{font-size:clamp(26px,3vw,36px);margin:0}.ad-h p{margin:4px 0 0}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.kpi{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:18px}
+.kpi small{color:var(--ink2);display:block;font-size:13px}
+.kpi b{font:700 28px var(--serif);color:var(--pri);display:block;margin-top:2px}
+.cardx{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:20px;display:grid;gap:14px;min-width:0;align-content:start}
+.cardx h3{margin:0}
+.g2{display:grid;grid-template-columns:1.2fr 1fr;gap:20px}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.todo{display:flex;gap:12px;align-items:center;padding:10px 0;border-bottom:1px dashed var(--line);flex-wrap:wrap}
+.todo:last-child{border:0}.todo>div{flex:1;min-width:150px;font-size:14px}
+.ad-chart{width:100%;height:auto}
+.ad-login{min-height:100vh;display:grid;place-items:center;padding:20px}
+.ad-login .stamp{width:min(100%,470px)}
+.ad-main th,.ad-main td{padding:10px 10px;font-size:14px}.ad-main .btn.sm{padding:0 12px}
+@media(max-width:800px){.rvhome{grid-template-columns:minmax(0,1fr)!important}.rvhome>*{min-width:0}}
+.grid3[style]{grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr))!important}
+.quick-in>*{min-width:0}.quick-in .btn{white-space:normal;height:auto;min-height:56px;padding:10px 22px}
+html,body{overflow-x:clip}
+.tools{display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:space-between}
+.tools input[type=search]{max-width:280px}
+.fb{display:grid;gap:10px}
+.fb textarea{min-height:70px}
+.mx td,.mx th{text-align:center}.mx td:first-child,.mx th:first-child{text-align:left}
+.mx svg{width:18px;height:18px;color:var(--ok)}
+.sw{display:inline-flex;align-items:center;gap:8px;cursor:pointer;font-size:14px}
+.sw input{width:18px;height:18px;accent-color:var(--pri)}
+@media(max-width:1000px){.kpis{grid-template-columns:repeat(2,1fr)}.g2,.g3{grid-template-columns:1fr}}
+@media(max-width:900px){.ad{grid-template-columns:1fr}.ad-side{position:static;height:auto}.ad-side nav{display:flex;overflow-x:auto}.ad-side nav a{white-space:nowrap}.ad-foot{margin-top:0;grid-template-columns:1fr 1fr}}
+
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Bỏ qua điều hướng</a>
+<div id="app"></div>
+<div id="modal-root"></div>
+<div id="toasts" aria-live="polite"></div>
+
+<script>
+(()=>{
+'use strict';
+/* ---------- helpers ---------- */
+const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const vnd=k=>(k*1000).toLocaleString('vi-VN')+'đ';
+const K=k=>k.toLocaleString('vi-VN')+'K';
+const pad=n=>String(n).padStart(2,'0');
+const today=(()=>{const d=new Date();d.setHours(0,0,0,0);return d})();
+const iso=d=>`${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+const pISO=s=>{const[a,b,c]=s.split('-').map(Number);return new Date(a,b-1,c)};
+const addD=(d,n)=>{const x=new Date(d);x.setDate(x.getDate()+n);return x};
+const DOW=['Chủ nhật','Thứ hai','Thứ ba','Thứ tư','Thứ năm','Thứ sáu','Thứ bảy'];
+const dm=d=>`${pad(d.getDate())}/${pad(d.getMonth()+1)}`;
+const dt=d=>`${pad(d.getHours())}:${pad(d.getMinutes())}, ${['CN','T2','T3','T4','T5','T6','T7'][d.getDay()]} ${dm(d)}`;
+const hash=s=>[...s].reduce((a,c)=>(a*31+c.charCodeAt(0))>>>0,7);
+const ICONS={
+ cam:'<path d="M4 8h3l2-3h6l2 3h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13" r="3.5"/>',
+ check:'<path d="M20 6 9 17l-5-5"/>',x:'<path d="M18 6 6 18M6 6l12 12"/>',
+ clock:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+ map:'<path d="M12 21s7-6.2 7-11.5a7 7 0 0 0-14 0C5 14.800 12 21 12 21z"/><circle cx="12" cy="9.500" r="2.500"/>',
+ phone:'<path d="M5 4h4l2 5-2.500 1.500a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/>',
+ user:'<circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/>',
+ heart:'<path d="M12 20s-8-4.800-8-11a4.500 4.500 0 0 1 8-2.800A4.500 4.500 0 0 1 20 9c0 6.200-8 11-8 11z"/>',
+ menu:'<path d="M4 7h16M4 12h16M4 17h16"/>',moon:'<path d="M20 14.500A8 8 0 0 1 9.500 4 8 8 0 1 0 20 14.500z"/>',
+ sun:'<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.900 4.900l1.400 1.400M17.700 17.700l1.400 1.400M2 12h2M20 12h2M4.900 19.100l1.400-1.400M17.700 6.300l1.400-1.400"/>',
+ shield:'<path d="M12 3 5 6v6c0 4.500 3 7.500 7 9 4-1.500 7-4.500 7-9V6l-7-3z"/><path d="m9 12 2 2 4-4"/>',
+ truck:'<path d="M3 6h11v10H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="17.500" r="1.500"/><circle cx="17" cy="17.500" r="1.500"/>',
+ card:'<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 10h18"/>',
+ upload:'<path d="M12 16V4M7 9l5-5 5 5M4 20h16"/>',
+ cal:'<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/>',
+ alert:'<path d="M12 3 2 20h20L12 3z"/><path d="M12 10v5M12 18v.01"/>',
+ info:'<circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8v.01"/>',
+ chevl:'<path d="m15 6-6 6 6 6"/>',chevr:'<path d="m9 6 6 6-6 6"/>',
+ search:'<circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/>',
+ copy:'<rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/>',
+ film:'<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 4v16M17 4v16M3 9h4M3 15h4M17 9h4M17 15h4"/>'
+};
+const ic=(n,c='')=>`<svg class="${c}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONS[n]||''}</svg>`;
+const star=(on)=>`<svg viewBox="0 0 24 24" class="${on?'':'e'}" aria-hidden="true"><path d="m12 2.500 2.900 6 6.600.8-4.800 4.600 1.200 6.500L12 17.200 6.100 20.400l1.200-6.500L2.500 9.300l6.600-.8z"/></svg>`;
+const stars=n=>`<span class="stars" role="img" aria-label="${n} trên 5 sao">${[1,2,3,4,5].map(i=>star(i<=Math.round(n))).join('')}</span>`;
+
+/* ---------- data ---------- */
+const BRAND='me.e_digitalcam';
+const PHONE='0917 999 277 / 0834 020 466';
+const PKG=[
+ {n:'6 giờ',sub:'1 buổi',h:0},{n:'1 ngày',sub:'23 giờ',h:1},{n:'2 ngày',sub:'47 giờ',h:2},{n:'3 ngày',sub:'71 giờ',h:3}
+];
+const CAMS=[
+ {id:'m10',brand:'Canon',name:'Canon EOS M10',type:'mirror',evf:false,body:'#E7E2D6',tag:'APS-C · 18MP · Full HD',sensor:'APS-C',mp:'18.0 MP',vid:'Full HD 30p',use:'Du lịch nhẹ, chụp đời thường',p:[90,130,250,370],st:'low'},
+ {id:'m50',brand:'Canon',name:'Canon EOS M50',type:'mirror',evf:true,body:'#2A2522',tag:'APS-C · 24MP · 4K',sensor:'APS-C',mp:'24.1 MP',vid:'4K 24p',use:'Vlog, chân dung, du lịch',p:[120,160,310,460],st:'ok'},
+ {id:'r50',brand:'Canon',name:'Canon EOS R50',type:'mirror',evf:true,body:'#2A2522',tag:'APS-C · 24MP · 4K',sensor:'APS-C',mp:'24.2 MP',vid:'4K 30p',use:'Kỷ yếu, vlog, người mới bắt đầu',p:[180,220,430,640],st:'ok'},
+ {id:'xa3',brand:'Fujifilm',name:'Fujifilm X-A3',type:'retro',evf:false,body:'#8A5A44',top:'#D8D3C7',tag:'APS-C · 24MP · Full HD',sensor:'APS-C',mp:'24.2 MP',vid:'Full HD 60p',use:'Selfie, du lịch, chụp đời thường',p:[110,150,290,430],st:'ok'},
+ {id:'xt100',brand:'Fujifilm',name:'Fujifilm X-T100',type:'retro',evf:true,body:'#2A2522',top:'#CFC9BB',tag:'APS-C · 24MP · 4K',sensor:'APS-C',mp:'24.2 MP',vid:'4K 15p',use:'Đường phố, du lịch',p:[150,190,370,550],st:'ok'},
+ {id:'xt10',brand:'Fujifilm',name:'Fujifilm X-T10',type:'retro',evf:true,body:'#2A2522',top:'#CFC9BB',tag:'APS-C · 16MP · Full HD',sensor:'APS-C',mp:'16.3 MP',vid:'Full HD 60p',use:'Đường phố, màu film',p:[140,180,350,520],st:'low'},
+ {id:'xt20',brand:'Fujifilm',name:'Fujifilm X-T20',type:'retro',evf:true,body:'#2A2522',top:'#CFC9BB',tag:'APS-C · 24MP · 4K',sensor:'APS-C',mp:'24.3 MP',vid:'4K 30p',use:'Du lịch, chân dung',p:[180,220,430,640],st:'ok'},
+ {id:'xt30',brand:'Fujifilm',name:'Fujifilm X-T30',type:'retro',evf:true,body:'#2A2522',top:'#CFC9BB',tag:'APS-C · 26MP · 4K',sensor:'APS-C',mp:'26.1 MP',vid:'4K 30p',use:'Du lịch, vlog, chân dung',p:[200,270,530,790],st:'low'},
+ {id:'xs10',brand:'Fujifilm',name:'Fujifilm X-S10',type:'mirror',evf:true,body:'#2A2522',tag:'APS-C · 26MP · 4K · IBIS',sensor:'APS-C',mp:'26.1 MP',vid:'4K 30p, chống rung thân máy',use:'Vlog, sự kiện, quay chụp tay cầm',p:[260,320,630,940],st:'ok'},
+ {id:'xs20',brand:'Fujifilm',name:'Fujifilm X-S20',type:'mirror',evf:true,body:'#2A2522',tag:'APS-C · 26MP · 6.2K',sensor:'APS-C',mp:'26.1 MP',vid:'6.2K 30p',use:'Quay video, sáng tạo nội dung',p:[350,400,790,1180],st:'out'},
+ {id:'x100v',brand:'Fujifilm',name:'Fujifilm X100V',type:'compact',evf:true,body:'#2A2522',top:'#CFC9BB',tag:'Compact · 26MP · Lens 23mm f/2',sensor:'APS-C, lens cố định',mp:'26.1 MP',vid:'4K 30p',use:'Du lịch nhẹ, đường phố',p:[320,390,770,1150],st:'ok',cmp:true},
+ {id:'xm5',brand:'Fujifilm',name:'Fujifilm X-M5',type:'mirror',evf:false,body:'#2A2522',tag:'APS-C · 26MP · 6.2K',sensor:'APS-C',mp:'26.1 MP',vid:'6.2K 30p',use:'Vlog, du lịch nhỏ gọn',p:[250,300,590,880],st:'ok'}
+];
+const CAM=id=>CAMS.find(c=>c.id===id);
+const STT={ok:['Còn máy','b-ok'],low:['Sắp hết','b-low'],out:['Hết máy','b-out']};
+const booked=c=>{const s=new Set(),h=hash(c.id);
+  for(let i=0;i<45;i++){ if(c.st==='out'?i<12:((h*31+i*17)%11<2&&i>0)) s.add(iso(addD(today,i))); }
+  return s;};
+const BOOKED=Object.fromEntries(CAMS.map(c=>[c.id,booked(c)]));
+const span=p=>p===0?0:p;
+const free=(ids,d,p)=>{for(let i=0;i<=span(p);i++){const k=iso(addD(pISO(d),i));if(ids.some(id=>BOOKED[id].has(k)))return false}return true};
+const nextFree=(ids,d,p)=>{for(let i=1;i<40;i++){const x=iso(addD(pISO(d),i));if(free(ids,x,p))return x}return null};
+const minP=i=>Math.min(...CAMS.filter(c=>c.st!=='out').map(c=>c.p[i]));
+
+/* ---------- camera illustration ---------- */
+function camSVG(c,flip){
+  const b=c.body,t=c.top||b,sh='<rect x="0" y="0" width="0" height="0"/>';
+  const lens=(cx,cy,r)=>`<circle cx="${cx}" cy="${cy}" r="${r+7}" fill="#A59C8D"/><circle cx="${cx}" cy="${cy}" r="${r+2}" fill="#151515"/><circle cx="${cx}" cy="${cy}" r="${r*.78}" fill="#262626"/><circle cx="${cx}" cy="${cy}" r="${r*.5}" fill="#0B0B12" stroke="#3B4A6B" stroke-width="3"/><circle cx="${cx-r*.2}" cy="${cy-r*.22}" r="${r*.14}" fill="#fff" opacity=".28"/><circle cx="${cx+r*.18}" cy="${cy+r*.22}" r="${r*.06}" fill="#E8D296" opacity=".7"/>`;
+  let g='';
+  if(c.type==='retro'){
+    g=`<rect x="30" y="92" width="260" height="104" rx="12" fill="${b}"/>
+    <path d="M30 104a12 12 0 0 1 12-12h236a12 12 0 0 1 12 12v24H30z" fill="${t}"/>
+    ${c.evf?`<path d="M122 92l8-28h60l8 28z" fill="${t}"/><rect x="146" y="72" width="28" height="12" rx="3" fill="#1A1A1A" opacity=".75"/>`:`<rect x="206" y="72" width="34" height="20" rx="4" fill="${t}"/>`}
+    <rect x="50" y="76" width="42" height="18" rx="4" fill="${t}"/><rect x="52" y="80" width="38" height="3" fill="#00000030"/>
+    <rect x="244" y="78" width="30" height="14" rx="4" fill="${t}"/><circle cx="260" cy="76" r="7" fill="#B94A2C"/>
+    <rect x="30" y="140" width="40" height="56" rx="10" fill="#000" opacity=".12"/>
+    ${lens(168,150,52)}`;
+  } else if(c.type==='compact'){
+    g=`<rect x="28" y="104" width="264" height="92" rx="10" fill="${b}"/>
+    <path d="M28 114a10 10 0 0 1 10-10h244a10 10 0 0 1 10 10v22H28z" fill="${t}"/>
+    <rect x="52" y="86" width="40" height="18" rx="4" fill="${t}"/><rect x="236" y="88" width="34" height="16" rx="4" fill="${t}"/><circle cx="252" cy="86" r="6" fill="#B94A2C"/>
+    <rect x="228" y="116" width="44" height="26" rx="4" fill="#111"/><rect x="232" y="120" width="36" height="18" rx="2" fill="#2A3548"/>
+    <circle cx="150" cy="152" r="52" fill="#B7AE9F"/>${lens(150,152,40)}`;
+  } else {
+    g=`<rect x="34" y="88" width="252" height="110" rx="20" fill="${b}"/>
+    ${c.evf?`<path d="M120 88l10-28h62l10 28z" fill="${b}"/><rect x="146" y="68" width="30" height="12" rx="3" fill="#00000040"/>`:`<rect x="190" y="72" width="40" height="20" rx="5" fill="#00000030"/>`}
+    <rect x="238" y="80" width="48" height="118" rx="16" fill="#000" opacity=".13"/>
+    <rect x="232" y="76" width="34" height="9" rx="4.500" fill="#9A8F80"/><circle cx="62" cy="86" r="9" fill="#9A8F80"/>
+    ${lens(136,146,52)}`;
+  }
+  return `<svg viewBox="0 0 320 240" role="img" aria-label="Minh họa ${esc(c.name)}" ${flip?'style="transform:scaleX(-1)"':''}><ellipse cx="160" cy="216" rx="112" ry="8" fill="#2E0F04" opacity=".14"/>${g}</svg>`;
+}
+
+/* ---------- state ---------- */
+const nowDT=new Date();
+const newB=()=>({step:1,cams:[],pkg:1,date:'',time:'10:00',ca:'sang',method:'direct',base:'Cs1',addr:'',name:'',phone:'',fb:'',who:'',dep:'direct',idf:'',idb:'',a1:false,a2:false,a3:false,err:{}});
+const S={
+ user:null,b:newB(),done:null,liked:new Set(),
+ ui:{homeTab:'all',cat:{brand:'',type:'',max:1200,ok:false,q:'',sort:'pop'},cal:0,det:{pkg:1,date:'',view:0},rv:{f:'all',sort:'new'},calc:{cam:'r50',pkg:1},price:'all',chk:{},otab:'now',reg:false},
+ orders:[
+  {id:'MEE2041',cams:['xt20'],pkg:1,start:new Date(nowDT.getTime()-18*36e5),end:new Date(nowDT.getTime()+5.5*36e5),stage:2,total:220,dep:'Đã nhận 700.000đ + CCCD',method:'direct',base:'Cs1'},
+  {id:'MEE2057',cams:['r50'],pkg:2,start:new Date(addD(today,6).getTime()+10*36e5),end:new Date(addD(today,8).getTime()+9*36e5),stage:1,total:430,dep:'Chờ nhận khi lấy máy',method:'direct',base:'Cs2'},
+  {id:'MEE1893',cams:['m50'],pkg:1,start:new Date(addD(today,-20).getTime()+10*36e5),end:new Date(addD(today,-19).getTime()+9*36e5),stage:4,total:160,dep:'Đã hoàn 700.000đ',method:'direct',base:'Cs1',reviewed:false}
+ ],
+ reviews:[
+  {id:1,name:'Minh Anh',cam:'r50',pkg:1,r:5,t:'Máy sạch, pin đầy, lens không một hạt bụi. Bạn nhân viên quay lại tình trạng máy trước khi giao nên mình yên tâm. Ảnh kỷ yếu lên màu rất đẹp.',tags:['Máy sạch','Đúng giờ'],ago:3,ph:2,help:12,reply:'Cảm ơn Minh Anh nhé, chúc buổi kỷ yếu của lớp mình thật vui!'},
+  {id:2,name:'Trọng Phúc',cam:'xt30',pkg:2,r:5,t:'Thuê 2 ngày đi Mộc Châu. Màu film của Fuji đúng kiểu mình thích, không cần chỉnh nhiều. Hoàn cọc trong ngày.',tags:['Hoàn cọc nhanh'],ago:8,ph:3,help:9},
+  {id:3,name:'Hải Yến',cam:'x100v',pkg:1,r:4,t:'Máy nhỏ gọn, bỏ túi áo khoác đi cả ngày không mỏi. Trừ 1 sao vì giờ nhận máy hơi gấp so với lịch của mình.',tags:['Gọn nhẹ'],ago:12,ph:0,help:5,reply:'Shop ghi nhận góp ý, lần sau bạn nhắn trước để bên mình xếp giờ linh động hơn nhé.'},
+  {id:4,name:'Quốc Bảo',cam:'m50',pkg:0,r:5,t:'Thuê buổi sáng chụp cho quán cà phê của nhà. Giá mềm, tư vấn nhiệt tình, chỉ mình cách bật 4K.',tags:['Tư vấn nhiệt tình'],ago:15,ph:1,help:7},
+  {id:5,name:'Thu Hà',cam:'xa3',pkg:1,r:5,t:'Lần đầu thuê máy ảnh nên hơi lo, nhưng quy trình rõ ràng, quy định cọc minh bạch. Màn hình lật selfie rất tiện.',tags:['Quy trình rõ ràng'],ago:21,ph:0,help:4},
+  {id:6,name:'Đức Long',cam:'xs10',pkg:3,r:4,t:'Chống rung thân máy cầm tay quay vlog mượt. Máy hơi nóng khi quay lâu, nhưng shop có dặn trước nên mình để nghỉ giữa chừng.',tags:['Máy sạch'],ago:30,ph:1,help:6},
+  {id:7,name:'Phương Linh',cam:'m10',pkg:0,r:5,t:'Thuê buổi chiều đi dạo phố cổ, giá rẻ mà ảnh vẫn đẹp. Trả máy đúng giờ không bị phụ thu.',tags:['Đúng giờ'],ago:34,ph:0,help:3},
+  {id:8,name:'Gia Bảo',cam:'xt10',pkg:2,r:5,t:'Máy cũ nhưng chạy ngon, ngoại hình giữ rất tốt. Hoàn cọc sau khi kiểm tra chỉ mất khoảng một tiếng.',tags:['Hoàn cọc nhanh','Máy sạch'],ago:41,ph:0,help:8}
+ ],
+ helped:new Set(),
+ rvForm:{r:0,tags:new Set(),photos:[],order:''}
+};
+const avg=()=>S.reviews.reduce((a,r)=>a+r.r,0)/S.reviews.length;
+
+/* ---------- pricing helpers ---------- */
+const sumP=(ids,p)=>ids.reduce((a,id)=>a+CAM(id).p[p],0);
+const depOf=ids=>ids.length&&ids.every(id=>CAM(id).cmp)?300:700;
+function timing(b){
+  if(!b.date)return null;
+  const d=pISO(b.date);
+  if(b.pkg===0){const a=b.ca==='sang'?[8,14]:[15,21];return{s:new Date(d.getFullYear(),d.getMonth(),d.getDate(),a[0]),e:new Date(d.getFullYear(),d.getMonth(),d.getDate(),a[1])}}
+  const [h,m]=b.time.split(':').map(Number);const s=new Date(d.getFullYear(),d.getMonth(),d.getDate(),h,m);
+  return{s,e:new Date(s.getTime()+(24*b.pkg-1)*36e5)};
+}
+
+/* ---------- shared UI pieces ---------- */
+const logoSVG='<svg viewBox="0 0 34 34" aria-hidden="true"><rect width="34" height="34" rx="9" fill="var(--pri)"/><circle cx="17" cy="19" r="6.500" fill="none" stroke="var(--pri-ink)" stroke-width="2"/><rect x="11" y="8" width="12" height="3.500" rx="1.700" fill="var(--pri-ink)"/></svg>';
+const NAV=[['#/may','Máy cho thuê'],['#/gia','Gói & giá'],['#/quy-trinh','Quy trình'],['#/chinh-sach/coc','Chính sách'],['#/danh-gia','Đánh giá'],['#/lien-he','Liên hệ']];
+function header(path){
+  const on=h=>path.startsWith(h.slice(1).split('/').slice(0,2).join('/'))&&h!=='#/'?'on':'';
+  return `<header class="hdr"><div class="wrap hdr-in">
+  <a class="logo" href="#/" aria-label="${BRAND} - trang chủ">${logoSVG}${BRAND}</a>
+  <nav class="nav" id="nav" aria-label="Điều hướng chính">${NAV.map(([h,t])=>`<a href="${h}" class="${on(h)}">${t}</a>`).join('')}<a href="#/tai-khoan/don" class="${path.startsWith('/tai-khoan')?'on':''}" style="display:none" id="navacc">Tài khoản</a></nav>
+  <div class="hdr-act">
+   <button class="ibtn" data-act="theme" aria-label="Đổi giao diện sáng/tối">${ic('moon')}</button>
+   <a class="ibtn" href="${S.user?'#/tai-khoan/don':'#/dang-nhap'}" aria-label="${S.user?'Tài khoản của tôi':'Đăng nhập'}">${ic('user')}</a>
+   <a class="btn btn-pri sm" href="#/dat-lich">Đặt máy ngay</a>
+   <button class="ibtn burger" data-act="burger" aria-label="Mở menu" aria-expanded="false">${ic('menu')}</button>
+  </div></div></header>`;
+}
+function footer(){
+  return `<footer class="ft"><div class="wrap"><div class="ft-g">
+   <div><a class="logo" href="#/">${logoSVG}${BRAND}</a><p style="margin-top:14px;max-width:34ch;opacity:.85">Cho thuê máy ảnh mirrorless và compact tại Đà Nẵng. Thuê theo buổi hoặc theo ngày, quy định cọc và đền bù công khai.</p></div>
+   <div><h4>Khám phá</h4><ul><li><a href="#/may">Máy cho thuê</a></li><li><a href="#/gia">Gói &amp; bảng giá</a></li><li><a href="#/quy-trinh">Quy trình thuê</a></li><li><a href="#/danh-gia">Đánh giá</a></li></ul></div>
+   <div><h4>Chính sách</h4><ul><li><a href="#/chinh-sach/coc">Tiền cọc</a></li><li><a href="#/chinh-sach/nhan-tra">Nhận &amp; trả máy</a></li><li><a href="#/chinh-sach/bao-quan">Cách bảo quản</a></li><li><a href="#/chinh-sach/den-bu">Đền bù thiệt hại</a></li></ul></div>
+   <div><h4>Liên hệ</h4><ul><li>${PHONE} (Zalo)</li><li>75 Lê Thị Hồng Gấm, Hải Châu, Đà Nẵng</li><li>Instagram: @me.e_digitalcam</li><li><a href="#/quan-tri">Dành cho nhân viên</a></li></ul></div>
+  </div><p class="fine">© me.e_digitalcam. Ảnh máy là hình minh họa; đánh giá và dữ liệu đơn hàng là nội dung mẫu cho bản thiết kế giao diện.</p></div></footer>`;
+}
+function camCard(c){
+  const [st,cl]=STT[c.st];const out=c.st==='out';
+  return `<article class="cam ${out?'out':''}"><a class="cam-ph" href="#/may/${c.id}" aria-label="Xem chi tiết ${esc(c.name)}">${camSVG(c)}<span class="badge ${cl}">${st}</span></a>
+  <button class="like ${S.liked.has(c.id)?'on':''}" data-act="like" data-id="${c.id}" aria-label="Lưu ${esc(c.name)}" aria-pressed="${S.liked.has(c.id)}">${ic('heart')}</button>
+  <div class="cam-b"><h3><a href="#/may/${c.id}" style="color:inherit;text-decoration:none">${esc(c.name)}</a></h3><p>${esc(c.tag)}</p>
+  <div class="cam-f"><span class="price"><b>${K(c.p[1])}</b>/ngày<small>6 giờ: ${K(c.p[0])}</small></span>
+  ${out?`<button class="btn btn-out sm" data-act="notify" data-id="${c.id}">Báo khi có máy</button>`:`<button class="btn btn-acc sm" data-act="rent" data-id="${c.id}">Chọn thuê</button>`}</div></div></article>`;
+}
+function pkgCards(){
+  const info=[
+   ['Thuê theo buổi',['Ca sáng 8h đến 14h','Ca chiều tối 15h đến 21h','Linh động giờ nếu còn trống']],
+   ['Tính 23 giờ',['Nhận 10h, trả trước 9h hôm sau','Hợp chụp một ngày dài','Trả trễ 15 phút đến 1 giờ phụ thu 50K']],
+   ['Rẻ hơn thuê lẻ hai ngày',['Hợp cuối tuần, chuyến đi ngắn','Giữ nguyên một máy xuyên suốt','Gia hạn được nếu máy chưa có người đặt']],
+   ['Rẻ hơn thuê lẻ ba ngày',['Hợp chuyến đi dài, sự kiện nhiều ngày','Giá mỗi ngày thấp nhất','Gia hạn được nếu máy chưa có người đặt']]
+  ];
+  return PKG.map((p,i)=>`<div class="stamp pk ${i===3?'best':''}"><div class="stamp-in"><h3>${p.n}</h3><span class="muted sm-t">${info[i][0]}</span><div class="big"><small style="font:500 14px var(--sans);color:var(--ink2)">Từ </small>${K(minP(i))}</div>
+   <ul>${info[i][1].map(x=>`<li>${ic('check')}${x}</li>`).join('')}</ul><button class="btn ${i===3?'btn-pri':'btn-out'}" data-act="pkgpick" data-p="${i}">Chọn gói ${p.n}</button></div></div>`).join('');
+}
+function reviewCard(r,showCam=true){
+  const c=CAM(r.cam);
+  return `<article class="rv"><div class="rv-h"><span class="av" aria-hidden="true">${esc(r.name[0])}</span><div><b>${esc(r.name)} <span class="badge b-ok" style="margin-left:4px">${ic('check','')}<span style="margin-left:-2px">Đã thuê</span></span></b><small>${r.ago===0?'Hôm nay':r.ago+' ngày trước'}${showCam?` · ${esc(c.name)}, gói ${PKG[r.pkg].n}`:''}</small></div></div>
+  ${stars(r.r)}<p>${esc(r.t)}</p>
+  ${r.ph?`<div class="ph">${Array.from({length:Math.min(3,r.ph)},(_,i)=>`<button data-act="lightbox" data-id="${r.cam}" aria-label="Xem ảnh ${i+1}"><svg viewBox="0 0 320 240" style="padding:6px"><use/>${camSVG(c).replace(/<svg[^>]*>|<\/svg>/g,'')}</svg></button>`).join('')}</div>`:''}
+  ${r.imgs?`<div class="ph">${r.imgs.map(u=>`<button data-act="lightimg" aria-label="Xem ảnh"><img alt="Ảnh khách tải lên" src="${u}"></button>`).join('')}</div>`:''}
+  <div class="chips">${r.tags.map(t=>`<span class="badge">${esc(t)}</span>`).join('')}</div>
+  ${r.reply?`<div class="reply"><b>Phản hồi từ ${BRAND}</b>${esc(r.reply)}</div>`:''}
+  <button class="helpful ${S.helped.has(r.id)?'on':''}" data-act="helpful" data-id="${r.id}" aria-pressed="${S.helped.has(r.id)}">Hữu ích (${r.help+(S.helped.has(r.id)?1:0)})</button></article>`;
+}
+function distrib(){
+  const n=S.reviews.length;
+  return `<div class="bars">${[5,4,3,2,1].map(k=>{const c=S.reviews.filter(r=>r.r===k).length;return `<button data-act="rvf" data-f="${k}" aria-label="Lọc ${k} sao"><span>${k} ★</span><i><b style="width:${c/n*100}%"></b></i><span>${c}</span></button>`}).join('')}</div>`;
+}
+function faqList(){
+  const f=[
+   ['Cần giấy tờ gì để thuê máy?','Cần CCCD còn hiệu lực và phải là của chính chủ người thuê. Thuê online cần gửi ảnh CCCD (VNeID và mặt thẻ), số điện thoại và Facebook chính chủ.'],
+   ['Mức cọc là bao nhiêu?','Đến lấy trực tiếp: cọc 700.000đ kèm CCCD, hoặc 300.000đ kèm CCCD với máy compact, hoặc cọc tài sản có giá trị tương đương (trên 15 triệu đồng). Thuê online: chuyển khoản đủ tiền cọc. Cọc được hoàn sau khi cửa hàng nhận và kiểm tra máy.'],
+   ['Một ngày thuê tính thế nào?','Một ngày là 23 giờ. Ví dụ nhận máy 10h sáng thì trả trước 9h sáng hôm sau. Thuê theo buổi có hai ca: sáng 8h đến 14h, chiều tối 15h đến 21h.'],
+   ['Làm hỏng máy thì sao?','Máy vào nước hoặc rơi vỡ không sửa được: đền 100% giá trị. Trầy xước ngoại hình 100 đến 200K. Hỏng có thể sửa: theo giá hãng, cộng 200K mỗi ngày máy nằm sửa. Xem chi tiết ở trang Chính sách.'],
+   ['Có hủy hoặc đổi lịch được không?','Cửa hàng không nhận hủy lịch trong bất kỳ trường hợp nào, và 50K giữ slot không hoàn lại. Bạn nên kiểm tra kỹ ngày giờ trước khi xác nhận.'],
+   ['Gia hạn thêm ngày được không?','Được, nếu máy chưa có người đặt sau bạn. Gia hạn ngay trong trang Đơn thuê của tôi hoặc nhắn Zalo cho cửa hàng.']
+  ];
+  return f.map(([q,a])=>`<details><summary>${q}</summary><p>${a}</p></details>`).join('');
+}
+
+/* ---------- calendar ---------- */
+function calendar(ids,sel,p){
+  const m0=new Date(today.getFullYear(),today.getMonth()+S.ui.cal,1);
+  const first=(m0.getDay()+6)%7,days=new Date(m0.getFullYear(),m0.getMonth()+1,0).getDate();
+  const bk=new Set();ids.forEach(id=>BOOKED[id].forEach(x=>bk.add(x)));
+  const end=sel?iso(addD(pISO(sel),span(p))):'';
+  let cells='';for(let i=0;i<first;i++)cells+='<span></span>';
+  for(let d=1;d<=days;d++){
+    const dd=new Date(m0.getFullYear(),m0.getMonth(),d),k=iso(dd),past=dd<today,b=bk.has(k);
+    const cl=[b?'bk':'',k===iso(today)?'td':'',sel&&k===sel?'st':'',sel&&k>sel&&k<=end?'rg':''].join(' ');
+    cells+=`<button class="day ${cl}" data-act="pickday" data-d="${k}" ${past||b?'disabled':''} aria-label="${d}/${m0.getMonth()+1}${b?', đã có người đặt':''}" ${k===sel?'aria-pressed="true"':''}>${d}</button>`;
+  }
+  return `<div class="cal"><div class="cal-h"><button class="ibtn" data-act="calp" aria-label="Tháng trước" ${S.ui.cal<=0?'disabled style="opacity:.3"':''}>${ic('chevl')}</button><span>Tháng ${m0.getMonth()+1}, ${m0.getFullYear()}</span><button class="ibtn" data-act="caln" aria-label="Tháng sau" ${S.ui.cal>=2?'disabled style="opacity:.3"':''}>${ic('chevr')}</button></div>
+  <div class="cal-g">${['T2','T3','T4','T5','T6','T7','CN'].map(w=>`<span class="w">${w}</span>`).join('')}${cells}</div>
+  <div class="legend"><span><i style="background:var(--pri)"></i>Ngày nhận</span><span><i style="background:var(--acc)"></i>Thời gian thuê</span><span><i style="background:repeating-linear-gradient(135deg,transparent 0 3px,var(--line) 3px 4px);border:1px solid var(--line)"></i>Đã có người đặt</span></div></div>`;
+}
+function availMsg(ids,date,p){
+  if(!ids.length)return '';
+  if(!date)return `<div class="note info">${ic('info')}<span>Chọn ngày nhận trên lịch để kiểm tra máy trống.</span></div>`;
+  if(free(ids,date,p))return `<div class="note ok">${ic('check')}<span>Còn máy trong thời gian này.</span></div>`;
+  const n=nextFree(ids,date,p);
+  return `<div class="note err">${ic('alert')}<span>Đã có người đặt trong thời gian này. ${n?`Ngày gần nhất còn máy: <button class="btn-ghost btn sm" style="height:auto;padding:0 4px;text-decoration:underline" data-act="pickday" data-d="${n}">${dm(pISO(n))}</button>`:'Hãy thử ngày khác.'}</span></div>`;
+}
+
+/* ---------- pages ---------- */
+const P={};
+P.home=()=>{
+  const tabs=[['all','Tất cả'],['Canon','Canon'],['Fujifilm','Fujifilm']];
+  const list=CAMS.filter(c=>S.ui.homeTab==='all'||c.brand===S.ui.homeTab).slice(0,8);
+  const a=avg();
+  return `<section class="hero"><div class="wrap hero-in"><div>
+   <h1>Mượn một chiếc máy, mang cả chuyến đi về nhà.</h1>
+   <p class="lead">Máy mirrorless và compact cho chuyến du lịch, buổi kỷ yếu hay một sáng chủ nhật dạo phố. Thuê theo buổi 6 giờ hoặc theo ngày, cọc rõ ràng, hoàn lại sau khi kiểm tra máy.</p>
+   <div class="cta"><a class="btn btn-pri lg" href="#/dat-lich">Đặt máy ngay</a><a class="btn btn-out lg" href="#/gia">Xem bảng giá</a></div>
+   <ul class="trust"><li>${ic('clock')}Thuê từ ${K(minP(0))} một buổi</li><li>${ic('shield')}Quay lại tình trạng máy trước khi giao</li><li>${ic('card')}Hoàn cọc sau khi kiểm tra</li></ul></div>
+   <div class="hero-art"><div class="stamp big"><div class="stamp-in" style="padding:10px 14px 14px"><div style="aspect-ratio:4/3;background:radial-gradient(120% 90% at 30% 20%,var(--acc2),var(--photo));padding:8px 16px">${camSVG(CAM('r50'))}</div><p class="cap">Canon EOS R50 · ${K(CAM('r50').p[1])} một ngày</p></div></div>
+   <div class="stamp small"><div class="stamp-in" style="padding:6px 8px 8px"><div style="aspect-ratio:4/3;background:var(--photo);padding:4px 8px">${camSVG(CAM('x100v'))}</div></div></div>
+   <div class="tag-pill">Điểm đánh giá<b>${a.toFixed(1)} / 5</b></div></div></div></section>
+  <div class="wrap quick"><div class="quick-in">
+   <div class="field"><label for="q-cam">Máy cần thuê</label><select id="q-cam">${CAMS.filter(c=>c.st!=='out').map(c=>`<option value="${c.id}">${esc(c.name)}</option>`).join('')}</select></div>
+   <div class="field"><label for="q-date">Ngày nhận</label><input id="q-date" type="date" min="${iso(today)}" value="${iso(addD(today,1))}"></div>
+   <div class="field"><label for="q-pkg">Gói thuê</label><select id="q-pkg">${PKG.map((p,i)=>`<option value="${i}" ${i===1?'selected':''}>${p.n} (${p.sub})</option>`).join('')}</select></div>
+   <button class="btn btn-pri lg" data-act="quick">Kiểm tra máy trống</button></div></div>
+
+  <section class="sec"><div class="wrap"><div class="sec-h"><div><h2>Máy đang cho thuê</h2><p class="muted">Mỗi máy được vệ sinh và kiểm tra trước khi giao, kèm pin, sạc, thẻ nhớ và dây đeo.</p></div>
+   <div class="chips" role="tablist">${tabs.map(([k,t])=>`<button class="chip ${S.ui.homeTab===k?'on':''}" data-act="hometab" data-t="${k}" aria-pressed="${S.ui.homeTab===k}">${t}</button>`).join('')}</div></div>
+   <div class="grid4 snap">${list.map(camCard).join('')}</div>
+   <p style="text-align:center;margin:32px 0 0"><a class="btn btn-out" href="#/may">Xem tất cả ${CAMS.length} máy</a></p></div></section>
+
+  <section class="sec alt"><div class="wrap"><div class="sec-h"><div><h2>Chọn gói theo cách bạn dùng máy</h2><p class="muted">Giá mỗi gói khác nhau theo từng máy. Con số dưới đây là giá thấp nhất đang có.</p></div></div>
+   <div class="grid4">${pkgCards()}</div>
+   <p class="muted sm-t" style="margin-top:18px">Một ngày thuê tính 23 giờ. <a href="#/gia">Xem bảng giá đầy đủ</a></p></div></section>
+
+  <section class="sec"><div class="wrap two" style="align-items:start"><div><h2>Bốn bước để cầm máy trên tay</h2><p class="muted" style="max-width:44ch">Từ lúc chọn máy đến lúc nhận lại tiền cọc, mọi thứ đều có trong quy trình dưới đây.</p><a class="btn btn-out" href="#/quy-trinh">Xem quy trình chi tiết</a></div>
+   <div class="tl">${[['Giữ slot','Chọn máy và ngày thuê, thanh toán trước 50K tiền thuê để giữ lịch.'],['Nhận máy','Mang CCCD chính chủ cùng tiền cọc hoặc tài sản tương đương.'],['Kiểm tra cùng cửa hàng','Cả hai bên xem ngoại hình, chức năng, phụ kiện. Cửa hàng quay lại tình trạng máy.'],['Trả máy và nhận cọc','Cửa hàng kiểm tra máy rồi hoàn lại tiền cọc.']].map(([t,d],i)=>`<div class="tl-i"><span class="n">${i+1}</span><h3>${t}</h3><p>${d}</p></div>`).join('')}</div></div></section>
+
+  <section class="sec alt"><div class="wrap two">
+   <div class="stamp"><div class="stamp-in"><h3>Tiền cọc</h3><ul class="kv"><li><span>Máy thường, đến lấy</span><b>700.000đ + CCCD</b></li><li><span>Máy compact, đến lấy</span><b>300.000đ + CCCD</b></li><li><span>Cọc tài sản</span><b>Trên 15 triệu + CCCD</b></li><li><span>Thuê online</span><b>Chuyển khoản đủ tiền cọc</b></li></ul><p class="sm-t muted" style="margin:14px 0 12px">CCCD phải là của chính chủ người thuê.</p><a href="#/chinh-sach/coc">Đọc đầy đủ quy định cọc</a></div></div>
+   <div class="stamp"><div class="stamp-in"><h3>Nhận và trả máy</h3><ul class="kv"><li><span>Thuê 1 ngày</span><b>23 giờ</b></li><li><span>Ca sáng</span><b>8h đến 14h</b></li><li><span>Ca chiều tối</span><b>15h đến 21h</b></li><li><span>Trả trễ 15 phút đến 1 giờ</span><b>Phụ thu 50K</b></li></ul><p class="sm-t muted" style="margin:14px 0 12px">Trả trễ làm lỡ lịch khách sau sẽ phải đền bù theo quy định.</p><a href="#/chinh-sach/nhan-tra">Đọc đầy đủ quy định nhận, trả</a></div></div></div></section>
+
+  <section class="sec"><div class="wrap"><div class="sec-h"><div><h2>Khách đã thuê nói gì</h2></div><div style="display:flex;gap:8px"><a class="btn btn-out" href="#/danh-gia">Xem tất cả đánh giá</a><button class="btn btn-pri" data-act="writerv">Viết đánh giá</button></div></div>
+   <div style="display:grid;grid-template-columns:280px 1fr;gap:32px;align-items:start" class="rvhome"><div><div class="score"><span class="n">${a.toFixed(1)}</span><div>${stars(a)}<div class="muted sm-t">${S.reviews.length} đánh giá của khách đã thuê</div></div></div>${distrib()}</div>
+   <div class="grid3" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr))">${S.reviews.slice(0,3).map(r=>reviewCard(r)).join('')}</div></div></div></section>
+
+  <section class="sec alt"><div class="wrap two" style="align-items:start"><div><h2>Những điều chúng tôi cam kết</h2><p class="muted">Không phát sinh khoản nào ngoài quy định đã công bố.</p></div>
+   <div class="rows">${[['shield','Quay lại tình trạng máy','Cửa hàng quay chụp máy trước khi giao, làm căn cứ khi trả máy.'],['card','Hoàn cọc minh bạch','Cọc được hoàn sau khi nhận và kiểm tra máy.'],['truck','Giao nhận linh hoạt','Đến lấy tại cơ sở hoặc nhờ ship. Lưu ý ship do bạn tự chịu rủi ro vận chuyển.'],['film','Máy sạch, đủ phụ kiện','Pin, sạc, thẻ nhớ, dây đeo đều được kiểm tra trước mỗi lượt thuê.']].map(([i,t,d])=>`<div>${ic(i)}<div><h4>${t}</h4><p>${d}</p></div></div>`).join('')}</div></div></section>
+
+  <section class="sec"><div class="wrap two" style="align-items:start"><div><h2>Câu hỏi thường gặp</h2><p class="muted">Không thấy câu trả lời? <a href="#/lien-he">Nhắn cho chúng tôi</a>.</p></div><div>${faqList()}</div></div></section>
+  <section class="wrap" style="padding-bottom:20px"><div class="band"><div><h2>Sẵn sàng cho buổi chụp tiếp theo?</h2><p>Chọn máy, chọn ngày và giữ lịch trong vài phút.</p></div><a class="btn btn-acc lg" href="#/dat-lich">Đặt máy ngay</a></div></section>`;
+};
+
+P.catalog=()=>{
+  const f=S.ui.cat;
+  return `<section class="sec" style="padding-top:36px"><div class="wrap"><p class="crumb"><a href="#/">Trang chủ</a> / Máy cho thuê</p><h1 style="font-size:clamp(30px,4vw,46px)">Máy cho thuê</h1>
+  <div class="cat"><aside class="filters" aria-label="Bộ lọc"><div class="field"><label for="f-q">Tìm máy</label><input id="f-q" type="search" data-f="q" value="${esc(f.q)}" placeholder="Ví dụ: X-T30"></div>
+   <fieldset><legend>Hãng</legend>${['','Canon','Fujifilm'].map(v=>`<label class="chk"><input type="radio" name="fb" data-f="brand" value="${v}" ${f.brand===v?'checked':''}>${v||'Tất cả'}</label>`).join('')}</fieldset>
+   <fieldset><legend>Loại máy</legend>${[['','Tất cả'],['mirror','Mirrorless'],['retro','Mirrorless dáng cổ điển'],['compact','Compact']].map(([v,t])=>`<label class="chk"><input type="radio" name="ft" data-f="type" value="${v}" ${f.type===v?'checked':''}>${t}</label>`).join('')}</fieldset>
+   <div class="field"><label for="f-max">Giá tối đa một ngày: <b id="f-maxv">${K(f.max)}</b></label><input id="f-max" type="range" min="130" max="1200" step="10" value="${f.max}" data-f="max"></div>
+   <label class="chk"><input type="checkbox" data-f="ok" ${f.ok?'checked':''}>Chỉ hiện máy còn trống</label>
+   <button class="btn btn-out sm" data-act="catreset">Xóa bộ lọc</button></aside>
+  <div><div style="display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:16px;flex-wrap:wrap"><span class="muted" id="cat-n"></span><div class="field" style="flex-direction:row;align-items:center"><label for="f-sort">Sắp xếp</label><select id="f-sort" data-f="sort" style="width:auto"><option value="pop" ${f.sort==='pop'?'selected':''}>Phổ biến</option><option value="asc" ${f.sort==='asc'?'selected':''}>Giá tăng dần</option><option value="desc" ${f.sort==='desc'?'selected':''}>Giá giảm dần</option></select></div></div>
+  <div id="cat-grid"></div>
+  <div class="note info" style="margin-top:28px">${ic('info')}<span>Chưa biết chọn máy nào? Nhắn Zalo ${PHONE}, cửa hàng sẽ tư vấn theo nhu cầu và ngân sách của bạn.</span></div></div></div></div></section>`;
+};
+function catList(){
+  const f=S.ui.cat;
+  let l=CAMS.filter(c=>(!f.brand||c.brand===f.brand)&&(!f.type||c.type===f.type)&&c.p[1]<=f.max&&(!f.ok||c.st!=='out')&&(!f.q||c.name.toLowerCase().replace(/[-\s]/g,'').includes(f.q.toLowerCase().replace(/[-\s]/g,''))));
+  if(f.sort==='asc')l=[...l].sort((a,b)=>a.p[1]-b.p[1]);if(f.sort==='desc')l=[...l].sort((a,b)=>b.p[1]-a.p[1]);
+  const g=$('#cat-grid');if(!g)return;$('#cat-n').textContent=`${l.length} máy`;
+  g.innerHTML=l.length?`<div class="grid3">${l.map(camCard).join('')}</div>`:`<div class="empty">${ic('cam')}<h3>Chưa có máy phù hợp bộ lọc</h3><p class="muted">Thử nới khoảng giá hoặc bỏ bớt điều kiện.</p><button class="btn btn-out" data-act="catreset">Xóa bộ lọc</button></div>`;
+}
+
+P.detail=id=>{
+  const c=CAM(id);if(!c)return P.nf();
+  const d=S.ui.det,p=d.pkg,[st,cl]=STT[c.st],out=c.st==='out';
+  const tm=d.date?timing({pkg:p,date:d.date,time:'10:00',ca:'sang'}):null;
+  const rv=S.reviews.filter(r=>r.cam===id);
+  return `<section class="sec mob-pad" style="padding-top:32px"><div class="wrap"><p class="crumb"><a href="#/">Trang chủ</a> / <a href="#/may">Máy cho thuê</a> / ${esc(c.name)}</p>
+  <div class="det"><div><div class="gal-main">${camSVG(c,d.view===1)}</div>
+   <div class="thumbs">${['Mặt trước','Mặt sau','Kèm phụ kiện'].map((t,i)=>`<button class="${d.view===i?'on':''}" data-act="view" data-v="${i}" aria-label="${t}" style="${i===1?'':''}">${camSVG(c,i===1)}</button>`).join('')}</div>
+   <p class="muted sm-t" style="margin-top:12px">Ảnh minh họa. Ảnh thật của từng máy sẽ được cập nhật.</p>
+   <div style="margin-top:32px"><div class="tabs" role="tablist"><button class="on">Thông số</button></div>
+   <ul class="kv"><li><span>Cảm biến</span><b>${esc(c.sensor)}</b></li><li><span>Độ phân giải</span><b>${esc(c.mp)}</b></li><li><span>Quay video</span><b>${esc(c.vid)}</b></li><li><span>Phù hợp</span><b>${esc(c.use)}</b></li><li><span>Phụ kiện kèm</span><b>Lens, pin, sạc, thẻ nhớ, dây đeo</b></li><li><span>Mức cọc khi đến lấy</span><b>${c.cmp?'300.000đ':'700.000đ'} + CCCD</b></li></ul>
+   <div class="note warn" style="margin-top:16px">${ic('alert')}<span>Mất nắp lens hoặc để thẻ nhớ tháo ra sai cách sẽ phải đền theo quy định. <a href="#/chinh-sach/bao-quan">Xem cách bảo quản</a></span></div></div></div>
+  <aside class="buy" aria-label="Đặt thuê ${esc(c.name)}"><div><span class="badge ${cl}">${st}</span><h1 style="font-size:clamp(26px,3vw,34px);margin:10px 0 4px">${esc(c.name)}</h1><div style="display:flex;gap:8px;align-items:center">${rv.length?`${stars(rv.reduce((a,r)=>a+r.r,0)/rv.length)}<a href="#rv-m" class="sm-t">${rv.length} đánh giá</a>`:'<span class="muted sm-t">Chưa có đánh giá</span>'}</div><p class="muted" style="margin:8px 0 0">${esc(c.tag)}</p></div>
+   <div><div class="lbl" style="margin-bottom:8px">Gói thuê</div><div class="pkpick">${PKG.map((x,i)=>`<button class="${p===i?'on':''}" data-act="dpk" data-p="${i}" aria-pressed="${p===i}"><b>${K(c.p[i])}</b>${x.n}<br><small>${x.sub}</small></button>`).join('')}</div></div>
+   ${calendar([id],d.date,p)}${availMsg([id],d.date,p)}
+   ${tm?`<p class="sm-t muted" style="margin:0">${p===0?'Chọn ca sáng hoặc chiều tối ở bước đặt lịch.':`Nếu nhận lúc 10:00, trả trước ${dt(tm.e)}.`}</p>`:''}
+   <div class="total"><span class="muted">Tiền thuê</span><b>${vnd(c.p[p])}</b></div>
+   <p class="sm-t muted" style="margin:-8px 0 0">Cọc khi đến lấy: ${c.cmp?'300.000đ':'700.000đ'} + CCCD chính chủ, hoàn sau khi kiểm tra máy.</p>
+   ${out?`<button class="btn btn-out lg block" data-act="notify" data-id="${id}">Báo khi có máy</button>`:`<button class="btn btn-pri lg block ${d.date&&!free([id],d.date,p)?'off':''}" data-act="dgo" data-id="${id}">Đặt máy này</button>`}
+   <a class="btn btn-ghost block" href="#/lien-he">Hỏi cửa hàng qua Zalo</a></aside></div>
+  <div style="margin-top:56px" id="rv-m"><h2>Đánh giá về ${esc(c.name)}</h2>${rv.length?`<div class="masonry">${rv.map(r=>reviewCard(r,false)).join('')}</div>`:`<div class="empty">${ic('cam')}<h3>Chưa có đánh giá cho máy này</h3><p class="muted">Hãy là người đầu tiên chia sẻ sau khi thuê.</p></div>`}</div>
+  <div style="margin-top:56px"><h2>Máy tương tự</h2><div class="grid4 snap">${CAMS.filter(x=>x.id!==id&&Math.abs(x.p[1]-c.p[1])<=110).slice(0,4).map(camCard).join('')}</div></div></div>
+  <div class="mobbar"><div><div class="muted sm-t">${PKG[p].n}</div><b>${vnd(c.p[p])}</b></div><button class="btn btn-pri ${out||(d.date&&!free([id],d.date,p))?'off':''}" data-act="dgo" data-id="${id}">Đặt máy này</button></div></section>`;
+};
+
+P.price=()=>{
+  const rows=CAMS.filter(c=>S.ui.price==='all'||c.brand===S.ui.price);
+  const k=S.ui.calc,cc=CAM(k.cam);
+  return `<section class="sec" style="padding-top:36px"><div class="wrap"><p class="crumb"><a href="#/">Trang chủ</a> / Gói &amp; giá</p><h1 style="font-size:clamp(30px,4vw,46px)">Gói thuê và bảng giá</h1><p class="lead">Chọn thuê theo buổi 6 giờ hoặc theo ngày. Thuê càng dài, giá mỗi ngày càng thấp.</p>
+  <div class="grid4" style="margin:32px 0">${pkgCards()}</div>
+  <div class="note info">${ic('info')}<span>Một ngày thuê tính 23 giờ. Trả trễ 15 phút đến 1 giờ phụ thu 50K. Giá chưa gồm phí giao nhận.</span></div>
+  <div class="two" style="margin-top:48px;align-items:start"><div style="grid-column:1/-1"><div class="sec-h" style="margin-bottom:16px"><h2>Bảng giá đầy đủ</h2><div class="chips">${[['all','Tất cả'],['Canon','Canon'],['Fujifilm','Fujifilm']].map(([v,t])=>`<button class="chip ${S.ui.price===v?'on':''}" data-act="ptab" data-t="${v}">${t}</button>`).join('')}</div></div>
+  <div class="tbl-w"><table><thead><tr><th>Máy</th>${PKG.map(p=>`<th>${p.n}</th>`).join('')}<th></th></tr></thead><tbody>${rows.map(c=>`<tr><td><a href="#/may/${c.id}" style="color:inherit">${esc(c.name.replace(/^(Canon EOS|Fujifilm) /,''))}</a> <span class="muted sm-t" style="font-weight:400">${c.brand}</span></td>${c.p.map(x=>`<td class="n">${K(x)}</td>`).join('')}<td>${c.st==='out'?'<span class="badge b-out">Hết máy</span>':`<button class="btn btn-acc sm" data-act="rent" data-id="${c.id}">Chọn</button>`}</td></tr>`).join('')}</tbody></table></div>
+  <p class="muted sm-t" style="margin-top:10px">Giá từ ngày thứ 4 trở đi: liên hệ.</p></div></div>
+  <div class="stamp" style="margin-top:40px;max-width:760px"><div class="stamp-in"><h2 style="font-size:26px">Tính nhanh chi phí</h2><div class="row2"><div class="field"><label for="c-cam">Máy</label><select id="c-cam" data-calc="cam">${CAMS.filter(c=>c.st!=='out').map(c=>`<option value="${c.id}" ${k.cam===c.id?'selected':''}>${esc(c.name)}</option>`).join('')}</select></div><div class="field"><label for="c-pkg">Gói</label><select id="c-pkg" data-calc="pkg">${PKG.map((p,i)=>`<option value="${i}" ${k.pkg===i?'selected':''}>${p.n}</option>`).join('')}</select></div></div>
+  <ul class="kv" style="margin-top:18px"><li><span>Tiền thuê</span><b>${vnd(cc.p[k.pkg])}</b></li><li><span>Thanh toán trước để giữ slot</span><b>50.000đ (trừ vào tiền thuê)</b></li><li><span>Cọc khi đến lấy</span><b>${cc.cmp?'300.000đ':'700.000đ'} + CCCD</b></li><li><span>Còn lại khi nhận máy</span><b>${vnd(cc.p[k.pkg]-50)}</b></li></ul>
+  <button class="btn btn-pri block" style="margin-top:18px" data-act="rent" data-id="${cc.id}" data-p="${k.pkg}">Đặt ${esc(cc.name)}</button></div></div></div></section>`;
+};
+
+P.process=()=>{
+  const items=['CCCD chính chủ','Tiền cọc hoặc tài sản tương đương','Điện thoại có Zalo để cửa hàng liên hệ'];
+  return `<section class="sec" style="padding-top:36px"><div class="wrap"><p class="crumb"><a href="#/">Trang chủ</a> / Quy trình thuê</p><h1 style="font-size:clamp(30px,4vw,46px)">Quy trình thuê máy</h1><p class="lead" style="margin-bottom:36px">Bốn bước từ lúc chọn máy đến lúc nhận lại tiền cọc.</p>
+  <div class="tl">${[['Giữ slot','Kiểm tra ngày còn trống, sau đó thanh toán trước 50K tiền thuê để giữ lịch.','Cọc trước 50K, không hủy lịch','err'],['Nhận máy','Mang giấy tờ tùy thân chính chủ và tiền cọc hoặc tài sản có giá trị tương đương. Không cọc được giấy tờ thì cọc 100% giá trị máy.','CCCD chính chủ + tiền cọc','warn'],['Kiểm tra máy','Kiểm tra kỹ ngoại hình, chức năng và phụ kiện. Cửa hàng quay chụp tình trạng máy trực tiếp trước khi giao.','Cửa hàng quay chụp tình trạng máy','ok'],['Trả máy và hoàn cọc','Cửa hàng nhận máy, kiểm tra tình trạng rồi hoàn cọc.','Hoàn cọc sau khi kiểm tra','ok']].map(([t,d,n,k],i)=>`<div class="tl-i"><span class="n">${i+1}</span><h3>${t}</h3><p>${d}</p><div class="note ${k}">${ic(k==='err'?'alert':'check')}<span>${n}</span></div></div>`).join('')}</div>
+  <div class="two" style="margin-top:56px;align-items:start"><div class="stamp"><div class="stamp-in"><h3>Thuê online hoặc nhờ ship</h3><ul class="lines"><li>Chuyển khoản đủ tiền cọc máy.</li><li>Gửi ảnh CCCD (mặt VNeID và mặt thẻ).</li><li>Gửi số điện thoại và Facebook chính chủ.</li></ul><div class="note warn" style="margin-top:14px">${ic('alert')}<span>Nếu mất phụ kiện hoặc hỏng máy do shipper, cửa hàng không chịu trách nhiệm.</span></div></div></div>
+  <div class="stamp"><div class="stamp-in"><h3>Chuẩn bị trước khi đến</h3><div class="chkl">${items.map((t,i)=>`<label class="chk"><input type="checkbox" data-chk="${i}" ${S.ui.chk[i]?'checked':''}>${t}</label>`).join('')}</div><a class="btn btn-pri block" style="margin-top:18px" href="#/dat-lich">Bắt đầu đặt máy</a></div></div></div></div></section>`;
+};
+
+const POL={
+ coc:['Tiền cọc',()=>`<div class="grid3" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr));margin-bottom:24px">${[['700.000đ + CCCD','Máy thường, đến lấy trực tiếp'],['300.000đ + CCCD','Máy compact, đến lấy trực tiếp'],['Tài sản trên 15 triệu + CCCD','Cọc tài sản có giá trị tương đương']].map(([a,b])=>`<div class="stamp"><div class="stamp-in"><b style="font:700 20px var(--serif);color:var(--pri)">${a}</b><p class="muted" style="margin:6px 0 0">${b}</p></div></div>`).join('')}</div>
+  <h3>Thuê online, nhờ ship</h3><ul class="lines"><li>Chuyển khoản đủ tiền cọc máy.</li><li>Gửi ảnh CCCD (mặt VNeID và mặt thẻ).</li><li>Gửi số điện thoại và Facebook chính chủ.</li></ul>
+  <div class="note warn" style="margin:20px 0 8px">${ic('alert')}<span><b>CCCD phải là của chính chủ người thuê.</b> Không cọc được giấy tờ thì cọc 100% giá trị máy. Cửa hàng không nhận hình thức cọc nào khác.</span></div><p class="muted">Cọc được hoàn sau khi cửa hàng nhận và kiểm tra tình trạng máy.</p>`],
+ 'nhan-tra':['Nhận & trả máy',()=>`<h3>Thuê 1 ngày: tính 23 giờ</h3>
+  <div style="display:flex;align-items:center;gap:12px;margin:12px 0 26px;flex-wrap:wrap"><span class="badge b-pri" style="padding:8px 14px">Nhận 10:00 hôm nay</span><div style="flex:1;min-width:80px;border-top:3px dashed #CDB46A"></div><span class="badge b-pri" style="padding:8px 14px">Trả trước 09:00 hôm sau</span></div>
+  <h3>Thuê theo buổi (6 giờ)</h3><ul class="kv" style="margin-bottom:26px"><li><span>Ca sáng</span><b>8h đến 14h</b></li><li><span>Ca chiều tối</span><b>15h đến 21h</b></li></ul><p class="muted">Giờ có thể linh động nếu còn trống. Trả máy đúng giờ theo lịch hẹn.</p>
+  <h3>Trả trễ</h3><div class="tbl-w"><table style="min-width:0"><thead><tr><th>Tình huống</th><th>Xử lý</th></tr></thead><tbody><tr><td style="white-space:normal">Trễ 15 phút đến 1 giờ</td><td style="white-space:normal">Phụ thu 50K</td></tr><tr><td style="white-space:normal">Trễ làm lỡ lịch của khách sau</td><td style="white-space:normal">Đền bù 100% tiền thuê của khách sau và 100% phí giao nhận</td></tr></tbody></table></div>`],
+ 'bao-quan':['Cách bảo quản',()=>{const t=['Không sờ trực tiếp tay vào ống kính để lau bụi, vết bẩn.','Không để máy dưới ánh nắng trực tiếp quá lâu.','Không để máy dính nước, cát, bụi.','Đóng nắp ống kính sau khi sử dụng hoặc khi xem ảnh.','Tháo pin riêng khi đi máy bay.','Đeo dây máy trên người mọi lúc khi chụp. Không chạy nhảy hoặc hoạt động mạnh khi đeo dây, vì dây chỉ là phụ kiện, không bảo vệ máy.','Bảo quản trong túi chống sốc khi không sử dụng.','Không tự ý tháo gỡ máy, lens.','Không chụp liên tục quá mức để tránh máy quá nhiệt, gây lag và flash không hoạt động.','Thẻ nhớ luôn để trong máy, chỉ tháo ra xuất ảnh sau khi chụp xong 10 đến 20 phút.'];
+  return `<div class="grid3" style="grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px">${t.map((x,i)=>`<div class="rows" style="background:${i===9||i===1?'var(--acc2)':'var(--card)'};border:1px solid var(--line);border-radius:16px;padding:6px 16px"><div style="border:0">${ic('check')}<p style="color:var(--ink)">${x}</p></div></div>`).join('')}</div><div class="note warn" style="margin-top:18px">${ic('alert')}<span>Nếu có sự cố khi tháo thẻ nhớ sai cách, cửa hàng không chịu trách nhiệm, trừ trường hợp thẻ lỗi ngay khi nhận máy.</span></div>`}],
+ 'den-bu':['Đền bù thiệt hại',()=>{const g=[['Thân máy',[['Vào nước, va đập rơi vỡ, không sửa được','Đền 100% giá trị máy'],['Trầy xước ngoại hình do va đập','100.000 đến 200.000đ'],['Hỏng hoặc mất chức năng nhưng sửa được','Theo giá của hãng']]],['Ống kính (lens)',[['Rơi vỡ, ngấm nước, không sửa được','Đền 100% giá trị lens'],['Bề mặt xước ảnh hưởng ảnh chụp','Đền 100% giá trị lens'],['Trầy ngoại hình, mất nắp lens','Theo mức hư hại / giá phụ kiện']]],['Phụ kiện',[['Thẻ nhớ: tự tháo lắp sai hướng dẫn gây lỗi, mất ảnh','Đền 100%, cửa hàng không chịu trách nhiệm dữ liệu'],['Sạc: dính nước, rơi, gắn pin sai làm mất chức năng','Đền phụ kiện hư hỏng']]]];
+  return g.map(([h,r])=>`<h3 style="margin-top:20px">${h}</h3><div class="tbl-w"><table style="min-width:0"><tbody>${r.map(([a,b])=>`<tr><td style="white-space:normal;font-weight:400">${a}</td><td style="white-space:normal"><b>${b}</b></td></tr>`).join('')}</tbody></table></div>`).join('')+`<div class="note info" style="margin-top:18px">${ic('info')}<span>Ngoài chi phí sửa chữa, khách chịu thêm 200K mỗi ngày máy không thể cho thuê trong thời gian sửa.</span></div>`}]
+};
+P.policy=tab=>{
+  const t=POL[tab]||POL.coc;tab=POL[tab]?tab:'coc';
+  return `<section class="sec" style="padding-top:36px"><div class="wrap" style="max-width:960px"><p class="crumb"><a href="#/">Trang chủ</a> / Chính sách</p><h1 style="font-size:clamp(30px,4vw,46px)">Chính sách thuê máy</h1>
+  <nav class="tabs" aria-label="Chính sách">${Object.entries(POL).map(([k,v])=>`<a href="#/chinh-sach/${k}" class="${k===tab?'on':''}" ${k===tab?'aria-current="page"':''}>${v[0]}</a>`).join('')}</nav>
+  <div class="stamp"><div class="stamp-in" style="padding:clamp(18px,3vw,32px)"><h2 style="font-size:28px">${t[0]}</h2>${t[1]()}</div></div>
+  <div class="note err pol-banner">${ic('alert')}<span><b>Cửa hàng không nhận hủy lịch đối với bất kỳ trường hợp nào.</b> Khoản 50K giữ slot không hoàn lại.</span></div></div></section>`;
+};
+
+P.reviews=()=>{
+  const f=S.ui.rv;
+  let l=S.reviews.filter(r=>f.f==='all'||(f.f==='photo'?(r.ph||r.imgs):['1','2','3','4','5'].includes(f.f)?r.r===+f.f:CAM(r.cam).brand.toLowerCase()===f.f));
+  l=[...l].sort((a,b)=>f.sort==='help'?b.help-a.help:f.sort==='high'?b.r-a.r:f.sort==='low'?a.r-b.r:a.ago-b.ago);
+  const a=avg(),crit=[['Tình trạng máy',4.9],['Thái độ tư vấn',4.8],['Đúng giờ',4.7],['Hoàn cọc',4.9]];
+  return `<section class="sec" style="padding-top:36px"><div class="wrap"><p class="crumb"><a href="#/">Trang chủ</a> / Đánh giá</p><h1 style="font-size:clamp(30px,4vw,46px)">Khách hàng nói gì</h1>
+  <div class="two" style="margin:28px 0;align-items:start"><div><div class="score"><span class="n">${a.toFixed(1)}</span><div>${stars(a)}<div class="muted sm-t">${S.reviews.length} đánh giá</div></div></div>${distrib()}</div>
+  <div><h3>Điểm theo tiêu chí</h3><div class="bars">${crit.map(([n,v])=>`<div style="display:grid;grid-template-columns:130px 1fr 32px;gap:8px;align-items:center"><span>${n}</span><i><b style="width:${v/5*100}%"></b></i><b>${v}</b></div>`).join('')}</div><p class="muted sm-t" style="margin-top:8px">Điểm tiêu chí là số liệu mẫu.</p><button class="btn btn-pri" style="margin-top:14px" data-act="writerv">Viết đánh giá</button></div></div>
+  <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:22px"><div class="chips">${[['all','Tất cả'],['photo','Có ảnh'],['5','5 sao'],['4','4 sao'],['canon','Canon'],['fujifilm','Fujifilm']].map(([v,t])=>`<button class="chip ${f.f===v?'on':''}" data-act="rvf" data-f="${v}" aria-pressed="${f.f===v}">${t}</button>`).join('')}</div>
+  <div class="field" style="flex-direction:row;align-items:center"><label for="rv-s">Sắp xếp</label><select id="rv-s" data-rvs style="width:auto"><option value="new" ${f.sort==='new'?'selected':''}>Mới nhất</option><option value="help" ${f.sort==='help'?'selected':''}>Hữu ích nhất</option><option value="high" ${f.sort==='high'?'selected':''}>Điểm cao đến thấp</option><option value="low" ${f.sort==='low'?'selected':''}>Điểm thấp đến cao</option></select></div></div>
+  ${l.length?`<div class="masonry">${l.map(r=>reviewCard(r)).join('')}</div>`:`<div class="empty">${ic('cam')}<h3>Chưa có đánh giá phù hợp</h3><p class="muted">Thử chọn bộ lọc khác.</p><button class="btn btn-out" data-act="rvf" data-f="all">Xem tất cả</button></div>`}</div></section>`;
+};
+
+/* booking */
+const SHEAD=['Chọn máy','Thời gian','Thông tin & cọc','Xác nhận'];
+function stepper(s){return `<ol class="steps" aria-label="Các bước đặt lịch">${SHEAD.map((t,i)=>`<li class="${i+1<s?'done':i+1===s?'cur':''}" ${i+1===s?'aria-current="step"':''}><span class="c">${i+1<s?ic('check'):i+1}</span><span>${t}</span></li>`).join('')}</ol>`}
+function summary(b){
+  const tm=timing(b),tot=sumP(b.cams,b.pkg);
+  return `<aside class="panel sum" aria-label="Tóm tắt đơn"><h3 style="margin:0">Tóm tắt đơn</h3>${b.cams.length?b.cams.map(id=>{const c=CAM(id);return `<div class="pick" style="cursor:default"><span class="th">${camSVG(c)}</span><span><b>${esc(c.name)}</b><small>${PKG[b.pkg].n} · ${vnd(c.p[b.pkg])}</small></span></div>`}).join(''):`<p class="muted" style="margin:0">Chưa chọn máy.</p>`}
+  <ul class="kv"><li><span>Nhận</span><b>${tm?dt(tm.s):'Chưa chọn'}</b></li><li><span>Trả trước</span><b>${tm?dt(tm.e):'Chưa chọn'}</b></li><li><span>Hình thức</span><b>${b.method==='direct'?'Đến lấy tại cửa hàng':'Giao/ship'}</b></li><li><span>Tiền thuê</span><b>${vnd(tot)}</b></li><li><span>Giữ slot (trừ vào tiền thuê)</span><b>50.000đ</b></li><li><span>Cọc khi nhận</span><b>${b.cams.length?vnd(depOf(b.cams)):'-'}</b></li></ul></aside>`;
+}
+function bookStep(b){
+  const e=b.err||{};const f=(k,l,ph,t='text',ex='')=>`<div class="field ${e[k]?'bad':''}"><label for="b-${k}">${l}</label><input id="b-${k}" type="${t}" data-bind="b.${k}" value="${esc(b[k])}" placeholder="${ph}" ${ex}>${e[k]?`<span class="errt" role="alert">${ic('alert')}${e[k]}</span>`:''}</div>`;
+  if(b.step===1)return `<div class="panel"><div><h2 style="font-size:26px">Chọn máy</h2><p class="muted" style="margin:0">Bạn có thể chọn nhiều máy trong cùng một đơn.</p></div>
+   <div style="display:grid;gap:10px">${CAMS.map(c=>{const on=b.cams.includes(c.id),out=c.st==='out';return `<button class="pick ${on?'on':''} ${out?'off':''}" data-act="bcam" data-id="${c.id}" ${out?'disabled':''} aria-pressed="${on}"><span class="th">${camSVG(c)}</span><span><b>${esc(c.name)}</b><small>${K(c.p[b.pkg])} · ${PKG[b.pkg].n}${out?' · Hết máy':''}</small></span><span class="tk">${on?ic('check'):''}</span></button>`}).join('')}</div>
+   ${e.cams?`<span class="errt" role="alert">${ic('alert')}${e.cams}</span>`:''}<div class="nav-btns"><a class="btn btn-ghost" href="#/may">Xem danh mục</a><button class="btn btn-pri" data-act="bnext">Tiếp tục</button></div></div>`;
+  if(b.step===2){
+    const tm=timing(b);
+    return `<div class="panel"><h2 style="font-size:26px">Chọn thời gian</h2>
+    <div><div class="lbl" style="margin-bottom:8px">Gói thuê</div><div class="pkpick">${PKG.map((x,i)=>`<button class="${b.pkg===i?'on':''}" data-act="bpk" data-p="${i}" aria-pressed="${b.pkg===i}"><b>${x.n}</b><small>${x.sub}</small></button>`).join('')}</div></div>
+    <div><div class="lbl" style="margin-bottom:8px">Ngày nhận</div>${calendar(b.cams,b.date,b.pkg)}${e.date?`<span class="errt" role="alert">${ic('alert')}${e.date}</span>`:''}<div style="margin-top:10px">${availMsg(b.cams,b.date,b.pkg)}</div></div>
+    ${b.pkg===0?`<div class="field"><label for="b-ca">Ca thuê</label><select id="b-ca" data-bind="b.ca" data-re="1"><option value="sang" ${b.ca==='sang'?'selected':''}>Ca sáng: 8h đến 14h</option><option value="chieu" ${b.ca==='chieu'?'selected':''}>Ca chiều tối: 15h đến 21h</option></select><span class="help">Có thể linh động giờ nếu còn trống, hãy nhắn cửa hàng.</span></div>`
+    :`<div class="field"><label for="b-time">Giờ nhận máy</label><select id="b-time" data-bind="b.time" data-re="1">${Array.from({length:13},(_,i)=>`${pad(i+8)}:00`).map(t=>`<option ${b.time===t?'selected':''}>${t}</option>`).join('')}</select>${tm?`<span class="help">Trả máy trước <b>${dt(tm.e)}</b> (tính ${24*b.pkg-1} giờ).</span>`:''}</div>`}
+    <div><div class="lbl" style="margin-bottom:8px">Hình thức nhận máy</div><div style="display:grid;gap:10px">
+     <label class="radio ${b.method==='direct'?'on':''}"><input type="radio" name="bm" data-bind="b.method" data-re="1" value="direct" ${b.method==='direct'?'checked':''}><span><b>Đến lấy tại cửa hàng</b><span class="muted sm-t">Cọc 700.000đ hoặc 300.000đ (máy compact) kèm CCCD</span></span></label>
+     <label class="radio ${b.method==='ship'?'on':''}"><input type="radio" name="bm" data-bind="b.method" data-re="1" value="ship" ${b.method==='ship'?'checked':''}><span><b>Giao hoặc ship</b><span class="muted sm-t">Cọc online, phí giao nhận tính riêng</span></span></label></div></div>
+    ${b.method==='direct'?`<div class="note info">${ic('map')}<span>Nhận máy tại cửa hàng: 75 Lê Thị Hồng Gấm, Hải Châu, Đà Nẵng.</span></div>`:`<div class="note warn">${ic('alert')}<span>Mất phụ kiện hoặc hỏng máy do shipper, cửa hàng không chịu trách nhiệm.</span></div>${f('addr','Địa chỉ nhận máy','Số nhà, đường, quận','text')}`}
+    <div class="nav-btns"><button class="btn btn-out" data-act="bback">Quay lại</button><button class="btn btn-pri" data-act="bnext">Tiếp tục</button></div></div>`;
+  }
+  if(b.step===3){
+    const dep=depOf(b.cams),online=b.dep==='online'||b.method==='ship';
+    return `<div class="panel"><h2 style="font-size:26px">Thông tin và tiền cọc</h2>
+    <div class="row2">${f('name','Họ và tên','Nguyễn Văn A')}${f('phone','Số điện thoại','0912345678','tel','inputmode="numeric" autocomplete="tel"')}</div>
+    <div class="row2">${f('fb','Facebook hoặc Zalo chính chủ','Đường dẫn hoặc tên tài khoản')}<div class="field ${e.who?'bad':''}"><label for="b-who">Đối tượng</label><select id="b-who" data-bind="b.who"><option value="">Chọn đối tượng</option><option ${b.who==='Học sinh / Sinh viên'?'selected':''}>Học sinh / Sinh viên</option><option ${b.who==='Đã đi làm'?'selected':''}>Đã đi làm</option></select>${e.who?`<span class="errt" role="alert">${ic('alert')}${e.who}</span>`:''}</div></div>
+    <div><div class="lbl" style="margin-bottom:8px">Hình thức cọc</div><div style="display:grid;gap:10px">
+     ${b.method==='direct'?`<label class="radio ${b.dep==='direct'?'on':''}"><input type="radio" name="bd" data-bind="b.dep" data-re="1" value="direct" ${b.dep==='direct'?'checked':''}><span><b>Cọc trực tiếp khi nhận máy</b><span class="muted sm-t">${vnd(dep)} + CCCD chính chủ, hoặc cọc tài sản trên 15 triệu + CCCD</span></span></label>`:''}
+     <label class="radio ${online?'on':''}"><input type="radio" name="bd" data-bind="b.dep" data-re="1" value="online" ${online?'checked':''} ${b.method==='ship'?'disabled':''}><span><b>Cọc online (chuyển khoản)</b><span class="muted sm-t">Chuyển đủ ${vnd(dep)}, gửi ảnh CCCD, SĐT và Facebook chính chủ</span></span></label></div></div>
+    <div class="note info">${ic('info')}<span><b>CCCD phải là của chính chủ người thuê.</b> Cửa hàng không nhận hình thức cọc nào khác.</span></div>
+    ${online?`<div class="row2"><label class="upl ${b.idf?'ok':''}"><input type="file" accept="image/*" data-file="idf">${b.idf?ic('check')+' '+esc(b.idf):ic('upload')+'<br>Ảnh CCCD mặt VNeID'}</label><label class="upl ${b.idb?'ok':''}"><input type="file" accept="image/*" data-file="idb">${b.idb?ic('check')+' '+esc(b.idb):ic('upload')+'<br>Ảnh CCCD mặt thẻ'}</label></div>${e.id?`<span class="errt" role="alert">${ic('alert')}${e.id}</span>`:''}`:''}
+    <div class="stamp"><div class="stamp-in" style="display:flex;gap:18px;align-items:center;flex-wrap:wrap"><svg class="qr" viewBox="0 0 21 21" aria-label="Mã QR chuyển khoản mẫu">${Array.from({length:441},(_,i)=>{const x=i%21,y=(i/21)|0;const fin=(x<7&&y<7)||(x>13&&y<7)||(x<7&&y>13);const on=fin?(x%6===0||y%6===0||x%14===0&&0||((x<7||x>13)&&(y<7||y>13)&&(x%6===0||y%6===0||(x%6>1&&x%6<5&&y%6>1&&y%6<5)))): hash('q'+i)%3===0;return on?`<rect x="${x}" y="${y}" width="1" height="1" fill="#2B1A12"/>`:''}).join('')}</svg>
+     <div style="flex:1;min-width:200px;display:grid;gap:8px"><h3 style="margin:0;font-size:18px">Thanh toán giữ slot: 50.000đ</h3><p class="muted sm-t" style="margin:0">Khoản này được trừ vào tiền thuê. Quét mã hoặc chuyển khoản theo thông tin mẫu bên dưới.</p><div class="copy"><span>Nội dung: <b>MEE ${esc(b.phone||'SĐT')}</b></span><button class="btn btn-ghost sm" data-act="copy" data-v="MEE ${esc(b.phone)}" aria-label="Sao chép nội dung chuyển khoản">${ic('copy')}</button></div></div></div></div>
+    <div class="nav-btns"><button class="btn btn-out" data-act="bback">Quay lại</button><button class="btn btn-pri" data-act="bnext">Tiếp tục</button></div></div>`;
+  }
+  const tm=timing(b);
+  return `<div class="panel"><h2 style="font-size:26px">Xác nhận đặt lịch</h2>
+   <ul class="kv"><li><span>Máy</span><b>${b.cams.map(id=>esc(CAM(id).name)).join(', ')}</b></li><li><span>Gói</span><b>${PKG[b.pkg].n}</b></li><li><span>Nhận</span><b>${tm?dt(tm.s):''}</b></li><li><span>Trả trước</span><b>${tm?dt(tm.e):''}</b></li><li><span>Người thuê</span><b>${esc(b.name)} · ${esc(b.phone)}</b></li><li><span>Tiền thuê</span><b>${vnd(sumP(b.cams,b.pkg))}</b></li><li><span>Cọc</span><b>${vnd(depOf(b.cams))} (${b.method==='ship'||b.dep==='online'?'online':'trực tiếp'})</b></li></ul>
+   <div style="display:grid;gap:12px"><div class="lbl">Quy định cần đồng ý</div>
+    <label class="chk ${e.a1?'bad':''}"><input type="checkbox" data-bind="b.a1" ${b.a1?'checked':''}><span>Tôi đã đọc quy định <a href="#/chinh-sach/coc" target="_blank" rel="noopener">tiền cọc</a> và <a href="#/chinh-sach/nhan-tra" target="_blank" rel="noopener">nhận, trả máy</a>.</span></label>
+    <label class="chk ${e.a2?'bad':''}"><input type="checkbox" data-bind="b.a2" ${b.a2?'checked':''}><span>Tôi đồng ý <a href="#/chinh-sach/den-bu" target="_blank" rel="noopener">quy định đền bù thiệt hại</a>.</span></label>
+    <label class="chk ${e.a3?'bad':''}" style="background:var(--errbg);padding:12px;border-radius:12px"><input type="checkbox" data-bind="b.a3" ${b.a3?'checked':''}><span><b>Tôi hiểu cửa hàng không nhận hủy lịch trong bất kỳ trường hợp nào</b> và 50K giữ slot không hoàn lại.</span></label>
+    ${(e.a1||e.a2||e.a3)?`<span class="errt" role="alert">${ic('alert')}Bạn cần đồng ý cả ba mục để tiếp tục.</span>`:''}</div>
+   <div class="nav-btns"><button class="btn btn-out" data-act="bback">Quay lại</button><button class="btn btn-pri lg" data-act="bsubmit">Xác nhận đặt lịch</button></div></div>`;
+}
+P.book=()=>{
+  const b=S.b;
+  return `<section class="sec" style="padding-top:36px"><div class="wrap"><h1 style="font-size:clamp(30px,4vw,46px)">Đặt lịch thuê máy</h1>${stepper(b.step)}<div class="book"><div>${bookStep(b)}</div>${summary(b)}</div></div></section>`;
+};
+P.done=()=>{
+  const o=S.done;if(!o)return `<section class="sec"><div class="wrap"><div class="empty"><h3>Chưa có đơn nào vừa đặt</h3><a class="btn btn-pri" href="#/dat-lich">Đặt máy</a></div></div></section>`;
+  return `<section class="sec"><div class="wrap" style="max-width:720px;text-align:center"><div style="width:84px;height:84px;border-radius:50%;background:var(--okbg);color:var(--ok);display:grid;place-items:center;margin:0 auto 16px">${ic('check').replace('<svg','<svg width="44" height="44"')}</div><h1 style="font-size:clamp(28px,4vw,42px)">Đã giữ máy cho bạn</h1><p class="lead" style="margin:0 auto 28px">Mã đơn <b>${o.id}</b>. Cửa hàng sẽ liên hệ qua Zalo để xác nhận giữ slot.</p>
+  <div class="stamp" style="text-align:left"><div class="stamp-in"><ul class="kv"><li><span>Máy</span><b>${o.cams.map(id=>esc(CAM(id).name)).join(', ')}</b></li><li><span>Nhận</span><b>${dt(o.start)}</b></li><li><span>Trả trước</span><b>${dt(o.end)}</b></li><li><span>Trạng thái</span><b><span class="badge b-low">Chờ cửa hàng xác nhận</span></b></li></ul>
+  <h3 style="margin:22px 0 10px">Việc tiếp theo</h3><ol class="lines"><li>Cửa hàng xác nhận giữ slot qua Zalo.</li><li>Mang CCCD chính chủ và tiền cọc khi nhận máy.</li><li>Kiểm tra máy cùng cửa hàng trước khi nhận.</li></ol></div></div>
+  <div class="cta" style="justify-content:center"><a class="btn btn-pri" href="${S.user?'#/tai-khoan/don':'#/dang-nhap'}">${S.user?'Xem đơn của tôi':'Đăng nhập để theo dõi đơn'}</a><a class="btn btn-out" href="#/lien-he">Nhắn Zalo cửa hàng</a></div></div></section>`;
+};
+
+/* auth + account */
+P.login=()=>{
+  const reg=S.ui.reg;
+  return `<section class="sec" style="padding-top:36px"><div class="wrap two" style="align-items:center;max-width:960px"><div class="stamp" style="max-width:420px;margin:auto"><div class="stamp-in" style="padding:10px"><div style="aspect-ratio:4/5;background:radial-gradient(120% 90% at 30% 20%,var(--acc2),var(--photo));display:grid;place-items:center;padding:20px"><div>${camSVG(CAM('xt30'))}<p class="cap" style="font-size:18px">Đăng nhập để theo dõi đơn thuê và viết đánh giá.</p></div></div></div></div>
+  <div class="panel"><div class="tabs" style="margin:0"><button class="${!reg?'on':''}" data-act="regtab" data-r="0">Đăng nhập</button><button class="${reg?'on':''}" data-act="regtab" data-r="1">Đăng ký</button></div>
+  ${reg?`<div class="field"><label for="l-name">Họ và tên</label><input id="l-name" type="text" autocomplete="name"></div>`:''}
+  <div class="field"><label for="l-ph">Số điện thoại</label><input id="l-ph" type="tel" inputmode="numeric" autocomplete="tel" placeholder="0912345678"></div>
+  <div class="field"><label for="l-pw">Mật khẩu</label><input id="l-pw" type="password" autocomplete="${reg?'new-password':'current-password'}" placeholder="Ít nhất 6 ký tự"></div><div id="l-err" role="alert"></div>
+  <button class="btn btn-pri lg block" data-act="login">${reg?'Tạo tài khoản':'Đăng nhập'}</button>
+  <button class="btn btn-out block" data-act="social">Tiếp tục với Google</button>
+  <p class="muted sm-t" style="margin:0">Bạn vẫn có thể <a href="#/dat-lich">đặt máy không cần tài khoản</a>. Chỉ khách có tài khoản và đơn đã hoàn tất mới viết được đánh giá.</p></div></div></section>`;
+};
+const OST=['Đã giữ slot','Đã xác nhận','Đang thuê','Đã trả máy','Đã hoàn cọc'];
+function side(t){return `<nav class="side" aria-label="Tài khoản"><div class="me"><span class="av">${esc(S.user.name[0])}</span><div><b>${esc(S.user.name)}</b><br><small class="muted">${esc(S.user.phone)}</small></div></div>${[['don','Đơn thuê của tôi'],['danh-gia','Đánh giá của tôi'],['ho-so','Hồ sơ và xác minh']].map(([k,v])=>`<a href="#/tai-khoan/${k}" class="${t===k?'on':''}">${v}</a>`).join('')}<button data-act="logout">Đăng xuất</button></nav>`}
+function ordCard(o){
+  const c=CAM(o.cams[0]),late=o.stage===2&&o.end<new Date();
+  const bcl=o.stage===2?(late?'b-out':'b-pri'):o.stage>=3?'b-ok':'b-info';
+  return `<article class="ord"><div class="th">${camSVG(c)}</div><div><span class="badge ${bcl}">${OST[o.stage]}</span><h3>${o.cams.map(id=>esc(CAM(id).name)).join(', ')}</h3><div class="meta">Mã ${o.id} · ${PKG[o.pkg].n}<br>${dt(o.start)} đến ${dt(o.end)}</div>
+  ${o.stage===2?`<div class="cd" data-cd="${+o.end}"></div>`:''}<div class="meta">Tổng ${vnd(o.total)} · ${esc(o.dep)}</div></div>
+  <div class="act" style="display:grid;gap:8px"><a class="btn btn-out sm" href="#/tai-khoan/don/${o.id}">Chi tiết</a>${o.stage===2?`<button class="btn btn-acc sm" data-act="extend" data-id="${o.id}">Gia hạn</button><button class="btn btn-pri sm" data-act="retm" data-id="${o.id}">Báo trả máy</button>`:''}${o.stage>=3&&!o.reviewed?`<button class="btn btn-pri sm" data-act="writerv" data-oid="${o.id}">Viết đánh giá</button>`:''}</div></article>`;
+}
+P.account=tab=>{
+  if(!S.user)return P.loginReq();
+  let body='';
+  if(tab==='danh-gia'){
+    const mine=S.reviews.filter(r=>r.mine),pend=S.orders.filter(o=>o.stage>=3&&!o.reviewed);
+    body=`<h2>Đánh giá của tôi</h2>${pend.length?`<h3 style="font-size:18px">Chờ bạn đánh giá</h3><div style="display:grid;gap:14px;margin-bottom:28px">${pend.map(ordCard).join('')}</div>`:''}${mine.length?`<div class="masonry">${mine.map(r=>reviewCard(r)).join('')}</div>`:`<div class="empty">${ic('cam')}<h3>Bạn chưa viết đánh giá nào</h3><p class="muted">Sau khi trả máy, bạn có thể chia sẻ trải nghiệm của mình.</p></div>`}`;
+  } else if(tab==='ho-so'){
+    const v=S.user.verify||0;
+    body=`<h2>Hồ sơ và xác minh</h2><div class="panel"><div class="row2"><div class="field"><label for="h-n">Họ và tên</label><input id="h-n" type="text" data-bind="user.name" value="${esc(S.user.name)}"></div><div class="field"><label for="h-p">Số điện thoại</label><input id="h-p" type="tel" data-bind="user.phone" value="${esc(S.user.phone)}"></div></div>
+    <div><div class="lbl" style="margin-bottom:8px">Xác minh CCCD <span class="badge ${['b-low','b-info','b-ok'][v]}" style="margin-left:6px">${['Chưa xác minh','Đang duyệt','Đã xác minh'][v]}</span></div><label class="upl ${v?'ok':''}"><input type="file" accept="image/*" data-file="verify">${v?ic('check')+' Đã gửi ảnh CCCD':ic('upload')+'<br>Tải ảnh CCCD chính chủ'}</label><p class="help" style="margin-top:8px">Ảnh CCCD chỉ dùng để xác minh khi thuê máy.</p></div>
+    <button class="btn btn-pri" data-act="saveprof" style="justify-self:start">Lưu thay đổi</button></div>`;
+  } else {
+    const L=S.orders,tabs=[['now','Đang diễn ra',L.filter(o=>o.stage===2)],['soon','Sắp tới',L.filter(o=>o.stage<2)],['past','Đã hoàn tất',L.filter(o=>o.stage>=3)]],cur=tabs.find(t=>t[0]===S.ui.otab)||tabs[0];
+    body=`<h2>Đơn thuê của tôi</h2><div class="tabs">${tabs.map(([k,t,l])=>`<button class="${cur[0]===k?'on':''}" data-act="otab" data-t="${k}">${t} (${l.length})</button>`).join('')}</div>${cur[2].length?`<div style="display:grid;gap:14px">${cur[2].map(ordCard).join('')}</div>`:`<div class="empty">${ic('film')}<h3>Chưa có đơn nào ở mục này</h3><p class="muted">Chọn một chiếc máy và giữ lịch cho buổi chụp tiếp theo.</p><a class="btn btn-pri" href="#/may">Xem máy cho thuê</a></div>`}`;
+  }
+  return `<section class="sec" style="padding-top:36px"><div class="wrap acc">${side(tab)}<div>${body}</div></div></section>`;
+};
+P.loginReq=()=>`<section class="sec"><div class="wrap"><div class="empty">${ic('user')}<h3>Đăng nhập để xem trang này</h3><p class="muted">Đơn thuê, đánh giá và hồ sơ của bạn nằm ở đây.</p><a class="btn btn-pri" href="#/dang-nhap">Đăng nhập</a></div></div></section>`;
+P.order=id=>{
+  if(!S.user)return P.loginReq();
+  const o=S.orders.find(x=>x.id===id);if(!o)return P.nf();
+  const tl=[['Đặt lịch và thanh toán 50K giữ slot',o.stage>=0],['Cửa hàng xác nhận',o.stage>=1],['Nhận máy, kiểm tra tình trạng',o.stage>=2],['Trả máy',o.stage>=3],['Hoàn cọc',o.stage>=4]];
+  return `<section class="sec" style="padding-top:36px"><div class="wrap acc">${side('don')}<div><p class="crumb"><a href="#/tai-khoan/don">Đơn thuê của tôi</a> / ${o.id}</p><div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center"><h2 style="margin:0">Đơn ${o.id}</h2><a class="btn btn-out sm" href="#/lien-he">Nhắn cửa hàng</a></div>
+  <div class="prog" role="list" aria-label="Tiến trình đơn">${OST.map((s,i)=>`<div role="listitem" class="${i<o.stage?'d':i===o.stage?'c':''}">${s}</div>`).join('')}</div>
+  ${o.stage===2?`<div class="note ${o.end<new Date()?'err':'info'}">${ic('clock')}<span>Còn lại: <b class="cd" data-cd="${+o.end}"></b></span></div>`:''}
+  <div class="two" style="margin-top:20px;align-items:start"><div class="panel"><h3 style="margin:0">Máy và thời gian</h3>${o.cams.map(id=>`<div class="pick" style="cursor:default"><span class="th">${camSVG(CAM(id))}</span><span><b>${esc(CAM(id).name)}</b><small>${PKG[o.pkg].n}</small></span></div>`).join('')}<ul class="kv"><li><span>Nhận</span><b>${dt(o.start)}</b></li><li><span>Trả trước</span><b>${dt(o.end)}</b></li><li><span>Hình thức</span><b>${o.method==='direct'?'Đến lấy tại cửa hàng':'Giao/ship'}</b></li></ul></div>
+  <div class="panel"><h3 style="margin:0">Tài chính</h3><ul class="kv"><li><span>Tiền thuê</span><b>${vnd(o.total)}</b></li><li><span>Đã giữ slot</span><b>50.000đ</b></li><li><span>Còn lại khi nhận</span><b>${vnd(o.total-50)}</b></li><li><span>Tiền cọc</span><b>${esc(o.dep)}</b></li></ul></div></div>
+  <div class="panel" style="margin-top:20px"><h3 style="margin:0">Biên bản tình trạng máy</h3><p class="muted" style="margin:0">Ảnh và video cửa hàng quay lúc giao máy sẽ hiển thị ở đây, dùng làm căn cứ khi trả máy.</p><div class="ph" style="gap:10px">${[0,1,2].map(()=>`<span style="width:96px;height:72px;border-radius:12px;background:var(--photo);display:grid;place-items:center;color:var(--ink2)">${ic('cam')}</span>`).join('')}</div></div>
+  <div class="panel" style="margin-top:20px"><h3 style="margin:0">Nhật ký</h3><ol class="lines">${tl.filter(x=>x[1]).map(x=>`<li>${x[0]}</li>`).join('')}</ol></div>
+  ${o.stage>=3&&!o.reviewed?`<button class="btn btn-pri" style="margin-top:20px" data-act="writerv" data-oid="${o.id}">Viết đánh giá</button>`:''}</div></div></section>`;
+};
+P.contact=()=>`<section class="sec" style="padding-top:36px"><div class="wrap"><p class="crumb"><a href="#/">Trang chủ</a> / Liên hệ</p><h1 style="font-size:clamp(30px,4vw,46px)">Liên hệ</h1>
+  <div class="two" style="margin:24px 0 48px;align-items:start"><div class="panel"><h2 style="font-size:24px;margin:0">Nhắn cho cửa hàng</h2><div class="field"><label for="ct-n">Họ và tên</label><input id="ct-n" type="text" autocomplete="name"></div><div class="field"><label for="ct-p">Số điện thoại</label><input id="ct-p" type="tel" autocomplete="tel"></div><div class="field"><label for="ct-m">Nội dung</label><textarea id="ct-m" placeholder="Bạn cần thuê máy nào, ngày nào?"></textarea></div><button class="btn btn-pri" data-act="contact">Gửi tin nhắn</button></div>
+  <div style="display:grid;gap:18px"><div class="mapph"><svg viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="320" height="180" fill="var(--acc2)"/><path d="M-10 120 C60 90 110 150 180 110 S280 60 340 80" stroke="var(--line)" stroke-width="14" fill="none"/><path d="M60 -10 L100 190M200 -10 L170 190" stroke="var(--line)" stroke-width="6" fill="none"/><g fill="var(--pri)"><circle cx="90" cy="70" r="9"/><circle cx="230" cy="120" r="9"/></g><g fill="var(--pri-ink)"><circle cx="90" cy="70" r="3.500"/><circle cx="230" cy="120" r="3.500"/></g></svg></div>
+  <ul class="kv"><li><span>Địa chỉ</span><b>75 Lê Thị Hồng Gấm, Hải Châu, Đà Nẵng</b></li><li><span>Instagram</span><b>@me.e_digitalcam</b></li><li><span>Zalo / Điện thoại</span><b>${PHONE}</b></li><li><span>Giờ làm việc</span><b>8h đến 21h hằng ngày</b></li></ul><a class="btn btn-out" href="https://www.google.com/maps/search/75+Lê+Thị+Hồng+Gấm+Hải+Châu+Đà+Nẵng" target="_blank" rel="noopener">Mở Google Maps</a></div></div>
+  <h2>Câu hỏi thường gặp</h2><div style="max-width:820px">${faqList()}</div></div></section>`;
+P.nf=()=>`<section class="sec"><div class="wrap"><div class="empty">${ic('cam')}<h2>Không tìm thấy trang này</h2><p class="muted">Đường dẫn có thể đã thay đổi hoặc không tồn tại.</p><a class="btn btn-pri" href="#/">Về trang chủ</a></div></div></section>`;
+
+/* ---------- QUẢN TRỊ (chủ cửa hàng / nhân viên) ---------- */
+Object.assign(ICONS,{
+ chart:'<path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>',msg:'<path d="M4 5h16v11H9l-5 4z"/>',
+ list:'<path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/>',tool:'<path d="M14 6a4 4 0 0 0 5 5l-9 9a2 2 0 0 1-3-3l9-9z"/>',
+ key:'<circle cx="8" cy="15" r="4"/><path d="m11 12 9-9M16 7l3 3"/>',plus:'<path d="M12 5v14M5 12h14"/>',
+ edit:'<path d="M4 20h4L19 9l-4-4L4 16z"/>',out:'<path d="M9 4H5v16h4M16 8l4 4-4 4M20 12H9"/>',
+ home:'<path d="M3 11l9-8 9 8M5 10v10h14V10"/>',trash:'<path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/>'
+});
+const A={};
+const mkO=(id,cust,phone,cams,pkg,off,h,stage,method='direct')=>{
+  const s=new Date(addD(today,off).getTime()+h*36e5);
+  const e=pkg===0?new Date(s.getTime()+6*36e5):new Date(s.getTime()+(24*pkg-1)*36e5);
+  return{id,cust,phone,cams,pkg,start:s,end:e,stage,total:sumP(cams,pkg),dep:stage>=4?'Đã hoàn cọc':stage>=2?'Đã nhận cọc':'Chờ nhận khi lấy máy',depAmt:depOf(cams),method,base:'Cs1',reviewed:true};
+};
+const ADM={
+ user:null,q:'',st:'all',rvf:'all',
+ roles:{owner:'Chủ cửa hàng',staff:'Nhân viên'},
+ perms:{owner:['tong-quan','don','giao-nhan','may','dich-vu','phan-hoi','tai-khoan'],staff:['tong-quan','don','giao-nhan','may','phan-hoi']},
+ pw:{admin:'admin123',nv1:'nv123',nv2:'nv123'},
+ accounts:[
+  {id:1,name:'Chủ cửa hàng',user:'admin',role:'owner',phone:'0917999277',on:true},
+  {id:2,name:'Nhân viên 1',user:'nv1',role:'staff',phone:'0834020466',on:true},
+  {id:3,name:'Nhân viên 2',user:'nv2',role:'staff',phone:'',on:false}
+ ],
+ services:[
+  {id:1,name:'Thuê theo buổi (6 giờ)',cat:'Gói thuê',price:'Theo bảng giá từng máy',desc:'Ca sáng 8h đến 14h, ca chiều tối 15h đến 21h.',on:true},
+  {id:2,name:'Thuê theo ngày (23 giờ)',cat:'Gói thuê',price:'Theo bảng giá từng máy',desc:'Nhận 10h sáng, trả trước 9h sáng hôm sau.',on:true},
+  {id:3,name:'Thuê 2 ngày và 3 ngày',cat:'Gói thuê',price:'Theo bảng giá từng máy',desc:'Giá mỗi ngày thấp hơn thuê lẻ.',on:true},
+  {id:4,name:'Giữ slot trước',cat:'Phí cố định',price:'50.000đ',desc:'Trừ vào tiền thuê, không hoàn lại vì shop không nhận hủy lịch.',on:true},
+  {id:5,name:'Giao hoặc nhận máy qua ship',cat:'Giao nhận',price:'Tính riêng theo quãng đường',desc:'Khách tự chịu rủi ro nếu mất phụ kiện hoặc hỏng máy do shipper.',on:true},
+  {id:6,name:'Phụ thu trả máy trễ',cat:'Phụ thu',price:'50.000đ (trễ 15 phút đến 1 giờ)',desc:'Trễ làm lỡ lịch khách sau: đền 100% tiền thuê khách sau và phí giao nhận.',on:true},
+  {id:7,name:'Phí máy nằm sửa',cat:'Phụ thu',price:'200.000đ mỗi ngày',desc:'Tính thêm ngoài chi phí sửa chữa khi máy hỏng.',on:true}
+ ],
+ others:[
+  mkO('MEE2018','Hoàng Minh Quân','0944000111',['xt20'],1,-6,10,3),
+  mkO('MEE2031','Lê Thảo Vy','0905123456',['xt30'],1,-3,10,4),
+  mkO('MEE2044','Phạm Gia Huy','0935111222',['x100v'],2,-1,9,2),
+  mkO('MEE2049','Trần Mỹ Linh','0977333444',['m50','m10'],0,0,8,2),
+  mkO('MEE2052','Nguyễn Đức Anh','0911888999',['xs10'],1,1,10,1),
+  mkO('MEE2063','Đặng Quỳnh Như','0888222111',['r50'],0,0,15,1),
+  mkO('MEE2060','Võ Thanh Hà','0366555777',['xa3'],3,2,15,0)
+ ]
+};
+const ALL=()=>[...S.orders,...ADM.others].sort((a,b)=>b.start-a.start);
+const mo=o=>({cust:o.cust||'Khách đặt web',phone:o.phone||'—',dep:o.depAmt??depOf(o.cams)});
+const OSTC=['b-low','b-info','b-pri','b-ok','b-ok'];
+const stB=o=>`<span class="badge ${OSTC[o.stage]}">${OST[o.stage]}</span>`;
+const camNames=o=>o.cams.map(i=>esc(CAM(i).name.replace(/^(Canon EOS|Fujifilm) /,''))).join(', ');
+const qty=c=>c.qty??(c.st==='out'?0:c.st==='low'?1:2);
+const ADTABS=[['tong-quan','Tổng quan','chart'],['don','Đơn thuê','list'],['giao-nhan','Giao, nhận và cọc','truck'],['may','Thiết bị','cam'],['dich-vu','Dịch vụ','tool'],['phan-hoi','Phản hồi khách','msg'],['tai-khoan','Tài khoản và phân quyền','key']];
+const can=t=>ADM.user&&ADM.perms[ADM.user.role].includes(t);
+const isOwner=()=>ADM.user&&ADM.user.role==='owner';
+const adGo=h=>{if(location.hash===h)refresh();else location.hash=h};
+const ahead=(h,sub,act='')=>`<div class="ad-h"><div><h1>${h}</h1><p class="muted">${sub}</p></div><div>${act}</div></div>`;
+
+A.shell=(tab,body)=>`<div class="ad"><aside class="ad-side"><a class="logo" href="#/">${logoSVG}<span>me.e_digitalcam</span></a>
+ <div class="ad-me"><span class="av">${esc(ADM.user.name[0])}</span><div><b>${esc(ADM.user.name)}</b><br><small class="muted">${ADM.roles[ADM.user.role]}</small></div></div>
+ <nav aria-label="Quản trị">${ADTABS.filter(t=>can(t[0])).map(([k,n,i])=>`<a href="#/quan-tri/${k}" class="${tab===k?'on':''}">${ic(i)}${n}</a>`).join('')}</nav>
+ <div class="ad-foot"><a href="#/">${ic('home')}Xem website</a><button data-ad="logout">${ic('out')}Đăng xuất</button></div></aside><div class="ad-main">${body}</div></div>`;
+
+A.page=p=>{
+  if(!ADM.user)return A.login();
+  const t=p.split('/')[2]||'tong-quan';
+  if(!can(t))return A.shell('',`<div class="empty">${ic('key')}<h3>Tài khoản của bạn chưa có quyền vào mục này</h3><p class="muted">Liên hệ chủ cửa hàng để được cấp quyền.</p><a class="btn btn-pri" href="#/quan-tri/tong-quan">Về tổng quan</a></div>`);
+  const pg={'tong-quan':A.dash,don:A.orders,'giao-nhan':A.hand,may:A.eq,'dich-vu':A.sv,'phan-hoi':A.fb,'tai-khoan':A.acc}[t]||A.dash;
+  return A.shell(t,pg());
+};
+
+A.login=()=>`<section class="ad-login"><div class="stamp"><div class="stamp-in" style="padding:clamp(18px,4vw,34px);display:grid;gap:16px">
+ <a class="logo" href="#/">${logoSVG}me.e_digitalcam</a><h1 style="font-size:28px;margin:0">Đăng nhập quản trị</h1><p class="muted" style="margin:0">Dành cho chủ cửa hàng và nhân viên.</p>
+ <div class="field"><label for="a-u">Tài khoản</label><input id="a-u" type="text" autocomplete="username"></div>
+ <div class="field"><label for="a-p">Mật khẩu</label><input id="a-p" type="password" autocomplete="current-password"></div><div id="a-err" role="alert"></div>
+ <button class="btn btn-pri lg block" data-ad="login">Đăng nhập</button>
+ <div class="note info">${ic('info')}<span>Bản thiết kế dùng dữ liệu mẫu. Vào thử nhanh bằng hai nút dưới đây.</span></div>
+ <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn btn-out sm" data-ad="demo" data-u="admin">Quyền chủ cửa hàng</button><button class="btn btn-out sm" data-ad="demo" data-u="nv1">Quyền nhân viên</button></div>
+ <a href="#/" class="sm-t">Về website khách hàng</a></div></div></section>`;
+
+/* tổng quan */
+A.dash=()=>{
+  const L=ALL(),now=new Date();
+  const renting=L.filter(o=>o.stage===2),late=renting.filter(o=>o.end<now),pend=L.filter(o=>o.stage===0),give=L.filter(o=>o.stage===1),refund=L.filter(o=>o.stage===3);
+  const held=L.filter(o=>o.stage>=1&&o.stage<=3).reduce((a,o)=>a+mo(o).dep,0);
+  const rev=L.filter(o=>o.stage>=2).reduce((a,o)=>a+o.total,0);
+  const days=Array.from({length:7},(_,i)=>{const d=addD(today,i-6);return{d,v:(hash('rv'+iso(d))%9+3)*100}});
+  const mx=Math.max(...days.map(x=>x.v));
+  const chart=`<svg viewBox="0 0 420 180" class="ad-chart" role="img" aria-label="Doanh thu mẫu 7 ngày gần nhất">${days.map((x,i)=>{const h=x.v/mx*110;return `<rect x="${i*58+14}" y="${140-h}" width="34" height="${h}" rx="8" fill="var(--pri)" opacity="${i===6?1:.5}"/><text x="${i*58+31}" y="${132-h}" text-anchor="middle" font-size="11" fill="var(--ink2)">${x.v}K</text><text x="${i*58+31}" y="160" text-anchor="middle" font-size="11" fill="var(--ink2)">${dm(x.d)}</text>`}).join('')}</svg>`;
+  const todo=[...late.map(o=>['Quá hạn trả máy',o,'b-out']),...pend.map(o=>['Chờ xác nhận giữ slot',o,'b-low']),...give.map(o=>['Chuẩn bị giao máy',o,'b-info']),...refund.map(o=>['Chờ hoàn cọc',o,'b-ok'])].slice(0,8);
+  return ahead('Tổng quan',`Hôm nay, ${DOW[now.getDay()]} ${dm(now)}`,`<a class="btn btn-pri" href="#/quan-tri/don">${ic('plus')}Tạo đơn tại quầy</a>`)+
+  `<div class="kpis"><div class="kpi"><small>Chờ xác nhận</small><b>${pend.length}</b></div><div class="kpi"><small>Máy đang cho thuê</small><b>${renting.length}</b></div><div class="kpi"><small>Doanh thu ghi nhận (mẫu)</small><b>${vnd(rev)}</b></div><div class="kpi"><small>Tiền cọc đang giữ</small><b>${vnd(held)}</b></div></div>
+  <div class="g2"><div class="cardx"><h3>Doanh thu 7 ngày gần nhất</h3>${chart}<p class="muted sm-t" style="margin:0">Số liệu biểu đồ là dữ liệu mẫu.</p></div>
+  <div class="cardx"><h3>Cần xử lý</h3>${todo.length?todo.map(([t,o,c])=>`<div class="todo"><span class="badge ${c}">${t}</span><div><b>${o.id}</b> · ${esc(mo(o).cust)}<br><span class="muted">${camNames(o)} · ${dt(o.end)}</span></div><a class="btn btn-out sm" href="#/quan-tri/${o.stage===0?'don':'giao-nhan'}">Mở</a></div>`).join(''):`<p class="muted" style="margin:0">Không có việc tồn đọng.</p>`}</div></div>`;
+};
+
+/* đơn thuê */
+const actBtn=o=>({0:`<button class="btn btn-acc sm" data-ad="confirm" data-id="${o.id}">Xác nhận</button>`,1:`<button class="btn btn-acc sm" data-ad="give" data-id="${o.id}">Giao máy</button>`,2:`<button class="btn btn-pri sm" data-ad="ret" data-id="${o.id}">Nhận trả</button>`,3:`<button class="btn btn-acc sm" data-ad="refund" data-id="${o.id}">Hoàn cọc</button>`}[o.stage]||'');
+function ordRows(){
+  const q=ADM.q.toLowerCase();
+  const L=ALL().filter(o=>(ADM.st==='all'||o.stage===+ADM.st)&&(!q||(o.id+' '+mo(o).cust+' '+mo(o).phone+' '+o.cams.map(i=>CAM(i).name).join(' ')).toLowerCase().includes(q)));
+  if(!L.length)return `<tr><td colspan="8" style="white-space:normal;text-align:center;padding:32px" class="muted">Không có đơn phù hợp.</td></tr>`;
+  return L.map(o=>`<tr><td>${o.id}</td><td>${esc(mo(o).cust)}<br><small class="muted">${esc(mo(o).phone)}</small></td><td>${camNames(o)}</td><td>${PKG[o.pkg].n}</td><td>${dt(o.start)}</td><td class="n">${vnd(o.total)}</td><td>${stB(o)}</td><td><div style="display:flex;gap:6px">${actBtn(o)}<button class="btn btn-ghost sm" data-ad="detail" data-id="${o.id}">Chi tiết</button></div></td></tr>`).join('');
+}
+A.orders=()=>ahead('Đơn thuê','Theo dõi và xử lý mọi đơn đặt máy.',`<button class="btn btn-pri" data-ad="newo">${ic('plus')}Tạo đơn tại quầy</button>`)+
+ `<div class="tools"><div class="chips">${[['all','Tất cả'],...OST.map((t,i)=>[String(i),t])].map(([v,t])=>`<button class="chip ${String(ADM.st)===v?'on':''}" data-ad="ost" data-s="${v}">${t}</button>`).join('')}</div><input id="ad-q" type="search" placeholder="Tìm mã đơn, tên, SĐT, máy" value="${esc(ADM.q)}" aria-label="Tìm đơn"></div>
+ <div class="tbl-w"><table><thead><tr><th>Mã đơn</th><th>Khách</th><th>Máy</th><th>Gói</th><th>Nhận</th><th>Tiền thuê</th><th>Trạng thái</th><th></th></tr></thead><tbody id="ad-tb">${ordRows()}</tbody></table></div>`;
+
+/* giao nhận & cọc */
+A.hand=()=>{
+  const L=ALL(),col=(t,sub,list,empty)=>`<div class="cardx"><div><h3>${t}</h3><span class="muted sm-t">${sub}</span></div>${list.length?list.map(o=>`<div class="todo"><div><b>${o.id}</b> · ${esc(mo(o).cust)}<br><span class="muted">${camNames(o)}<br>${o.stage===1?'Nhận':'Trả trước'} ${dt(o.stage===1?o.start:o.end)}</span>${o.stage===2&&o.end<new Date()?`<br><span class="badge b-out">Quá hạn</span>`:''}</div>${actBtn(o)}</div>`).join(''):`<p class="muted" style="margin:0">${empty}</p>`}</div>`;
+  return ahead('Giao, nhận máy và tiền cọc','Kiểm tra máy, nhận cọc, tính phụ thu và hoàn cọc cho khách.')+
+  `<div class="g3">${col('Chờ giao máy','Đã xác nhận, chưa bàn giao',L.filter(o=>o.stage===1),'Chưa có đơn chờ giao.')}${col('Đang thuê','Chờ khách trả máy',L.filter(o=>o.stage===2),'Hiện không có máy ngoài cửa hàng.')}${col('Chờ hoàn cọc','Đã nhận máy, chưa hoàn cọc',L.filter(o=>o.stage===3),'Không có cọc nào đang chờ.')}</div>
+  <div class="note warn">${ic('alert')}<span>Nhắc nhân viên: quay chụp tình trạng máy trước khi giao. Shop không nhận hủy lịch, khoản giữ slot 50K không hoàn lại.</span></div>`;
+};
+function giveModal(o){
+  const m=mo(o),ship=o.method==='ship';
+  modal(`<h2>Giao máy · ${o.id}</h2><p class="muted" style="margin:0">${esc(m.cust)} · ${camNames(o)} · ${PKG[o.pkg].n}</p>
+  <div class="field"><label for="g-t">Hình thức cọc</label><select id="g-t" data-adcalc>${['Tiền 700.000đ + CCCD','Tiền 300.000đ + CCCD (máy compact)','Tài sản trên 15 triệu + CCCD','Chuyển khoản online'].map((t,i)=>`<option ${(ship?3:m.dep===300?1:0)===i?'selected':''}>${t}</option>`).join('')}</select></div>
+  <div class="chkl">${['Đối chiếu CCCD chính chủ với người thuê','Đã nhận cọc đúng hình thức đã chọn','Quay chụp tình trạng ngoại hình và chức năng máy','Đủ phụ kiện: lens, pin, sạc, thẻ nhớ, dây đeo'].map(t=>`<label class="chk"><input type="checkbox" data-adchk>${t}</label>`).join('')}</div>
+  <button class="btn btn-pri block" data-ad="giveok" data-id="${o.id}">Xác nhận đã giao máy</button>`);
+}
+function calcRet(){
+  const g=id=>$('#'+id),late=g('rt-l').value,lateV=late==='0'?0:late==='50'?50:+g('rt-lx').value||0,dmg=+g('rt-dx').value||0,rep=(+g('rt-rd').value||0)*200;
+  const o=ALL().find(x=>x.id===g('rt-o').value),dep=mo(o).dep,tot=lateV+dmg+rep;
+  g('rt-sum').innerHTML=`<li><span>Tiền cọc đã nhận</span><b>${vnd(dep)}</b></li><li><span>Phụ thu trễ, đền bù lịch</span><b>${vnd(lateV)}</b></li><li><span>Đền bù thiết bị</span><b>${vnd(dmg)}</b></li><li><span>Phí máy nằm sửa</span><b>${vnd(rep)}</b></li><li><span>Tổng khấu trừ</span><b>${vnd(tot)}</b></li><li><span>${tot>dep?'Khách cần bù thêm':'Hoàn lại cho khách'}</span><b style="color:var(--pri)">${vnd(Math.abs(dep-tot))}</b></li>`;
+  return{tot,dep};
+}
+function retModal(o){
+  modal(`<h2>Nhận trả máy · ${o.id}</h2><input type="hidden" id="rt-o" value="${o.id}"><p class="muted" style="margin:0">${esc(mo(o).cust)} · ${camNames(o)}. Hạn trả ${dt(o.end)}.</p>
+  <div class="chkl">${['Kiểm tra ngoại hình thân máy và lens','Kiểm tra chức năng: bật máy, chụp thử, quay thử, flash','Đủ phụ kiện: pin, sạc, thẻ nhớ, dây đeo, nắp lens'].map(t=>`<label class="chk"><input type="checkbox" data-adchk>${t}</label>`).join('')}</div>
+  <div class="row2"><div class="field"><label for="rt-l">Giờ trả máy</label><select id="rt-l" data-adcalc><option value="0">Đúng giờ</option><option value="50">Trễ 15 phút đến 1 giờ (phụ thu 50K)</option><option value="x">Trễ làm lỡ lịch khách sau</option></select></div><div class="field"><label for="rt-lx">Đền bù khách sau và phí giao nhận (K)</label><input id="rt-lx" type="number" min="0" value="0" data-adcalc></div></div>
+  <div class="row2"><div class="field"><label for="rt-d">Tình trạng máy</label><select id="rt-d" data-adcalc><option value="0">Nguyên vẹn</option><option value="150">Trầy ngoại hình (100 đến 200K)</option><option value="r">Hỏng, sửa được (giá theo hãng)</option><option value="f">Không sửa được hoặc mất (100% giá trị)</option></select></div><div class="field"><label for="rt-dx">Số tiền đền bù (K)</label><input id="rt-dx" type="number" min="0" value="0" data-adcalc></div></div>
+  <div class="field"><label for="rt-rd">Số ngày máy nằm sửa (200K mỗi ngày)</label><input id="rt-rd" type="number" min="0" value="0" data-adcalc></div>
+  <ul class="kv" id="rt-sum"></ul><button class="btn btn-pri block" data-ad="retok" data-id="${o.id}">Xác nhận đã nhận máy</button>`,'wide');
+  calcRet();
+}
+function refundModal(o){
+  const m=mo(o),ded=o.deduct||0,asset=(o.depType||'').includes('Tài sản'),amt=Math.max(0,m.dep-ded);
+  modal(`<h2>Hoàn cọc · ${o.id}</h2><ul class="kv"><li><span>Khách</span><b>${esc(m.cust)}</b></li><li><span>Hình thức cọc</span><b>${esc(o.depType||'Tiền + CCCD')}</b></li>${asset?'':`<li><span>Tiền cọc</span><b>${vnd(m.dep)}</b></li><li><span>Đã khấu trừ</span><b>${vnd(ded)}</b></li><li><span>Hoàn lại khách</span><b style="color:var(--pri)">${vnd(amt)}</b></li>`}</ul>
+  ${ded>m.dep?`<div class="note err">${ic('alert')}<span>Khoản đền bù vượt tiền cọc ${vnd(ded-m.dep)}. Cần thu thêm của khách trước khi trả CCCD.</span></div>`:''}
+  <div class="note info">${ic('info')}<span>${asset?'Trả lại tài sản cọc và CCCD cho khách.':'Chuyển khoản hoặc trả tiền mặt, đồng thời trả lại CCCD.'}</span></div>
+  <button class="btn btn-pri block" data-ad="refundok" data-id="${o.id}">Xác nhận đã hoàn cọc</button>`);
+}
+function detailModal(o){
+  const m=mo(o);
+  modal(`<h2>Đơn ${o.id}</h2><div>${stB(o)}</div><ul class="kv"><li><span>Khách</span><b>${esc(m.cust)} · ${esc(m.phone)}</b></li><li><span>Máy</span><b>${camNames(o)}</b></li><li><span>Gói</span><b>${PKG[o.pkg].n}</b></li><li><span>Nhận</span><b>${dt(o.start)}</b></li><li><span>Trả trước</span><b>${dt(o.end)}</b></li><li><span>Hình thức</span><b>${o.method==='ship'?'Giao hoặc ship':'Đến lấy tại cửa hàng'}</b></li><li><span>Tiền thuê</span><b>${vnd(o.total)}</b></li><li><span>Cọc</span><b>${esc(o.dep)}</b></li>${o.deduct!=null?`<li><span>Đã khấu trừ khi trả máy</span><b>${vnd(o.deduct)}</b></li>`:''}</ul>${actBtn(o)}`);
+}
+function newOrderModal(){
+  modal(`<h2>Tạo đơn tại quầy</h2><div class="row2"><div class="field"><label for="n-n">Tên khách</label><input id="n-n" type="text" autofocus></div><div class="field"><label for="n-p">Số điện thoại</label><input id="n-p" type="tel" inputmode="numeric"></div></div>
+  <div class="field"><label for="n-c">Máy</label><select id="n-c">${CAMS.filter(c=>c.st!=='out').map(c=>`<option value="${c.id}">${esc(c.name)}</option>`).join('')}</select></div>
+  <div class="row2"><div class="field"><label for="n-k">Gói</label><select id="n-k">${PKG.map((p,i)=>`<option value="${i}" ${i===1?'selected':''}>${p.n}</option>`).join('')}</select></div><div class="field"><label for="n-d">Ngày nhận</label><input id="n-d" type="date" min="${iso(today)}" value="${iso(today)}"></div></div>
+  <div class="field"><label for="n-h">Giờ nhận</label><select id="n-h">${Array.from({length:13},(_,i)=>`<option value="${i+8}" ${i===2?'selected':''}>${pad(i+8)}:00</option>`).join('')}</select></div>
+  <button class="btn btn-pri block" data-ad="newok">Tạo đơn</button>`);
+}
+
+/* thiết bị */
+A.eq=()=>ahead('Thiết bị cho thuê',isOwner()?'Quản lý máy, giá thuê và số lượng.':'Xem tình trạng máy. Chỉ chủ cửa hàng được sửa giá và số lượng.',isOwner()?`<button class="btn btn-pri" data-ad="eadd">${ic('plus')}Thêm máy</button>`:'')+
+ `<div class="tbl-w"><table><thead><tr><th>Máy</th><th>Loại</th><th>6 giờ</th><th>1 ngày</th><th>2 ngày</th><th>3 ngày</th><th>Số lượng</th><th>Trạng thái</th>${isOwner()?'<th></th>':''}</tr></thead><tbody>${CAMS.map(c=>`<tr><td>${esc(c.name)}</td><td>${c.type==='compact'?'Compact':c.type==='retro'?'Dáng cổ điển':'Mirrorless'}</td>${c.p.map(x=>`<td class="n">${K(x)}</td>`).join('')}<td class="n">${qty(c)}</td><td><span class="badge ${STT[c.st][1]}">${STT[c.st][0]}</span></td>${isOwner()?`<td><button class="btn btn-ghost sm" data-ad="eedit" data-id="${c.id}">${ic('edit')}Sửa</button></td>`:''}</tr>`).join('')}</tbody></table></div>`;
+function eqModal(c){
+  const n=!c;c=c||{name:'',type:'mirror',p:['','','',''],st:'ok'};
+  modal(`<h2>${n?'Thêm máy mới':'Sửa '+esc(c.name)}</h2><div class="field"><label for="e-n">Tên máy</label><input id="e-n" type="text" value="${esc(c.name)}"></div>
+  <div class="row2">${n?`<div class="field"><label for="e-b">Hãng</label><select id="e-b"><option>Canon</option><option>Fujifilm</option></select></div><div class="field"><label for="e-t">Loại</label><select id="e-t"><option value="mirror">Mirrorless</option><option value="retro">Dáng cổ điển</option><option value="compact">Compact</option></select></div>`:''}</div>
+  <div class="lbl">Giá thuê (K)</div><div class="pkpick">${PKG.map((p,i)=>`<div class="field"><label for="e-p${i}" class="sm-t">${p.n}</label><input id="e-p${i}" type="number" min="0" value="${c.p[i]}"></div>`).join('')}</div>
+  <div class="row2"><div class="field"><label for="e-q">Số lượng máy</label><input id="e-q" type="number" min="0" value="${n?1:qty(c)}"></div><div class="field"><label for="e-s">Trạng thái</label><select id="e-s">${Object.entries(STT).map(([k,v])=>`<option value="${k}" ${c.st===k?'selected':''}>${v[0]}</option>`).join('')}</select></div></div>
+  <button class="btn btn-pri block" data-ad="eok" data-id="${n?'':c.id}">${n?'Thêm máy':'Lưu thay đổi'}</button>`,'wide');
+}
+
+/* dịch vụ */
+A.sv=()=>ahead('Dịch vụ cho thuê','Gói thuê, phí giữ slot, giao nhận và các khoản phụ thu.',`<button class="btn btn-pri" data-ad="sadd">${ic('plus')}Thêm dịch vụ</button>`)+
+ `<div class="tbl-w"><table><thead><tr><th>Dịch vụ</th><th>Nhóm</th><th>Mức phí</th><th>Mô tả</th><th>Đang áp dụng</th><th></th></tr></thead><tbody>${ADM.services.map(s=>`<tr><td>${esc(s.name)}</td><td>${esc(s.cat)}</td><td>${esc(s.price)}</td><td style="white-space:normal;min-width:240px;font-weight:400" class="muted">${esc(s.desc)}</td><td><label class="sw"><input type="checkbox" data-ad="stog" data-id="${s.id}" ${s.on?'checked':''}>${s.on?'Bật':'Tắt'}</label></td><td><button class="btn btn-ghost sm" data-ad="sedit" data-id="${s.id}">${ic('edit')}Sửa</button></td></tr>`).join('')}</tbody></table></div>`;
+function svModal(s){
+  const n=!s;s=s||{name:'',cat:'Gói thuê',price:'',desc:'',on:true};
+  modal(`<h2>${n?'Thêm dịch vụ':'Sửa dịch vụ'}</h2><div class="field"><label for="s-n">Tên dịch vụ</label><input id="s-n" type="text" value="${esc(s.name)}"></div>
+  <div class="row2"><div class="field"><label for="s-c">Nhóm</label><select id="s-c">${['Gói thuê','Phí cố định','Giao nhận','Phụ thu'].map(x=>`<option ${s.cat===x?'selected':''}>${x}</option>`).join('')}</select></div><div class="field"><label for="s-p">Mức phí</label><input id="s-p" type="text" value="${esc(s.price)}"></div></div>
+  <div class="field"><label for="s-d">Mô tả</label><textarea id="s-d">${esc(s.desc)}</textarea></div>
+  <button class="btn btn-pri block" data-ad="sok" data-id="${n?'':s.id}">${n?'Thêm dịch vụ':'Lưu thay đổi'}</button>`);
+}
+
+/* phản hồi */
+A.fb=()=>{
+  const f=ADM.rvf,L=S.reviews.filter(r=>f==='all'||(f==='new'?!r.reply:r.r<=3));
+  return ahead('Phản hồi khách hàng',`${S.reviews.length} đánh giá · điểm trung bình ${avg().toFixed(1)} · ${S.reviews.filter(r=>!r.reply).length} chưa phản hồi`)+
+  `<div class="chips">${[['all','Tất cả'],['new','Chưa phản hồi'],['low','3 sao trở xuống']].map(([v,t])=>`<button class="chip ${f===v?'on':''}" data-ad="rvf" data-f="${v}">${t}</button>`).join('')}</div>
+  ${L.length?`<div class="masonry">${L.map(r=>`<article class="rv"><div class="rv-h"><span class="av">${esc(r.name[0])}</span><div><b>${esc(r.name)}</b><small>${r.ago===0?'Hôm nay':r.ago+' ngày trước'} · ${esc(CAM(r.cam).name)}</small></div></div>${stars(r.r)}<p>${esc(r.t)}</p>
+   <div class="fb"><label class="lbl" for="rp-${r.id}">Phản hồi của cửa hàng</label><textarea id="rp-${r.id}" placeholder="Cảm ơn bạn đã thuê máy...">${esc(r.reply||'')}</textarea><div style="display:flex;gap:8px"><button class="btn btn-pri sm" data-ad="rsave" data-id="${r.id}">Lưu phản hồi</button><button class="btn btn-ghost sm" data-ad="rdel" data-id="${r.id}">${ic('trash')}Xóa</button></div></div></article>`).join('')}</div>`:`<div class="empty">${ic('msg')}<h3>Không có đánh giá phù hợp</h3></div>`}`;
+};
+
+/* tài khoản và phân quyền */
+A.acc=()=>ahead('Tài khoản và phân quyền','Cấp tài khoản cho nhân viên và kiểm soát quyền truy cập.',`<button class="btn btn-pri" data-ad="aadd">${ic('plus')}Thêm tài khoản</button>`)+
+ `<div class="tbl-w"><table><thead><tr><th>Họ tên</th><th>Tài khoản</th><th>SĐT</th><th>Vai trò</th><th>Trạng thái</th><th></th></tr></thead><tbody>${ADM.accounts.map(a=>`<tr><td>${esc(a.name)}</td><td>${esc(a.user)}</td><td>${esc(a.phone||'—')}</td><td>${ADM.roles[a.role]}</td><td><span class="badge ${a.on?'b-ok':'b-out'}">${a.on?'Đang hoạt động':'Đã khóa'}</span></td><td><div style="display:flex;gap:6px"><button class="btn btn-ghost sm" data-ad="areset" data-id="${a.id}">Đặt lại mật khẩu</button>${a.id===ADM.user.id?'':`<button class="btn btn-ghost sm" data-ad="alock" data-id="${a.id}">${a.on?'Khóa':'Mở khóa'}</button>`}</div></td></tr>`).join('')}</tbody></table></div>
+ <div class="cardx"><h3>Bảng phân quyền</h3><div class="tbl-w mx"><table style="min-width:0"><thead><tr><th>Chức năng</th><th>Chủ cửa hàng</th><th>Nhân viên</th></tr></thead><tbody>${ADTABS.map(([k,n])=>`<tr><td>${n}</td>${['owner','staff'].map(r=>`<td>${ADM.perms[r].includes(k)?ic('check'):'<span class="muted">—</span>'}</td>`).join('')}</tr>`).join('')}</tbody></table></div><p class="muted sm-t" style="margin:0">Nhân viên chỉ xem thiết bị, không sửa giá hay số lượng.</p></div>`;
+function accModal(){
+  modal(`<h2>Thêm tài khoản</h2><div class="row2"><div class="field"><label for="a-nm">Họ tên</label><input id="a-nm" type="text" autofocus></div><div class="field"><label for="a-ph">Số điện thoại</label><input id="a-ph" type="tel"></div></div>
+  <div class="row2"><div class="field"><label for="a-us">Tên đăng nhập</label><input id="a-us" type="text"></div><div class="field"><label for="a-ro">Vai trò</label><select id="a-ro"><option value="staff">Nhân viên</option><option value="owner">Chủ cửa hàng</option></select></div></div>
+  <p class="muted sm-t" style="margin:0">Mật khẩu ban đầu: 123456. Nhân viên nên đổi sau lần đăng nhập đầu.</p><button class="btn btn-pri block" data-ad="aok">Tạo tài khoản</button>`);
+}
+
+/* sự kiện quản trị */
+document.addEventListener('click',e=>{
+  const a=e.target.closest('[data-ad]');if(!a||a.tagName==='INPUT')return;
+  const k=a.dataset.ad,id=a.dataset.id,O=()=>ALL().find(o=>o.id===id),ok=m=>{closeModal(true);toast(m,'ok');refresh()};
+  const checked=()=>$$('[data-adchk]',mr).every(x=>x.checked);
+  switch(k){
+   case'login':{const u=$('#a-u').value.trim().toLowerCase(),p=$('#a-p').value,ac=ADM.accounts.find(x=>x.user===u);
+    const msg=!ac||ADM.pw[u]!==p?'Sai tài khoản hoặc mật khẩu.':!ac.on?'Tài khoản đang bị khóa.':'';
+    if(msg){$('#a-err').innerHTML=`<span class="errt">${ic('alert')}${msg}</span>`;break}
+    ADM.user=ac;adGo('#/quan-tri/tong-quan');break}
+   case'demo':ADM.user=ADM.accounts.find(x=>x.user===a.dataset.u);adGo('#/quan-tri/tong-quan');break;
+   case'logout':ADM.user=null;toast('Đã đăng xuất');adGo('#/quan-tri');break;
+   case'ost':ADM.st=a.dataset.s;refresh();break;
+   case'detail':detailModal(O());break;
+   case'confirm':{O().stage=1;toast('Đã xác nhận giữ slot','ok');refresh();break}
+   case'give':closeModal(true);giveModal(O());break;
+   case'giveok':{if(!checked()){toast('Cần hoàn tất danh sách kiểm tra','err');break}const o=O(),t=$('#g-t').value;o.stage=2;o.depType=t;o.dep='Đã nhận '+t;o.depAmt=t.includes('300.000')?300:700;ok('Đã giao máy cho khách')}break;
+   case'ret':closeModal(true);retModal(O());break;
+   case'retok':{if(!checked()){toast('Cần hoàn tất danh sách kiểm tra','err');break}const o=O(),r=calcRet();o.stage=3;o.deduct=r.tot;ok('Đã nhận máy, chuyển sang chờ hoàn cọc')}break;
+   case'refund':closeModal(true);refundModal(O());break;
+   case'refundok':{const o=O(),amt=Math.max(0,mo(o).dep-(o.deduct||0));o.stage=4;o.dep=(o.depType||'').includes('Tài sản')?'Đã trả lại tài sản cọc':'Đã hoàn '+vnd(amt);ok('Đã hoàn cọc')}break;
+   case'newo':newOrderModal();break;
+   case'newok':{const n=$('#n-n').value.trim(),p=$('#n-p').value.replace(/\s/g,''),c=$('#n-c').value,pk=+$('#n-k').value,d=$('#n-d').value,h=+$('#n-h').value;
+    if(!n||!/^0\d{9}$/.test(p)||!d){toast('Nhập đủ tên, SĐT 10 số và ngày nhận','err');break}
+    if(!free([c],d,pk)){toast('Máy đã có người đặt trong thời gian này','err');break}
+    const dd=pISO(d),s=new Date(dd.getFullYear(),dd.getMonth(),dd.getDate(),h),en=pk===0?new Date(s.getTime()+6*36e5):new Date(s.getTime()+(24*pk-1)*36e5);
+    S.orders.unshift({id:'MEE'+(2100+Math.floor(Math.random()*800)),cust:n,phone:p,cams:[c],pkg:pk,start:s,end:en,stage:1,total:sumP([c],pk),dep:'Chờ nhận khi lấy máy',depAmt:depOf([c]),method:'direct',base:'Cs1'});
+    ok('Đã tạo đơn');break}
+   case'eadd':if(isOwner())eqModal();break;
+   case'eedit':if(isOwner())eqModal(CAM(id));break;
+   case'eok':{if(!isOwner())break;const nm=$('#e-n').value.trim(),p=PKG.map((_,i)=>+$('#e-p'+i).value),q=+$('#e-q').value;let st=$('#e-s').value;
+    if(!nm||p.some(x=>!(x>0))){toast('Nhập tên máy và đủ 4 mức giá','err');break}
+    if(q===0)st='out';
+    if(id){const c=CAM(id);c.name=nm;c.p=p;c.qty=q;c.st=st}
+    else{const nid='c'+Date.now(),t=$('#e-t').value;CAMS.push({id:nid,brand:$('#e-b').value,name:nm,type:t,evf:t!=='compact'?true:true,body:'#2A2522',top:'#CFC9BB',tag:'Máy mới thêm',sensor:'—',mp:'—',vid:'—',use:'—',p,st,qty:q,cmp:t==='compact'});BOOKED[nid]=new Set()}
+    ok('Đã lưu thiết bị');break}
+   case'sadd':svModal();break;
+   case'sedit':svModal(ADM.services.find(s=>s.id===+id));break;
+   case'sok':{const nm=$('#s-n').value.trim();if(!nm){toast('Nhập tên dịch vụ','err');break}
+    const v={name:nm,cat:$('#s-c').value,price:$('#s-p').value.trim(),desc:$('#s-d').value.trim()};
+    if(id)Object.assign(ADM.services.find(s=>s.id===+id),v);else ADM.services.push({id:Date.now(),on:true,...v});
+    ok('Đã lưu dịch vụ');break}
+   case'rvf':ADM.rvf=a.dataset.f;refresh();break;
+   case'rsave':{const r=S.reviews.find(x=>x.id===+id);r.reply=$('#rp-'+id).value.trim();toast('Đã lưu phản hồi','ok');refresh();break}
+   case'rdel':{S.reviews=S.reviews.filter(x=>x.id!==+id);toast('Đã xóa đánh giá');refresh();break}
+   case'aadd':accModal();break;
+   case'aok':{const nm=$('#a-nm').value.trim(),us=$('#a-us').value.trim().toLowerCase();
+    if(!nm||!/^[a-z0-9_.]{3,}$/.test(us)){toast('Nhập họ tên và tên đăng nhập (từ 3 ký tự, không dấu)','err');break}
+    if(ADM.accounts.some(x=>x.user===us)){toast('Tên đăng nhập đã tồn tại','err');break}
+    ADM.accounts.push({id:Date.now(),name:nm,user:us,role:$('#a-ro').value,phone:$('#a-ph').value.trim(),on:true});ADM.pw[us]='123456';ok('Đã tạo tài khoản');break}
+   case'areset':{const ac=ADM.accounts.find(x=>x.id===+id);ADM.pw[ac.user]='123456';toast('Đã đặt lại mật khẩu về 123456','ok');break}
+   case'alock':{const ac=ADM.accounts.find(x=>x.id===+id);ac.on=!ac.on;toast(ac.on?'Đã mở khóa':'Đã khóa tài khoản');refresh();break}
+  }
+});
+document.addEventListener('input',e=>{
+  const t=e.target;
+  if(t.id==='ad-q'){ADM.q=t.value;const b=$('#ad-tb');if(b)b.innerHTML=ordRows();return}
+  if(t.id==='rt-d'){$('#rt-dx').value=t.value==='150'?150:0}
+  if(t.id==='rt-l'&&t.value!=='x'){$('#rt-lx').value=0}
+  if(t.dataset.adcalc!==undefined&&$('#rt-sum'))calcRet();
+});
+document.addEventListener('change',e=>{
+  const t=e.target;
+  if(t.dataset.ad==='stog'){const s=ADM.services.find(x=>x.id===+t.dataset.id);s.on=t.checked;toast(s.on?'Đã bật dịch vụ':'Đã tắt dịch vụ');refresh()}
+});
+
+
+/* ---------- router ---------- */
+const app=$('#app');
+function route(){
+  const p=(location.hash.slice(1).split('?')[0])||'/';let m;
+  if(p==='/')return[P.home(),'me.e_digitalcam · Thuê máy ảnh Đà Nẵng'];
+  if(p==='/may')return[P.catalog(),'Máy cho thuê'];
+  if(m=p.match(/^\/may\/([\w-]+)$/)){const c=CAM(m[1]);return[P.detail(m[1]),c?c.name:'Không tìm thấy']}
+  if(p==='/gia')return[P.price(),'Gói thuê và bảng giá'];
+  if(p==='/quy-trinh')return[P.process(),'Quy trình thuê'];
+  if(m=p.match(/^\/chinh-sach\/?([\w-]*)$/))return[P.policy(m[1]),'Chính sách'];
+  if(p==='/danh-gia')return[P.reviews(),'Đánh giá và phản hồi'];
+  if(p==='/dat-lich')return[P.book(),'Đặt lịch'];
+  if(p==='/dat-lich/thanh-cong')return[P.done(),'Đã giữ máy'];
+  if(p==='/dang-nhap')return[P.login(),'Đăng nhập'];
+  if(m=p.match(/^\/tai-khoan\/don\/([\w-]+)$/))return[P.order(m[1]),'Chi tiết đơn'];
+  if(m=p.match(/^\/tai-khoan\/?([\w-]*)$/))return[P.account(m[1]),'Tài khoản'];
+  if(p==='/lien-he')return[P.contact(),'Liên hệ'];
+  if(p.startsWith('/quan-tri'))return[A.page(p),'Quản trị'];
+  return[P.nf(),'Không tìm thấy'];
+}
+function render(top=true){
+  const p=location.hash.slice(1).split('?')[0]||'/';
+  const[html,title]=route();document.title=title+(title.includes('digitalcam')?'':' · '+BRAND);
+  app.innerHTML=p.startsWith('/quan-tri')?`<main id="main" tabindex="-1">${html}</main>`:header(p)+`<main id="main" tabindex="-1">${html}</main>${footer()}`;
+  if(top){window.scrollTo(0,0)}
+  if($('#cat-grid'))catList();
+  tick();
+}
+let _y=0;const refresh=()=>{_y=window.scrollY;render(false);window.scrollTo(0,_y)};
+window.addEventListener('hashchange',()=>{S.ui.cal=0;render(true);const m=$('#main');if(m)m.focus({preventScroll:true})});
+
+/* ---------- modal/toast ---------- */
+const mr=$('#modal-root');let lastF=null;
+function modal(html,cls=''){closeModal(true);lastF=document.activeElement;mr.innerHTML=`<div class="ov" data-ov><div class="modal ${cls}" role="dialog" aria-modal="true"><button class="ibtn x" data-act="close" aria-label="Đóng">${ic('x')}</button>${html}</div></div>`;document.body.classList.add('lock');const f=$('[autofocus]',mr)||$('input,select,textarea,.btn',mr);f&&f.focus()}
+function closeModal(silent){mr.innerHTML='';document.body.classList.remove('lock');if(!silent&&lastF&&lastF.focus)lastF.focus()}
+function toast(t,k=''){const e=document.createElement('div');e.className='toast '+k;e.textContent=t;$('#toasts').append(e);setTimeout(()=>e.remove(),4200)}
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&mr.firstChild)closeModal();
+  if(e.key==='Tab'&&mr.firstChild){const f=$$('button,input,select,textarea,a[href]',mr).filter(x=>!x.disabled);if(!f.length)return;const a=f[0],z=f[f.length-1];if(e.shiftKey&&document.activeElement===a){e.preventDefault();z.focus()}else if(!e.shiftKey&&document.activeElement===z){e.preventDefault();a.focus()}}});
+
+/* ---------- countdown ---------- */
+function tick(){
+  $$('[data-cd]').forEach(el=>{const ms=+el.dataset.cd-Date.now(),a=Math.abs(ms),h=Math.floor(a/36e5),m=Math.floor(a%36e5/6e4);
+    el.textContent=ms>=0?`Còn ${h} giờ ${pad(m)} phút để trả máy`:`Quá hạn ${h} giờ ${pad(m)} phút. Phụ thu trễ 50K`;
+    el.classList.toggle('warn',ms>=0&&ms<2*36e5);el.classList.toggle('late',ms<0)});
+}
+setInterval(tick,30000);
+
+/* ---------- booking logic ---------- */
+function startBook(ids,p,d){S.b=newB();S.b.cams=ids;if(p!=null)S.b.pkg=p;if(d)S.b.date=d;S.b.step=ids.length?2:1;S.ui.cal=0;location.hash='#/dat-lich'}
+function validate(b){
+  const e={};
+  if(b.step===1&&!b.cams.length)e.cams='Chọn ít nhất một máy để tiếp tục.';
+  if(b.step===2){if(!b.date)e.date='Chọn ngày nhận máy trên lịch.';else if(!free(b.cams,b.date,b.pkg))e.date='Máy đã có người đặt trong thời gian này. Hãy chọn ngày khác.';
+    if(b.method==='ship'&&!b.addr.trim())e.addr='Nhập địa chỉ nhận máy.'}
+  if(b.step===3){if(b.name.trim().length<2)e.name='Nhập họ và tên.';if(!/^0\d{9}$/.test(b.phone.replace(/\s/g,'')))e.phone='Số điện thoại gồm 10 số, bắt đầu bằng 0.';if(!b.who)e.who='Chọn đối tượng.';
+    const online=b.dep==='online'||b.method==='ship';if(online){if(!b.fb.trim())e.fb='Thuê online cần Facebook hoặc Zalo chính chủ.';if(!b.idf||!b.idb)e.id='Cần tải đủ ảnh CCCD hai mặt.'}}
+  if(b.step===4){['a1','a2','a3'].forEach(k=>{if(!b[k])e[k]=1})}
+  return e;
+}
+function setPath(path,v){const[a,k]=path.split('.');(a==='b'?S.b:S[a])[k]=v}
+
+/* ---------- review modal ---------- */
+function rvModal(oid){
+  if(!S.user){modal(`<h2>Đăng nhập để đánh giá</h2><p class="muted" style="margin:0">Chỉ khách đã hoàn tất đơn thuê mới viết được đánh giá, để mọi đánh giá đều là trải nghiệm thật.</p><a class="btn btn-pri block" href="#/dang-nhap" data-act="close">Đăng nhập</a>`);return}
+  const ords=S.orders.filter(o=>o.stage>=3&&!o.reviewed);
+  if(!ords.length){modal(`<h2>Chưa có đơn để đánh giá</h2><p class="muted" style="margin:0">Bạn có thể đánh giá sau khi trả máy và đơn thuê hoàn tất.</p><a class="btn btn-pri block" href="#/may" data-act="close">Xem máy cho thuê</a>`);return}
+  const F=S.rvForm;F.r=0;F.tags=new Set();F.photos=[];F.order=oid||ords[0].id;
+  modal(`<h2>Viết đánh giá</h2><form onsubmit="return false" style="display:grid;gap:16px">
+   <div class="field"><label for="rv-o">Đơn đã hoàn tất</label><select id="rv-o" data-rvo>${ords.map(o=>`<option value="${o.id}" ${o.id===F.order?'selected':''}>${o.id} · ${esc(CAM(o.cams[0]).name)}</option>`).join('')}</select></div>
+   <div><div class="lbl" style="margin-bottom:4px">Bạn chấm mấy sao?</div><div class="starpick" id="sp" role="radiogroup" aria-label="Số sao">${[1,2,3,4,5].map(i=>`<button type="button" data-act="rstar" data-n="${i}" role="radio" aria-checked="false" aria-label="${i} sao">${star(1).replace('class=""','')}</button>`).join('')}</div><span class="errt" id="rv-e" role="alert"></span></div>
+   <div><div class="lbl" style="margin-bottom:8px">Điểm nổi bật</div><div class="chips">${['Máy sạch','Đúng giờ','Hoàn cọc nhanh','Tư vấn nhiệt tình','Quy trình rõ ràng'].map(t=>`<button type="button" class="chip" data-act="rtag" data-t="${t}" aria-pressed="false">${t}</button>`).join('')}</div></div>
+   <div class="field"><label for="rv-t">Chia sẻ trải nghiệm</label><textarea id="rv-t" maxlength="500" placeholder="Máy hoạt động thế nào, cửa hàng hỗ trợ ra sao?"></textarea><span class="help" id="rv-c">0 / 500</span></div>
+   <div><label class="upl" id="rv-up"><input type="file" accept="image/*" multiple data-file="rvph">${ic('upload')}<br>Thêm ảnh (tối đa 3)</label><div class="ph" id="rv-pv" style="margin-top:8px"></div></div>
+   <label class="chk"><input type="checkbox" id="rv-short" checked>Hiển thị tên rút gọn</label>
+   <div class="nav-btns"><button type="button" class="btn btn-ghost" data-act="close">Hủy</button><button type="button" class="btn btn-pri" data-act="rsend">Gửi đánh giá</button></div></form>`,'wide');
+}
+
+/* ---------- events ---------- */
+document.addEventListener('click',e=>{
+  const ov=e.target.closest('[data-ov]');if(ov&&e.target===ov){closeModal();return}
+  const a=e.target.closest('[data-act]');if(!a)return;const act=a.dataset.act,id=a.dataset.id;
+  switch(act){
+   case'theme':{const r=document.documentElement,dark=r.dataset.theme?r.dataset.theme==='dark':matchMedia('(prefers-color-scheme:dark)').matches;r.dataset.theme=dark?'light':'dark';break}
+   case'burger':{const n=$('#nav'),o=n.classList.toggle('open');a.setAttribute('aria-expanded',o);document.body.classList.toggle('lock',o);break}
+   case'close':closeModal();break;
+   case'hometab':S.ui.homeTab=a.dataset.t;refresh();break;
+   case'like':{S.liked.has(id)?S.liked.delete(id):S.liked.add(id);a.classList.toggle('on');a.setAttribute('aria-pressed',S.liked.has(id));toast(S.liked.has(id)?'Đã lưu máy này':'Đã bỏ lưu');break}
+   case'rent':startBook([id],a.dataset.p!=null?+a.dataset.p:1);break;
+   case'notify':modal(`<h2>Báo khi có máy</h2><p class="muted" style="margin:0">Để lại số điện thoại, cửa hàng sẽ nhắn bạn khi ${esc(CAM(id).name)} có lịch trống.</p><div class="field"><label for="n-p">Số điện thoại</label><input id="n-p" type="tel" inputmode="numeric" autofocus></div><button class="btn btn-pri block" data-act="notifyok">Gửi yêu cầu</button>`);break;
+   case'notifyok':{const v=$('#n-p').value.replace(/\s/g,'');if(!/^0\d{9}$/.test(v)){toast('Số điện thoại chưa đúng định dạng','err');break}closeModal();toast('Đã ghi nhận. Cửa hàng sẽ nhắn bạn khi có máy.','ok');break}
+   case'quick':{const c=$('#q-cam').value,d=$('#q-date').value,p=+$('#q-pkg').value;startBook([c],p,d||'');break}
+   case'pkgpick':startBook([],+a.dataset.p);break;
+   case'ptab':S.ui.price=a.dataset.t;refresh();break;
+   case'view':S.ui.det.view=+a.dataset.v;refresh();break;
+   case'dpk':S.ui.det.pkg=+a.dataset.p;refresh();break;
+   case'dgo':{const d=S.ui.det;if(d.date&&!free([id],d.date,d.pkg))break;startBook([id],d.pkg,d.date);break}
+   case'calp':S.ui.cal=Math.max(0,S.ui.cal-1);refresh();break;
+   case'caln':S.ui.cal=Math.min(2,S.ui.cal+1);refresh();break;
+   case'pickday':{if(location.hash.startsWith('#/dat-lich'))S.b.date=a.dataset.d;else S.ui.det.date=a.dataset.d;const d=pISO(a.dataset.d);S.ui.cal=(d.getFullYear()-today.getFullYear())*12+d.getMonth()-today.getMonth();refresh();break}
+   case'catreset':S.ui.cat={brand:'',type:'',max:1200,ok:false,q:'',sort:'pop'};render(false);break;
+   case'bcam':{const l=S.b.cams,i=l.indexOf(id);i<0?l.push(id):l.splice(i,1);S.b.err={};refresh();break}
+   case'bpk':S.b.pkg=+a.dataset.p;refresh();break;
+   case'bnext':{const e2=validate(S.b);S.b.err=e2;if(Object.keys(e2).length){refresh();const f=$('.bad input,.bad select,.errt');f&&f.scrollIntoView({block:'center',behavior:'smooth'});break}S.b.step++;S.b.err={};render(true);break}
+   case'bback':S.b.step=Math.max(1,S.b.step-1);S.b.err={};render(true);break;
+   case'copy':navigator.clipboard?.writeText(a.dataset.v).then(()=>toast('Đã sao chép','ok'),()=>toast('Không sao chép được'));break;
+   case'bsubmit':{const e2=validate(S.b);S.b.err=e2;if(Object.keys(e2).length){refresh();break}
+    modal(`<h2>Xác nhận lần cuối</h2><div class="note err">${ic('alert')}<span><b>Sau khi xác nhận, cửa hàng không nhận hủy lịch trong bất kỳ trường hợp nào.</b> Khoản 50K giữ slot không được hoàn lại.</span></div><p class="muted" style="margin:0">Bạn đã kiểm tra kỹ máy, ngày giờ nhận và trả chưa?</p><div class="nav-btns"><button class="btn btn-ghost" data-act="close">Quay lại kiểm tra</button><button class="btn btn-pri" data-act="bconfirm">Tôi hiểu, xác nhận</button></div>`);break}
+   case'bconfirm':{a.classList.add('loading');setTimeout(()=>{const b=S.b,t=timing(b);const o={id:'MEE'+(2100+Math.floor(Math.random()*800)),cams:[...b.cams],pkg:b.pkg,start:t.s,end:t.e,stage:0,total:sumP(b.cams,b.pkg),dep:'Chờ nhận khi lấy máy',method:b.method,base:b.base,cust:b.name,phone:b.phone,depAmt:depOf(b.cams)};
+      S.orders.unshift(o);S.done=o;S.b=newB();closeModal(true);location.hash='#/dat-lich/thanh-cong'},700);break}
+   case'regtab':S.ui.reg=a.dataset.r==='1';refresh();break;
+   case'login':{const ph=$('#l-ph').value.replace(/\s/g,''),pw=$('#l-pw').value,nm=$('#l-name')?.value.trim(),er=$('#l-err');
+    const msg=!/^0\d{9}$/.test(ph)?'Số điện thoại gồm 10 số, bắt đầu bằng 0.':pw.length<6?'Mật khẩu cần ít nhất 6 ký tự.':(S.ui.reg&&!nm)?'Nhập họ và tên.':'';
+    if(msg){er.innerHTML=`<span class="errt">${ic('alert')}${msg}</span>`;break}
+    S.user={name:nm||'Khách thuê',phone:ph,verify:0};toast('Đăng nhập thành công','ok');location.hash='#/tai-khoan/don';break}
+   case'social':toast('Đăng nhập mạng xã hội chưa được kết nối trong bản thiết kế');break;
+   case'logout':S.user=null;toast('Đã đăng xuất');location.hash='#/';break;
+   case'otab':S.ui.otab=a.dataset.t;refresh();break;
+   case'saveprof':toast('Đã lưu thay đổi','ok');break;
+   case'extend':{const o=S.orders.find(x=>x.id===id),c=CAM(o.cams[0]);modal(`<h2>Gia hạn thuê</h2><p class="muted" style="margin:0">Thêm 1 ngày cho ${esc(c.name)} với giá ${vnd(c.p[1])}. Chỉ gia hạn được khi máy chưa có người đặt sau bạn.</p><div class="note warn">${ic('alert')}<span>Trả máy trễ làm lỡ lịch khách sau sẽ phải đền bù theo quy định.</span></div><button class="btn btn-pri block" data-act="extok" data-id="${id}">Gia hạn thêm 1 ngày</button>`);break}
+   case'extok':{const o=S.orders.find(x=>x.id===id);o.end=new Date(+o.end+24*36e5);o.total+=CAM(o.cams[0]).p[1];closeModal(true);toast('Đã gia hạn thêm 1 ngày','ok');refresh();break}
+   case'retm':modal(`<h2>Báo trả máy</h2><div class="field"><label for="r-t">Giờ bạn mang máy đến trả</label><select id="r-t" autofocus>${['Trong 1 giờ tới','Trong 2 giờ tới','Đúng giờ hẹn'].map(t=>`<option>${t}</option>`).join('')}</select></div><p class="muted sm-t" style="margin:0">Cửa hàng sẽ kiểm tra máy rồi hoàn cọc.</p><button class="btn btn-pri block" data-act="retok">Gửi thông báo</button>`);break;
+   case'retok':closeModal(true);toast('Đã báo cửa hàng. Hẹn gặp bạn!','ok');break;
+   case'rvf':S.ui.rv.f=a.dataset.f;if(location.hash!=='#/danh-gia'){location.hash='#/danh-gia'}else refresh();break;
+   case'helpful':{S.helped.has(+id)?S.helped.delete(+id):S.helped.add(+id);refresh();break}
+   case'writerv':rvModal(a.dataset.oid);break;
+   case'rstar':{S.rvForm.r=+a.dataset.n;$$('#sp button').forEach((b,i)=>{b.classList.toggle('on',i<S.rvForm.r);b.setAttribute('aria-checked',i+1===S.rvForm.r)});$('#rv-e').textContent='';break}
+   case'rtag':{const t=a.dataset.t,T=S.rvForm.tags;T.has(t)?T.delete(t):T.add(t);a.classList.toggle('on');a.setAttribute('aria-pressed',T.has(t));break}
+   case'rsend':{const F=S.rvForm;if(!F.r){$('#rv-e').innerHTML=`${ic('alert')} Chọn số sao trước khi gửi.`;break}
+    const t=$('#rv-t').value.trim();if(t.length<10){toast('Hãy viết ít nhất 10 ký tự','err');break}
+    const o=S.orders.find(x=>x.id===F.order);o.reviewed=true;const nm=S.user.name.split(' ');const disp=$('#rv-short').checked&&nm.length>1?nm[0]+' '+nm[nm.length-1][0]+'.':S.user.name;
+    S.reviews.unshift({id:Date.now(),name:disp,cam:o.cams[0],pkg:o.pkg,r:F.r,t,tags:[...F.tags],ago:0,ph:0,imgs:F.photos.slice(0,3),help:0,mine:true});
+    closeModal(true);toast('Đã gửi đánh giá. Cảm ơn bạn!','ok');refresh();break}
+   case'lightbox':modal(`<h2>Ảnh của khách</h2><div class="gal-main">${camSVG(CAM(id))}</div>`,'wide');break;
+   case'lightimg':modal(`<h2>Ảnh của khách</h2><img alt="Ảnh khách tải lên" src="${a.querySelector('img').src}" style="border-radius:16px;width:100%">`,'wide');break;
+   case'contact':{const n=$('#ct-n').value.trim(),p=$('#ct-p').value.replace(/\s/g,''),m=$('#ct-m').value.trim();if(!n||!/^0\d{9}$/.test(p)||!m){toast('Nhập đủ họ tên, số điện thoại 10 số và nội dung','err');break}toast('Đã gửi. Cửa hàng sẽ phản hồi qua Zalo.','ok');break}
+  }
+});
+document.addEventListener('input',e=>{
+  const t=e.target;
+  if(t.dataset.bind&&t.type!=='radio'&&t.tagName!=='SELECT'){setPath(t.dataset.bind,t.type==='checkbox'?t.checked:t.value);if(t.dataset.bind==='user.name')S.user.name=t.value;return}
+  if(t.dataset.f){const f=S.ui.cat,k=t.dataset.f;f[k]=t.type==='checkbox'?t.checked:t.type==='range'?+t.value:t.value;if(k==='max')$('#f-maxv').textContent=K(f.max);catList()}
+  if(t.id==='rv-t'){$('#rv-c').textContent=t.value.length+' / 500'}
+});
+document.addEventListener('change',e=>{
+  const t=e.target;
+  if(t.dataset.bind&&(t.type==='radio'||t.tagName==='SELECT'||t.type==='checkbox')){setPath(t.dataset.bind,t.type==='checkbox'?t.checked:t.value);if(t.dataset.bind==='b.method'&&t.value==='ship')S.b.dep='online';if(t.dataset.re)refresh();return}
+  if(t.dataset.f){const f=S.ui.cat;f[t.dataset.f]=t.type==='checkbox'?t.checked:t.value;catList()}
+  if(t.dataset.calc){S.ui.calc[t.dataset.calc]=t.dataset.calc==='pkg'?+t.value:t.value;refresh()}
+  if(t.dataset.rvs!==undefined){S.ui.rv.sort=t.value;refresh()}
+  if(t.dataset.rvo!==undefined){S.rvForm.order=t.value}
+  if(t.dataset.chk!==undefined){S.ui.chk[t.dataset.chk]=t.checked}
+  if(t.dataset.file){const fl=[...t.files];if(!fl.length)return;const k=t.dataset.file;
+    if(k==='idf'||k==='idb'){S.b[k]=fl[0].name;refresh()}
+    else if(k==='verify'){S.user.verify=1;toast('Đã gửi ảnh CCCD, đang chờ duyệt','ok');refresh()}
+    else if(k==='rvph'){S.rvForm.photos=[];fl.slice(0,3).forEach(f=>{const r=new FileReader();r.onload=()=>{S.rvForm.photos.push(r.result);const pv=$('#rv-pv');if(pv)pv.innerHTML=S.rvForm.photos.map(u=>`<button type="button" style="width:64px;height:64px;border-radius:12px;border:1px solid var(--line);padding:0;overflow:hidden"><img alt="Ảnh xem trước" src="${u}" style="width:100%;height:100%;object-fit:cover"></button>`).join('')};r.readAsDataURL(f)})}}
+});
+
+render(false);
+})();
+</script>
+</body>
+</html>
