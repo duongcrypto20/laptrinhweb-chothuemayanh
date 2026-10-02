@@ -451,7 +451,7 @@ html,body{overflow-x:clip}
 @media(max-width:1000px){.kpis{grid-template-columns:repeat(2,1fr)}.g2,.g3{grid-template-columns:1fr}}
 @media(max-width:900px){.ad{grid-template-columns:1fr}.ad-side{position:static;height:auto}.ad-side nav{display:flex;overflow-x:auto}.ad-side nav a{white-space:nowrap}.ad-foot{margin-top:0;grid-template-columns:1fr 1fr}}
 
-/* ===== bổ sung: logo, ảnh máy, form, quản trị ===== */
+/* thêm: logo, ảnh máy, form, quản trị */
 .logo-img{width:44px;height:44px;border-radius:50%;object-fit:cover;flex:none;box-shadow:0 2px 8px rgba(90,40,20,.18)}
 .hdr .logo .logo-img{width:40px;height:40px}
 .ad-side .logo .logo-img{width:36px;height:36px}
@@ -499,7 +499,7 @@ input:disabled,select:disabled{opacity:.55;cursor:not-allowed}
 details>summary{cursor:pointer}
 .modal .kv{margin:0}
 .btn.sm{white-space:nowrap}
-/* khung ảnh máy thật luôn nền kem sáng để máy đen vẫn rõ ở chế độ tối */
+/* khung ảnh máy */
 .cam-ph.has-img,.gal-main.has-img,.img-i,.mini,.pick .th:has(>img),.ord .th:has(>img),.thumbs button:has(>img),.hero-art .stamp-in>div:has(img),.mini:has(svg){background:radial-gradient(120% 90% at 30% 20%,#FFF8E0,#F0E2B8)!important}
 .hero-art .stamp .cap{color:inherit}
 .cam-ph.has-img,.gal-main.has-img{position:relative;overflow:hidden}
@@ -509,7 +509,7 @@ details>summary{cursor:pointer}
 .cam-ph.has-img .badge{z-index:2}
 
 
-/* ===== Skin: nâu + be pastel, Roboto ===== */
+/* đổi màu chủ đạo nâu be với font chữ chính là: roboto */
 :root{--bg:#FBF5EC;--bg2:#F2E6D6;--card:#FFFBF5;--ink:#3A2619;--ink2:#6A5242;--line:#E4D3BC;
  --pri:#7B4B2F;--pri2:#5C3822;--pri-ink:#FFF8EE;--acc:#EBD8BF;--acc2:#F5EADA;--acc-ink:#4A2C1A;--photo:#F2E6D6;--star:#C98A3B;
  --shadow:0 8px 24px rgba(90,56,34,.12);--hole:#FBF5EC;
@@ -536,12 +536,12 @@ input[type=text],input[type=tel],input[type=password],input[type=search],input[t
 .nav a{border-radius:0;font-size:14.5px}
 .nav a:hover{background:transparent;color:var(--pri)}
 .nav a.on{background:transparent;color:var(--pri);box-shadow:inset 0 -2px 0 var(--pri)}
-/* thanh tìm kiếm */
+/* thêm thanh tìm kiếm */
 .srch{background:var(--bg2);border-bottom:1px solid var(--line);padding:16px 0}
 .srch form{display:flex;gap:10px;max-width:860px;margin:0 auto}
 .srch input{flex:1;height:50px;font-size:17px;padding:0 18px;border-radius:10px;border:1.5px solid var(--line)}
 .srch .btn{height:50px;padding:0 28px}
-/* ảnh lớn */
+/* thêm ảnh cho trang chủ */
 .hero-img{background:#2F1C4A;line-height:0}
 .hero-img img{display:block;margin:0 auto;width:100%;max-width:900px;height:auto;max-height:520px;object-fit:contain}
 .quick{margin-top:-36px}
@@ -580,7 +580,7 @@ footer.ft h4{color:#fff}footer.ft a{color:#E9D8C0}
 <script>
 (()=>{
 'use strict';
-/* ---------- helpers ---------- */
+/* helpers */
 const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const vnd=k=>(k*1000).toLocaleString('vi-VN')+'đ';
@@ -620,7 +620,7 @@ const ic=(n,c='')=>`<svg class="${c}" viewBox="0 0 24 24" fill="none" stroke="cu
 const star=(on)=>`<svg viewBox="0 0 24 24" class="${on?'':'e'}" aria-hidden="true"><path d="m12 2.500 2.900 6 6.600.8-4.800 4.600 1.200 6.500L12 17.200 6.100 20.400l1.200-6.500L2.500 9.300l6.600-.8z"/></svg>`;
 const stars=n=>`<span class="stars" role="img" aria-label="${n} trên 5 sao">${[1,2,3,4,5].map(i=>star(i<=Math.round(n))).join('')}</span>`;
 
-/* ---------- data ---------- */
+/* dữ liệu */
 const BRAND='me.e_digitalcam';
 const PHONE='0917 999 277 / 0834 020 466';
 const PKG=[
@@ -666,7 +666,7 @@ const booked=c=>{const s=new Set(),h=hash(c.id);
   return s;};
 const BOOKED=Object.fromEntries(CAMS.map(c=>[c.id,booked(c)]));
 const span=p=>p===0?0:p;
-/* UC06: khả dụng = lịch mẫu + các đơn đang có hiệu lực (Chờ xử lý, Đã xác nhận, Đã nhận máy, Đang thuê) */
+/* khả dụng máy = lịch + các đơn đang có hiệu lực (Chờ xử lý, Đã xác nhận, Đã nhận máy, Đang thuê) */
 const BLOCK=[0,1,2,3];
 const daysOf=(s,e)=>{const r=[];let d=new Date(s.getFullYear(),s.getMonth(),s.getDate());const z=new Date(e.getFullYear(),e.getMonth(),e.getDate());for(;d<=z;d=addD(d,1))r.push(iso(d));return r};
 const occDays=(id,ex)=>{const s=new Set();S.orders.forEach(o=>{if(o.id===ex||!BLOCK.includes(o.stage)||!o.cams.includes(id))return;daysOf(o.start,o.end).forEach(k=>s.add(k))});return s};
@@ -680,7 +680,7 @@ const FEE=k=>{const s=ADM.services.find(x=>x.key===k);return s&&s.ptype==='fixed
 const SLOT=()=>FEE('slot');
 
 
-/* ---------- camera illustration ---------- */
+/* camera illustration */
 function camSVG(c,flip){
   const b=c.body,t=c.top||b,sh='<rect x="0" y="0" width="0" height="0"/>';
   const lens=(cx,cy,r)=>`<circle cx="${cx}" cy="${cy}" r="${r+7}" fill="#A59C8D"/><circle cx="${cx}" cy="${cy}" r="${r+2}" fill="#151515"/><circle cx="${cx}" cy="${cy}" r="${r*.78}" fill="#262626"/><circle cx="${cx}" cy="${cy}" r="${r*.5}" fill="#0B0B12" stroke="#3B4A6B" stroke-width="3"/><circle cx="${cx-r*.2}" cy="${cy-r*.22}" r="${r*.14}" fill="#fff" opacity=".28"/><circle cx="${cx+r*.18}" cy="${cy+r*.22}" r="${r*.06}" fill="#E8D296" opacity=".7"/>`;
@@ -709,7 +709,7 @@ function camSVG(c,flip){
   return `<svg viewBox="0 0 320 240" role="img" aria-label="Minh họa ${esc(c.name)}" ${flip?'style="transform:scaleX(-1)"':''}><ellipse cx="160" cy="216" rx="112" ry="8" fill="#2E0F04" opacity=".14"/>${g}</svg>`;
 }
 
-/* ---------- state ---------- */
+/*state */
 const nowDT=new Date();
 const newB=()=>({step:1,cams:[],pkg:1,date:'',time:'10:00',ca:'sang',method:'direct',base:'Cs1',addr:'',name:'',phone:'',fb:'',who:'',dep:'direct',idf:'',idb:'',a1:false,a2:false,a3:false,note:'',pcode:'',promo:null,perr:'',err:{}});
 const S={
@@ -733,7 +733,7 @@ S.reviews.forEach(r=>{r.status='APPROVED';r.imgs=r.imgs||[];r.uid=null;r.oid=nul
 const pubRv=()=>S.reviews.filter(r=>r.status==='APPROVED');
 const avg=()=>{const l=pubRv();return l.length?l.reduce((a,r)=>a+r.r,0)/l.length:0};
 
-/* ---------- pricing helpers ---------- */
+/*pricing helpers*/
 const sumP=(ids,p)=>ids.reduce((a,id)=>a+CAM(id).p[p],0);
 const depOf=ids=>ids.length&&ids.every(id=>CAM(id).cmp)?300:700;
 function timing(b){
@@ -744,7 +744,7 @@ function timing(b){
   return{s,e:new Date(s.getTime()+(24*b.pkg-1)*36e5)};
 }
 
-/* ---------- dữ liệu dùng chung: trạng thái, quyền, tài khoản, khuyến mãi, đơn ---------- */
+/*  dữ liệu dùng chung: trạng thái, quyền, tài khoản, khuyến mãi, đơn  */
 const OST=['Chờ xử lý','Đã xác nhận','Đã nhận máy','Đang thuê','Đã trả máy','Hoàn tất','Đã hủy'];
 const OSTC=['b-low','b-info','b-info','b-pri','b-info','b-ok','b-out'];
 const RVST={PENDING:['Chờ duyệt','b-low'],APPROVED:['Đã hiển thị','b-ok'],HIDDEN:['Đã ẩn','b-out']};
@@ -1294,7 +1294,7 @@ P.contact=()=>`<section class="sec" style="padding-top:36px"><div class="wrap"><
   <h2>Câu hỏi thường gặp</h2><div style="max-width:820px">${faqList()}</div></div></section>`;
 P.nf=()=>`<section class="sec"><div class="wrap"><div class="empty">${ic('cam')}<h2>Không tìm thấy trang này</h2><p class="muted">Đường dẫn có thể đã thay đổi hoặc không tồn tại.</p><a class="btn btn-pri" href="#/">Về trang chủ</a></div></div></section>`;
 
-/* ---------- QUẢN TRỊ (chủ cửa hàng / nhân viên) ---------- */
+/* TRANG QUẢN TRỊ (chủ cửa hàng / nhân viên) */
 Object.assign(ICONS,{
  chart:'<path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>',msg:'<path d="M4 5h16v11H9l-5 4z"/>',
  list:'<path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/>',tool:'<path d="M14 6a4 4 0 0 0 5 5l-9 9a2 2 0 0 1-3-3l9-9z"/>',
