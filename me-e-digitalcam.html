@@ -893,13 +893,6 @@ const mkO=(id,cust,phone,cams,pkg,off,h,stage,extra={})=>{
 };
 SEEDS.push(
  mkO('MEE2018','Hoàng Minh Quân','0944000111',['xt20'],1,-6,10,4),
- mkO('MEE2024','Bùi Anh Tuấn','0933456789',['xt10'],1,-9,10,4,{after:true}),
- mkO('MEE2031','Lê Thảo Vy','0905123456',['xt30'],1,-3,10,5,{after:true,refunded:true,reviewed:true}),
- mkO('MEE2044','Phạm Gia Huy','0935111222',['x100v'],2,-1,9,3),
- mkO('MEE2049','Trần Mỹ Linh','0977333444',['m50','m10'],0,0,8,3),
- mkO('MEE2052','Nguyễn Đức Anh','0911888999',['xs10'],1,1,10,1),
- mkO('MEE2063','Đặng Quỳnh Như','0888222111',['r50'],0,0,15,1),
- mkO('MEE2060','Võ Thanh Hà','0366555777',['xa3'],3,2,15,0,{note:'Mình cần nhận máy sớm một chút nếu được.'}),
  mkO('MEE2009','Ngô Bảo Châu','0399000222',['m10'],0,3,8,6,{cancelReason:'Khách không phản hồi sau khi cửa hàng xác nhận lịch.'})
 );
 SEEDS.forEach(o=>{seed(o);S.orders.push(o);
